@@ -1,0 +1,392 @@
+/* ==========================================
+   GALLERY PAGE - FINAL PRODUCTION FIX
+   ========================================== */
+
+   :root {
+    --red: #e11d48;
+    --red2: #be123c;
+    --text: #0f172a;
+    --text-light: #64748b;
+    --line: #e2e8f0;
+    --bg-soft: #f8fafc;
+    --radius: 16px;
+  }
+  
+  /* Gallery Hero Section */
+  .gallery-hero {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
+    color: #fff;
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  
+  .gallery-hero-content h1 {
+    margin: 0 0 16px;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+  
+  .gallery-hero-content p {
+    margin: 0;
+    font-size: 18px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Filter Tabs */
+  .gallery-filters {
+    background: #fff;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    backdrop-filter: blur(10px);
+  }
+  
+  .filter-tabs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .filter-tab {
+    padding: 10px 20px;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-tab:hover {
+    border-color: var(--red);
+    background: rgba(225, 29, 72, 0.05);
+    transform: translateY(-2px);
+  }
+  
+  .filter-tab.active {
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    color: #fff;
+    border-color: var(--red);
+  }
+  
+  /* Gallery Main Section */
+  .gallery-main {
+    padding: 50px 0;
+    background: var(--bg-soft);
+  }
+  
+  /* ===== FIXED MASONRY GRID ===== */
+/* ===== PROFESSIONAL MASONRY (NO CROPPING) ===== */
+.gallery-masonry {
+    column-count: 4;
+    column-gap: 16px;
+  }
+  
+  /* Responsive column counts */
+  @media (max-width: 1100px) {
+    .gallery-masonry { column-count: 3; }
+  }
+  @media (max-width: 750px) {
+    .gallery-masonry { column-count: 2; }
+  }
+  @media (max-width: 420px) {
+    .gallery-masonry { column-count: 1; }
+  }
+  
+  
+  /* ===== GALLERY CARDS - DEFAULT ===== */
+  .gallery-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  
+    /* important for masonry columns */
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+  
+  
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* ===== GYM FACILITY PHOTOS (Landscape) ===== */
+  
+  
+  /* ===== TRANSFORMATION PHOTOS ===== */
+  /* Most transformation photos are 2-panel side-by-side before/after */
+  
+  
+  /* Featured transformations (4-panel grids) are taller */
+  
+  
+  /* ===== WORKOUT SESSION PHOTOS ===== */
+ 
+  
+  /* ===== IMAGE WRAPPER ===== */
+  .gallery-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  
+  .gallery-img-wrap img {
+    width: 100%;
+    height: auto;          /* ✅ natural height */
+    display: block;
+    object-fit: initial;   /* ✅ no crop/contain logic needed */
+    transition: transform 0.3s ease;
+  }
+  
+  
+  .gallery-card:hover .gallery-img-wrap img {
+    transform: scale(1.02);
+  }
+  
+  /* ===== OVERLAY ===== */
+  .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    padding: 16px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  
+  .gallery-card:hover .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .gallery-category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--red);
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  
+  .gallery-overlay h3 {
+    margin: 0 0 2px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  
+  .gallery-overlay p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+  
+  /* ===== VIDEO CARDS ===== */
+  .video-card {
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+  
+  .video-card .gallery-video-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;  /* keep vertical */
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* video can be cover */
+    display: block;
+  }
+  
+  
+  .video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(225, 29, 72, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
+    color: #fff;
+    font-size: 22px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .video-card:hover .video-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--red);
+  }
+  
+  /* Load More Button */
+  .gallery-load-more {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  /* Call to Action Section */
+  .gallery-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
+    color: #fff;
+    text-align: center;
+  }
+  
+  .cta-content h2 {
+    margin: 0 0 16px;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 900;
+  }
+  
+  .cta-content p {
+    margin: 0 0 28px;
+    font-size: 18px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .cta-actions .btn {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+  
+  .cta-actions .btn-primary {
+    background: #fff;
+    color: var(--red);
+    border: 2px solid #fff;
+  }
+  
+  .cta-actions .btn-primary:hover {
+    background: transparent;
+    color: #fff;
+  }
+  
+  .cta-actions .btn-whatsapp {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Hide filtered items */
+  .gallery-card.hidden {
+    display: none;
+  }
+  
+  /* Active navigation link */
+  .nav-links a.active {
+    background: rgba(225, 29, 72, 0.12);
+    color: var(--red2);
+    font-weight: 800;
+  }
+  
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 950px) {
+    .gallery-masonry {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .gallery-masonry {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  
+    .filter-tabs {
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .filter-tabs::-webkit-scrollbar {
+      height: 4px;
+    }
+  
+    .filter-tabs::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 4px;
+    }
+  
+    .gallery-hero {
+      padding: 60px 0 40px;
+    }
+  
+    .gallery-cta {
+      padding: 60px 0;
+    }
+    
+    /* On mobile, make all cards square except videos */
+    .gallery-card,
+    .gallery-card.featured,
+    .gallery-card[data-category="gym"],
+    .gallery-card[data-category="transformations"],
+    .gallery-card[data-category="workouts"] {
+      aspect-ratio: 1/1;
+    }
+    
+    /* Videos remain vertical */
+    .video-card {
+      aspect-ratio: 9/16 !important;
+    }
+    
+    /* Smaller overlay text on mobile */
+    .gallery-overlay {
+      padding: 12px;
+    }
+    
+    .gallery-overlay h3 {
+      font-size: 12px;
+    }
+    
+    .gallery-overlay p {
+      font-size: 11px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .gallery-masonry {
+      grid-template-columns: 1fr;
+    }
+  }
