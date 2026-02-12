@@ -40,7 +40,11 @@
         </div>
       </div>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open Menu">☰</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
@@ -449,8 +453,15 @@
 
   <!-- Floating Buttons -->
   <div class="float-actions">
-    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank">WhatsApp</a>
-    <a class="float-btn float-call" href="tel:8668007901">Call</a>
+    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">
+      💬
+    </a>
+    <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">
+      📞
+    </a>
+    <button class="float-btn float-top" id="backToTop" aria-label="Back to top">
+      ↑
+    </button>
   </div>
 
   <script src="assets/js/main.js"></script>

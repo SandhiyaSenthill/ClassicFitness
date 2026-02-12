@@ -39,6 +39,20 @@
       }
     });
 
+    // Handle dropdown toggle on mobile
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        // Only handle this on mobile (when nav-links is in mobile mode)
+        if (window.innerWidth <= 820) {
+          e.preventDefault(); // Prevent default anchor behavior
+          const dropdown = toggle.closest('.nav-dropdown');
+          dropdown.classList.toggle('open');
+        }
+      });
+    });
+
     // Close menu when clicking a link
     navLinks.addEventListener('click', (e) => {
       if (e.target.tagName === 'A' && !e.target.classList.contains('dropdown-toggle')) {
@@ -66,6 +80,11 @@
         spans.forEach(span => {
           span.style.transform = '';
           span.style.opacity = '';
+        });
+        
+        // Close all dropdowns
+        document.querySelectorAll('.nav-dropdown.open').forEach(dropdown => {
+          dropdown.classList.remove('open');
         });
       }
     });
