@@ -288,7 +288,58 @@
     border-radius: 2px;
     transition: var(--transition);
   }
-  
+ /* Right side actions (Transformations + Hamburger) */
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Mobile CTA pill (hidden on desktop) */
+.nav-quick{
+  display:none;
+  align-items:center;
+  gap:8px;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:800;
+  font-size:12px;
+  line-height:1;
+  box-shadow:0 6px 16px rgba(0,0,0,0.06);
+}
+
+.nav-quick-icon{
+  font-size:14px;
+  line-height:1;
+}
+
+.nav-quick:hover{
+  transform: translateY(-1px);
+  border-color: rgba(225,29,72,0.35);
+  box-shadow:0 10px 22px rgba(225,29,72,0.12);
+}
+
+/* active state (on gallery page if you use .active) */
+.nav-quick-gallery.active{
+  border-color: rgba(225,29,72,0.45);
+  background: rgba(225,29,72,0.06);
+  color: var(--red);
+}
+
+
+.nav-quick-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.nav-quick-gallery.active {
+  border-color: rgba(225,29,72,0.45);
+  background: rgba(225,29,72,0.06);
+  color: var(--red);
+}
+
   /* ===== BUTTONS ===== */
   .btn {
     display: inline-flex;
@@ -1417,7 +1468,26 @@
     .nav-toggle {
       display: flex;
     }
-    
+      /* Show Gallery quick button on mobile */
+  .nav-quick {
+    display: inline-flex;
+  }
+
+  /* Back Home pill (Gallery page) */
+.nav-quick-home {
+  border-color: rgba(225, 29, 72, 0.25);
+}
+
+.nav-quick-home:hover {
+  border-color: rgba(225, 29, 72, 0.45);
+  background: rgba(225, 29, 72, 0.05);
+}
+
+/* on very small screens, hide text (icon only) */
+@media (max-width: 380px){
+  .nav-quick-text{ display:none; }
+  .nav-quick{ padding:9px 10px; }
+}
     .nav-links {
       position: absolute;
       right: 3%;
@@ -2312,3 +2382,4 @@
 .trainer-card:nth-child(2) { animation-delay: 0.2s; }
 .trainer-card:nth-child(3) { animation-delay: 0.3s; }
 .trainer-card:nth-child(4) { animation-delay: 0.4s; }
+
