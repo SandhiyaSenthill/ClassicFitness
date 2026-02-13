@@ -163,6 +163,28 @@
     box-shadow: 0 8px 24px rgba(225,29,72,0.25);
     transition: var(--transition);
   }
+
+  /* ===== BRAND LOGO IMAGE (PROFESSIONAL) ===== */
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transition: var(--transition);
+}
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand:hover .brand-logo {
+  transform: scale(1.05);
+}
+
   
   .brand:hover .brand-mark {
     transform: scale(1.05);
@@ -2383,3 +2405,51 @@
 .trainer-card:nth-child(3) { animation-delay: 0.3s; }
 .trainer-card:nth-child(4) { animation-delay: 0.4s; }
 
+/* ==========================================
+   MOBILE HERO CENTER LOGO (PROFESSIONAL)
+   ========================================== */
+
+   .mobile-hero-logo {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+  
+    .hero-wrap {
+      position: relative;
+    }
+  
+    .mobile-hero-logo {
+      display: block;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 1;
+    }
+  
+    .mobile-hero-logo img {
+      width: 85%;
+      max-width: 380px;
+      opacity: 0.14;        /* subtle premium watermark */
+      filter: blur(0.5px) contrast(1.1);
+      transform: scale(1.05);
+    }
+  
+    /* Ensure text stays above logo */
+    .hero-left,
+    .hero-right {
+      position: relative;
+      z-index: 2;
+    }
+  
+  }
+  @media (max-width: 768px) {
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+    }
+  }
+  
