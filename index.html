@@ -86,7 +86,8 @@
         <a href="#location" class="nav-link">Location</a>
         <a href="#contact" class="nav-link">Contact</a>
 
-        <a class="btn btn-primary" href="#contact">Join Now</a>
+        <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
+
       </nav>
 
       <div class="nav-right">
@@ -867,6 +868,85 @@
       ↑
     </button>
   </div>
+
+
+
+  <!-- ===== Join Now -Form Modal ===== -->
+<div class="join-modal" id="joinModal">
+  <div class="join-modal-overlay" id="joinModalOverlay"></div>
+
+  <div class="join-modal-content">
+    <button class="join-modal-close" id="joinModalClose">&times;</button>
+
+    <h2>Join Classic Fitness</h2>
+    <p class="join-modal-sub">
+      Fill the details below and we will contact you shortly.
+    </p>
+
+    <form id="joinForm" class="join-form">
+      
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="joinName" required>
+      </div>
+
+      <div class="form-group">
+        <label>Mobile Number *</label>
+        <input type="tel" id="joinMobile" required>
+      </div>
+
+      <div class="form-group">
+        <label>Fitness Goal *</label>
+        <select id="joinGoal" required>
+          <option value="">Select Goal</option>
+          <option>Weight Loss</option>
+          <option>Muscle Gain</option>
+          <option>General Fitness</option>
+          <option>Body Transformation</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Preferred Time</label>
+        <select id="joinTime">
+          <option>Morning</option>
+          <option>Evening</option>
+          <option>Flexible</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Experience Level</label>
+        <select id="joinExperience">
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Experienced</option>
+          <option>Returning After Break</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea id="joinMessage" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full">
+        Submit & Contact on WhatsApp
+      </button>
+
+    </form>
+  </div>
+</div>
+
+
+<!-- ===== Toast Notification ===== -->
+<div class="toast" id="toastMessage">
+  <div class="toast-icon">✅</div>
+  <div class="toast-text">
+    WhatsApp opened. Please tap <strong>Send</strong> to complete your enquiry.
+  </div>
+</div>
+
 
   <script src="assets/js/main.js"></script>
 </body>

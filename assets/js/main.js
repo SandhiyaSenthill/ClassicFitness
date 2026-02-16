@@ -468,4 +468,95 @@ function initScrollAnimations() {
     initSmoothScroll
   };
 
+
+  // ===== Join Modal Logic =====
+function initJoinModal() {
+  const joinBtn = document.getElementById('joinNowBtn');
+  const modal = document.getElementById('joinModal');
+  const overlay = document.getElementById('joinModalOverlay');
+  const closeBtn = document.getElementById('joinModalClose');
+  const form = document.getElementById('joinForm');
+
+  if (!joinBtn || !modal) return;
+
+  joinBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  overlay.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('joinName').value.trim();
+    const mobile = document.getElementById('joinMobile').value.trim();
+    const goal = document.getElementById('joinGoal').value;
+    const time = document.getElementById('joinTime').value;
+    const exp = document.getElementById('joinExperience').value;
+    const message = document.getElementById('joinMessage').value.trim();
+
+    if (!name || !mobile || !goal) {
+      showToast("Please fill all required fields.", true);
+      return;
+    }
+
+    const text = encodeURIComponent(
+`Hello Classic Fitness,
+
+New Membership Enquiry:
+
+Name: ${name}
+Mobile: ${mobile}
+Goal: ${goal}
+Preferred Time: ${time}
+Experience Level: ${exp}
+Message: ${message || "N/A"}
+
+Please contact me.`
+    );
+
+    const phone = "918668007901";
+    window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+
+    modal.classList.remove('active');
+    form.reset();
+
+    showToast(
+      "WhatsApp opened. Please tap <strong>Send</strong> to complete your enquiry."
+    );
+
+  });
+}
+
+initJoinModal();
+
+
+// ===== Toast Function =====
+function showToast(message, isError = false) {
+  const toast = document.getElementById('toastMessage');
+  if (!toast) return;
+
+  const textEl = toast.querySelector('.toast-text');
+  textEl.innerHTML = message;
+
+  if (isError) {
+    toast.style.borderLeftColor = "#e11d48";
+  } else {
+    toast.style.borderLeftColor = "var(--green)";
+  }
+
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
+}
+
+
 })();

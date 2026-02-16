@@ -2405,6 +2405,154 @@
 .trainer-card:nth-child(3) { animation-delay: 0.3s; }
 .trainer-card:nth-child(4) { animation-delay: 0.4s; }
 
+
+/* ==========================================
+   JOIN MODAL - PROFESSIONAL
+   ========================================== */
+
+   .join-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  
+  .join-modal.active {
+    display: flex;
+  }
+  
+  .join-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(6px);
+  }
+  
+  .join-modal-content {
+    position: relative;
+    width: min(520px, 92%);
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    animation: modalFade 0.3s ease;
+  }
+  
+  @keyframes modalFade {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .join-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .join-modal h2 {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  
+  .join-modal-sub {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .join-form .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .join-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  
+  .join-form input,
+  .join-form select,
+  .join-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+  }
+  
+  .join-form input:focus,
+  .join-form select:focus,
+  .join-form textarea:focus {
+    outline: none;
+    border-color: var(--red);
+  }
+  
+  .btn-full {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  
+  /* ==========================================
+   PROFESSIONAL TOAST NOTIFICATION
+   ========================================== */
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.35s ease;
+  max-width: 90%;
+  border-left: 4px solid var(--green);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-icon {
+  font-size: 20px;
+}
+
+.toast-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Mobile adjustment */
+@media (max-width: 480px) {
+  .toast {
+    bottom: 20px;
+    width: 92%;
+    left: 4%;
+    transform: translateY(30px);
+  }
+
+  .toast.show {
+    transform: translateY(0);
+  }
+}
+
 /* ==========================================
    MOBILE HERO CENTER LOGO (PROFESSIONAL)
    ========================================== */
