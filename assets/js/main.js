@@ -448,6 +448,9 @@ function initScrollAnimations() {
     enhancePriceCards();
     initCopyPhone();
     optimizePageLoad();
+    initCustomSelects();  
+    initJoinModal();
+
     
     // Optional: Enable typing effect
     // initTypingEffect();
@@ -468,73 +471,127 @@ function initScrollAnimations() {
     initSmoothScroll
   };
 
+  
+// ===== Custom Select Dropdowns =====
+function initCustomSelects() {
+  const selects = document.querySelectorAll('.custom-select');
 
-  // ===== Join Modal Logic =====
-function initJoinModal() {
-  const joinBtn = document.getElementById('joinNowBtn');
-  const modal = document.getElementById('joinModal');
-  const overlay = document.getElementById('joinModalOverlay');
-  const closeBtn = document.getElementById('joinModalClose');
-  const form = document.getElementById('joinForm');
+  selects.forEach(function(select) {
+    const trigger = select.querySelector('.custom-select-trigger');
+    const options = select.querySelectorAll('.custom-option');
+    const hiddenInput = select.closest('.custom-select-wrapper').querySelector('input[type="hidden"]');
 
-  if (!joinBtn || !modal) return;
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Close all other open selects
+      document.querySelectorAll('.custom-select.open').forEach(function(s) {
+        if (s !== select) s.classList.remove('open');
+      });
+      select.classList.toggle('open');
+    });
 
-  joinBtn.addEventListener('click', () => {
-    modal.classList.add('active');
+    options.forEach(function(option) {
+      option.addEventListener('click', function() {
+        trigger.childNodes[0].textContent = this.textContent + ' ';
+        if (hiddenInput) hiddenInput.value = this.getAttribute('data-value');
+        select.querySelectorAll('.custom-option').forEach(function(o) {
+          o.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        select.classList.remove('open');
+      });
+    });
   });
 
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
-
-  overlay.addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('joinName').value.trim();
-    const mobile = document.getElementById('joinMobile').value.trim();
-    const goal = document.getElementById('joinGoal').value;
-    const time = document.getElementById('joinTime').value;
-    const exp = document.getElementById('joinExperience').value;
-    const message = document.getElementById('joinMessage').value.trim();
-
-    if (!name || !mobile || !goal) {
-      showToast("Please fill all required fields.", true);
-      return;
-    }
-
-    const text = encodeURIComponent(
-`Hello Classic Fitness,
-
-New Membership Enquiry:
-
-Name: ${name}
-Mobile: ${mobile}
-Goal: ${goal}
-Preferred Time: ${time}
-Experience Level: ${exp}
-Message: ${message || "N/A"}
-
-Please contact me.`
-    );
-
-    const phone = "918668007901";
-    window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
-
-    modal.classList.remove('active');
-    form.reset();
-
-    showToast(
-      "WhatsApp opened. Please tap <strong>Send</strong> to complete your enquiry."
-    );
-
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.custom-select.open').forEach(function(s) {
+      s.classList.remove('open');
+    });
   });
 }
 
-initJoinModal();
+  // ===== Join Modal Logic =====
+  function initJoinModal() {
+    const joinBtn = document.getElementById('joinNowBtn');
+    const modal = document.getElementById('joinModal');
+    const overlay = document.getElementById('joinModalOverlay');
+    const closeBtn = document.getElementById('joinModalClose');
+    const form = document.getElementById('joinForm');
+  
+    if (!modal) return;
+  
+    // Open modal
+    if (joinBtn) {
+      joinBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = "hidden";
+      });
+    }
+  
+    // Close modal (X button)
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = "auto";
+      });
+    }
+  
+    // Close when clicking overlay
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = "auto";
+      });
+    }
+  
+    // Form submit
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+  
+        const name = document.getElementById('joinName').value.trim();
+        const mobile = document.getElementById('joinMobile').value.trim();
+        const goal = document.getElementById('joinGoal').value;
+        const time = document.getElementById('joinTime').value;
+        const exp = document.getElementById('joinExperience').value;
+        const message = document.getElementById('joinMessage').value.trim();
+  
+        if (!name || !mobile || !goal) {
+          showToast("Please fill all required fields.", true);
+          return;
+        }
+  
+        const text = encodeURIComponent(
+  `Hello Classic Fitness,
+  
+  New Membership Enquiry:
+  
+  Name: ${name}
+  Mobile: ${mobile}
+  Goal: ${goal}
+  Preferred Time: ${time}
+  Experience Level: ${exp}
+  Message: ${message || "N/A"}
+  
+  Please contact me.`
+        );
+  
+        const phone = "918668007901";
+        window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+  
+        modal.classList.remove('active');
+        document.body.style.overflow = "auto";
+        form.reset();
+  
+        showToast(
+          "WhatsApp opened. Please tap <strong>Send</strong> to complete your enquiry."
+        );
+      });
+    }
+  }
+  
+
 
 
 // ===== Toast Function =====

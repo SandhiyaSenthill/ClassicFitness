@@ -2409,15 +2409,21 @@
 /* ==========================================
    JOIN MODAL - PROFESSIONAL
    ========================================== */
-
    .join-modal {
+    display: none;
     position: fixed;
     inset: 0;
-    display: none;
+    z-index: 9999;
+  
     align-items: center;
     justify-content: center;
-    z-index: 2000;
+  
+    padding: 12px;
   }
+  
+
+
+  
   
   .join-modal.active {
     display: flex;
@@ -2428,17 +2434,30 @@
     inset: 0;
     background: rgba(15,23,42,0.75);
     backdrop-filter: blur(6px);
+    z-index: 1;              /* ADD THIS */
   }
+  
   
   .join-modal-content {
     position: relative;
-    width: min(520px, 92%);
     background: #fff;
-    border-radius: 20px;
-    padding: 32px;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    border-radius: 16px;
+    padding: 25px;
+    z-index: 10;
+    isolation: isolate;
+
     animation: modalFade 0.3s ease;
-  }
+}
+  
+  
+  
   
   @keyframes modalFade {
     from { transform: translateY(20px); opacity: 0; }
@@ -2453,7 +2472,9 @@
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 20;  /* ✅ ADD THIS */
   }
+  
   
   .join-modal h2 {
     font-size: 24px;
@@ -2478,16 +2499,115 @@
     margin-bottom: 6px;
   }
   
-  .join-form input,
-  .join-form select,
-  .join-form textarea {
+.join-form input,
+.join-form select,
+.join-form textarea {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 12px;
     border-radius: 10px;
     border: 1px solid var(--line);
     font-size: 14px;
-  }
+    font-family: inherit;
+}
+
+.join-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
   
+
+/* ===== CUSTOM SELECT DROPDOWN (fixes mobile misalignment) ===== */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 36px 12px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.custom-select.open .custom-select-trigger {
+  border-color: var(--red);
+}
+
+.custom-arrow {
+  font-size: 16px;
+  color: var(--text-light);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.custom-select.open .custom-arrow {
+  transform: rotate(180deg);
+}
+
+.custom-options {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.custom-select.open .custom-options {
+  display: block;
+}
+
+.custom-option {
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.custom-option:hover {
+  background: var(--bg-soft);
+  color: var(--red);
+}
+
+.custom-option.selected {
+  background: rgba(225,29,72,0.06);
+  color: var(--red);
+  font-weight: 600;
+}
+
+
   .join-form input:focus,
   .join-form select:focus,
   .join-form textarea:focus {
@@ -2553,6 +2673,31 @@
   }
 }
 
+.btn-join-mobile {
+  display: none; /* Hidden on desktop */
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  color: white;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+  text-decoration: none;
+}
+
+.btn-join-mobile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+}
+
+.btn-join-mobile i {
+  margin-right: 8px;
+}
+
+
 /* ==========================================
    MOBILE HERO CENTER LOGO (PROFESSIONAL)
    ========================================== */
@@ -2601,3 +2746,78 @@
     }
   }
   
+  @media (max-height: 700px) {
+    .join-modal {
+      align-items: flex-start;
+      padding-top: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+    
+    .cta-buttons .btn-primary,
+    .cta-buttons .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Show Join Now button on mobile */
+    .btn-join-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .join-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    /* ... other existing styles ... */
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+    
+    .cta-buttons .btn-primary,
+    .cta-buttons .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Show Join Now button on mobile */
+    .btn-join-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .join-modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+
+    .join-form select {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+  }
+    
+}

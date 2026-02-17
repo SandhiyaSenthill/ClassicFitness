@@ -149,6 +149,9 @@
             </svg>
             Call Now
           </a>
+          <button class="btn-join-mobile" onclick="document.getElementById('joinModal').classList.add('active'); document.body.style.overflow='hidden';">
+            <i class="fas fa-user-plus"></i> Join Now
+        </button>
         </div>
   
         <div class="timings-card timings-strong">
@@ -897,32 +900,50 @@
 
       <div class="form-group">
         <label>Fitness Goal *</label>
-        <select id="joinGoal" required>
-          <option value="">Select Goal</option>
-          <option>Weight Loss</option>
-          <option>Muscle Gain</option>
-          <option>General Fitness</option>
-          <option>Body Transformation</option>
-        </select>
+        <div class="custom-select-wrapper">
+          <div class="custom-select" id="joinGoalSelect">
+            <div class="custom-select-trigger">Select Goal <span class="custom-arrow">▾</span></div>
+            <div class="custom-options">
+              <div class="custom-option" data-value="">Select Goal</div>
+              <div class="custom-option" data-value="Weight Loss">Weight Loss</div>
+              <div class="custom-option" data-value="Muscle Gain">Muscle Gain</div>
+              <div class="custom-option" data-value="General Fitness">General Fitness</div>
+              <div class="custom-option" data-value="Body Transformation">Body Transformation</div>
+            </div>
+          </div>
+          <input type="hidden" id="joinGoal" required>
+        </div>
       </div>
 
       <div class="form-group">
         <label>Preferred Time</label>
-        <select id="joinTime">
-          <option>Morning</option>
-          <option>Evening</option>
-          <option>Flexible</option>
-        </select>
+        <div class="custom-select-wrapper">
+          <div class="custom-select" id="joinTimeSelect">
+            <div class="custom-select-trigger">Morning <span class="custom-arrow">▾</span></div>
+            <div class="custom-options">
+              <div class="custom-option" data-value="Morning">Morning</div>
+              <div class="custom-option" data-value="Evening">Evening</div>
+              <div class="custom-option" data-value="Flexible">Flexible</div>
+            </div>
+          </div>
+          <input type="hidden" id="joinTime" value="Morning">
+        </div>
       </div>
 
       <div class="form-group">
         <label>Experience Level</label>
-        <select id="joinExperience">
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Experienced</option>
-          <option>Returning After Break</option>
-        </select>
+        <div class="custom-select-wrapper">
+          <div class="custom-select" id="joinExperienceSelect">
+            <div class="custom-select-trigger">Beginner <span class="custom-arrow">▾</span></div>
+            <div class="custom-options">
+              <div class="custom-option" data-value="Beginner">Beginner</div>
+              <div class="custom-option" data-value="Intermediate">Intermediate</div>
+              <div class="custom-option" data-value="Experienced">Experienced</div>
+              <div class="custom-option" data-value="Returning After Break">Returning After Break</div>
+            </div>
+          </div>
+          <input type="hidden" id="joinExperience" value="Beginner">
+        </div>
       </div>
 
       <div class="form-group">
