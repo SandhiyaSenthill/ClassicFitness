@@ -450,6 +450,8 @@ function initScrollAnimations() {
     optimizePageLoad();
     initCustomSelects();  
     initJoinModal();
+    initDietModal();
+    initBMICalculator();
 
     
     // Optional: Enable typing effect
@@ -592,6 +594,119 @@ function initCustomSelects() {
   }
   
 
+// ===== Diet Plan Modal Logic =====
+function initDietModal() {
+  const dietBtn = document.getElementById('dietPlanBtn');
+  const dietBarBtn = document.getElementById('dietBarBtn');
+  const heroDietBtn = document.getElementById('heroDietBtn');
+  const dietBarClose = document.getElementById('dietBarClose');
+  const modal = document.getElementById('dietModal');
+  const overlay = document.getElementById('dietModalOverlay');
+  const closeBtn = document.getElementById('dietModalClose');
+  const form = document.getElementById('dietForm');
+  const announceBar = document.getElementById('dietAnnounceBar');
+
+  if (!modal) return;
+
+  // Helper to open diet modal
+  function openDietModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Open modal from announcement section button (existing)
+  if (dietBtn) {
+    dietBtn.addEventListener('click', openDietModal);
+  }
+
+  // Open modal from sticky announcement BAR button (new - Option 3)
+  if (dietBarBtn) {
+    dietBarBtn.addEventListener('click', openDietModal);
+  }
+
+  // Open modal from hero strip button (new - Option 1)
+  if (heroDietBtn) {
+    heroDietBtn.addEventListener('click', openDietModal);
+  }
+
+  // Close the sticky bar permanently (dismiss)
+  if (dietBarClose && announceBar) {
+    dietBarClose.addEventListener('click', () => {
+      announceBar.classList.add('hidden');
+    });
+  }
+
+  // Close modal X button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+  }
+
+  // Close when clicking overlay
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+  }
+
+  // Form submit
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name    = document.getElementById('dietName').value.trim();
+      const mobile  = document.getElementById('dietMobile').value.trim();
+      const address = document.getElementById('dietAddress').value.trim();
+      const height  = document.getElementById('dietHeight').value.trim();
+      const weight  = document.getElementById('dietWeight').value.trim();
+      const neck    = document.getElementById('dietNeck').value.trim();
+      const hip     = document.getElementById('dietHip').value.trim();
+      const thigh   = document.getElementById('dietThigh').value.trim();
+      const medical = document.getElementById('dietMedical').value.trim();
+      const chest   = document.getElementById('dietChest').value.trim();
+      const arm     = document.getElementById('dietArm').value.trim();
+      const memberId = document.getElementById('dietMemberId').value.trim();
+
+      if (!name || !mobile || !height || !weight) {
+        showToast('Please fill Name, Mobile, Height and Weight.', true);
+        return;
+      }
+
+      const text = encodeURIComponent(
+`🥗 FREE Diet Plan Request — Classic Fitness
+
+👤 Name        : ${name}
+📱 Mobile      : ${mobile}
+📍 Address     : ${address || 'Not provided'}
+🪪 Member ID   : ${memberId || 'Non-Member'}
+
+📏 Height      : ${height}
+⚖️ Weight      : ${weight}
+📐 Neck        : ${neck || 'Not provided'}
+📐 Hip         : ${hip || 'Not provided'}
+📐 Thigh       : ${thigh || 'Not provided'}
+📐 Chest       : ${chest || 'Not provided'}
+💪 Arm         : ${arm || 'Not provided'}}
+
+🏥 Medical     : ${medical || 'None'}
+
+📸 Please send your full body photo here for an accurate and personalized diet plan!`
+      );
+
+      const phone = '918668007901';
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      form.reset();
+
+      showToast('WhatsApp opened! Please tap <strong>Send</strong> and then send your full body photo.');
+    });
+  }
+}
 
 
 // ===== Toast Function =====
@@ -613,6 +728,206 @@ function showToast(message, isError = false) {
   setTimeout(() => {
     toast.classList.remove('show');
   }, 4000);
+}
+
+
+// ===== BMI & CALORIE CALCULATOR =====
+function initBMICalculator() {
+
+  // --- Element references ---
+  const calcBtn      = document.getElementById('bmiCalcBtn');
+  const resetBtn     = document.getElementById('bmiResetBtn');
+  const formCard     = document.getElementById('bmiFormCard');
+  const resultCard   = document.getElementById('bmiResultCard');
+  const getPlanBtn   = document.getElementById('bmiGetPlanBtn');
+
+  if (!calcBtn) return;
+
+  // Gender selection
+  let selectedGender = 'male';
+  const genderMaleBtn   = document.getElementById('bmiGenderMale');
+  const genderFemaleBtn = document.getElementById('bmiGenderFemale');
+
+  genderMaleBtn.addEventListener('click', () => {
+    selectedGender = 'male';
+    genderMaleBtn.classList.add('active');
+    genderFemaleBtn.classList.remove('active');
+  });
+  genderFemaleBtn.addEventListener('click', () => {
+    selectedGender = 'female';
+    genderFemaleBtn.classList.add('active');
+    genderMaleBtn.classList.remove('active');
+  });
+
+  // Goal selection
+  let selectedGoal = 'maintain';
+  document.querySelectorAll('.bmi-goal-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.bmi-goal-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedGoal = btn.getAttribute('data-goal');
+    });
+  });
+
+  // --- Calculate button ---
+  calcBtn.addEventListener('click', () => {
+    const age      = parseFloat(document.getElementById('bmiAge').value);
+    const heightCm = parseFloat(document.getElementById('bmiHeight').value);
+    const weightKg = parseFloat(document.getElementById('bmiWeight').value);
+    const activity = parseFloat(document.getElementById('bmiActivity').value);
+    const bmiMemberId = document.getElementById('bmiMemberId').value.trim();
+
+    // Validation
+    if (!age || !heightCm || !weightKg || age < 10 || age > 100 || heightCm < 100 || heightCm > 250 || weightKg < 20 || weightKg > 300) {
+      showToast('Please enter valid Age, Height and Weight.', true);
+      return;
+    }
+
+    // --- BMI Calculation ---
+    const heightM = heightCm / 100;
+    const bmi = weightKg / (heightM * heightM);
+    const bmiRounded = Math.round(bmi * 10) / 10;
+
+    // BMI category
+    let category, catClass, catColor;
+    if (bmi < 18.5) {
+      category = 'Underweight'; catClass = 'bmi-cat-underweight'; catColor = '#3b82f6';
+    } else if (bmi < 25) {
+      category = 'Normal Weight'; catClass = 'bmi-cat-normal'; catColor = '#22c55e';
+    } else if (bmi < 30) {
+      category = 'Overweight'; catClass = 'bmi-cat-overweight'; catColor = '#f59e0b';
+    } else {
+      category = 'Obese'; catClass = 'bmi-cat-obese'; catColor = '#ef4444';
+    }
+
+    // Ideal weight range (BMI 18.5–24.9)
+    const idealMin = Math.round(18.5 * heightM * heightM);
+    const idealMax = Math.round(24.9 * heightM * heightM);
+
+    // Weight difference
+    let diffText = '';
+    if (bmi < 18.5) {
+      diffText = `Gain ${(idealMin - weightKg).toFixed(1)} kg to reach ideal weight`;
+    } else if (bmi >= 25) {
+      diffText = `Lose ${(weightKg - idealMax).toFixed(1)} kg to reach ideal weight`;
+    } else {
+      diffText = 'You are at a healthy weight! 🎉';
+    }
+
+    // --- Calorie Calculation (Mifflin-St Jeor + TDEE) ---
+    let bmr;
+    if (selectedGender === 'male') {
+      bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+    } else {
+      bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+    }
+    const tdee = Math.round(bmr * activity);
+
+    // Goal calories
+    let goalCal, goalIcon, goalLabel, goalMsg;
+    if (selectedGoal === 'lose') {
+      goalCal   = tdee - 500;
+      goalIcon  = '🔥';
+      goalLabel = 'To Lose Weight';
+      goalMsg   = `Eat ${goalCal} kcal/day (500 kcal deficit). You can expect to lose ~0.5 kg per week. Combine with cardio for best results.`;
+    } else if (selectedGoal === 'gain') {
+      goalCal   = tdee + 250;
+      goalIcon  = '💪';
+      goalLabel = 'To Gain Muscle';
+      goalMsg   = `Eat ${goalCal} kcal/day (250 kcal surplus). Focus on strength training and ensure high protein intake for muscle growth.`;
+    } else {
+      goalCal   = tdee;
+      goalIcon  = '⚖️';
+      goalLabel = 'To Maintain';
+      goalMsg   = `Eat ${goalCal} kcal/day to maintain your current weight. Stay consistent with balanced meals and regular activity.`;
+    }
+
+    // Protein (1.8g per kg bodyweight for active people)
+    // Protein (1.8g per kg bodyweight for active people)
+    const protein = Math.round(weightKg * 1.8);
+
+    // Water intake based on weight + activity multiplier
+    // Base: 35ml per kg. Activity 1.2=sedentary, 1.375=light, 1.55=moderate, 1.725=active, 1.9=very active
+    let waterMultiplier = 35;
+    if (activity >= 1.725) waterMultiplier = 45;
+    else if (activity >= 1.55) waterMultiplier = 40;
+    else if (activity >= 1.375) waterMultiplier = 38;
+    // Extra 500ml if goal is lose weight or gain muscle
+    const waterBase = (weightKg * waterMultiplier) / 1000;
+    const waterExtra = (selectedGoal === 'lose' || selectedGoal === 'gain') ? 0.5 : 0;
+    const waterLitres = Math.round((waterBase + waterExtra) * 10) / 10;
+
+
+
+    // --- Update DOM ---
+    document.getElementById('bmiNum').textContent        = bmiRounded;
+    document.getElementById('bmiCatBadge').textContent   = category;
+    document.getElementById('bmiCatBadge').className     = 'bmi-cat-badge ' + catClass;
+    document.getElementById('bmiIdealText').textContent  = `Ideal weight: ${idealMin}–${idealMax} kg`;
+    document.getElementById('bmiDiffText').textContent   = diffText;
+    document.getElementById('calMaintain').textContent   = tdee.toLocaleString();
+    document.getElementById('calGoal').textContent       = goalCal.toLocaleString();
+    document.getElementById('calProtein').textContent    = protein;
+    document.getElementById('calWater').textContent      = waterLitres;
+    document.getElementById('goalIcon').textContent      = goalIcon;
+    document.getElementById('goalLabel').textContent     = goalLabel;
+    document.getElementById('bmiGoalMsg').textContent    = goalMsg;
+
+    // Animate circle progress
+    const progress = document.getElementById('bmiCircleProgress');
+    const circumference = 314;
+    // Map BMI 10–40 → 0%–100% of circle
+    const pct = Math.min(Math.max((bmi - 10) / 30, 0), 1);
+    const offset = circumference - (pct * circumference);
+    progress.style.strokeDashoffset = offset;
+    progress.style.stroke = catColor;
+
+    // Move scale pin
+    // Scale: BMI 16–40 mapped to 0%–100% of track width
+    const pinPct = Math.min(Math.max((bmi - 16) / 24, 0), 1) * 100;
+    document.getElementById('bmiScalePin').style.left = pinPct + '%';
+
+    // Show result, hide form
+    formCard.style.display = 'none';
+    resultCard.classList.add('visible');
+
+    // Scroll result into view
+    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Wire up "Get My Free Plan" WhatsApp button
+    getPlanBtn.onclick = () => {
+      const text = encodeURIComponent(
+`⚖️ BMI Calculator Result — Classic Fitness
+
+📊 My BMI        : ${bmiRounded} (${category})
+⚖️ Ideal Weight  : ${idealMin}–${idealMax} kg
+👤 Gender        : ${selectedGender === 'male' ? 'Male' : 'Female'}
+🔢 Age           : ${age} years
+🪪 Member ID     : ${bmiMemberId || 'Non-Member'}
+📏 Height        : ${heightCm} cm
+⚖️ Weight        : ${weightKg} kg
+
+🔥 Daily Calories to Maintain  : ${tdee} kcal
+🎯 Daily Calories for My Goal  : ${goalCal} kcal (${goalLabel})
+
+
+🥩 Daily Protein Needed        : ${protein} g
+💧 Daily Water Intake          : ${waterLitres} L
+
+🙏 Please create a FREE personalized diet + workout plan for me based on these details.`
+      );
+      window.open(`https://wa.me/918668007901?text=${text}`, '_blank');
+    };
+  });
+
+  // Reset / Recalculate
+  resetBtn.addEventListener('click', () => {
+    resultCard.classList.remove('visible');
+    formCard.style.display = '';
+    document.getElementById('bmiAge').value    = '';
+    document.getElementById('bmiHeight').value = '';
+    document.getElementById('bmiWeight').value = '';
+  });
 }
 
 

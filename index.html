@@ -26,6 +26,20 @@
 </head>
 
 <body>
+
+  <!-- ===== STICKY DIET PLAN ANNOUNCEMENT BAR (Option 3) ===== -->
+  <div class="diet-announce-bar" id="dietAnnounceBar">
+    <div class="diet-bar-inner">
+      <span class="diet-bar-pulse"></span>
+      <span class="diet-bar-text">
+        🥗 <strong>FREE Personalized Diet Plan</strong> — Open to Everyone, Gym Members & Non-Members! 
+        <span class="diet-bar-sub">Limited Time Offer</span>
+      </span>
+      <button class="diet-bar-btn" id="dietBarBtn">Grab It Free →</button>
+      <button class="diet-bar-close" id="dietBarClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+
   <!-- ===== Top Bar ===== -->
   <div class="topbar">
     <div class="container topbar-row">
@@ -85,6 +99,8 @@
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="#location" class="nav-link">Location</a>
         <a href="#contact" class="nav-link">Contact</a>
+        <a href="#bmi-calculator" class="nav-link nav-link-bmi">⚖️ BMI Check</a>
+        <a href="#diet-plan" class="nav-link nav-link-diet">🥗 Free Diet Plan</a>
 
         <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
 
@@ -149,10 +165,23 @@
             </svg>
             Call Now
           </a>
+          <a href="#bmi-calculator" class="btn btn-outline btn-bmi-hero">
+            ⚖️ BMI Check
+          </a>
           <button class="btn-join-mobile" onclick="document.getElementById('joinModal').classList.add('active'); document.body.style.overflow='hidden';">
             <i class="fas fa-user-plus"></i> Join Now
         </button>
         </div>
+
+        <!-- ===== HERO DIET PLAN STRIP (Option 1 - Mobile visible) ===== -->
+        <button class="hero-diet-strip" id="heroDietBtn">
+          <span class="hero-diet-strip-icon">🥗</span>
+          <span class="hero-diet-strip-text">
+            <strong>FREE Diet Plan for Everyone</strong>
+            <span>Tap here — Get yours on WhatsApp!</span>
+          </span>
+          <span class="hero-diet-strip-arrow">→</span>
+        </button>
   
         <div class="timings-card timings-strong">
           <div class="timings-title">🕒 Opening Hours</div>
@@ -628,22 +657,208 @@
   </section>
 
 
-  <!-- ===== FREE DIET PLAN HIGHLIGHT ===== -->
-  <section class="diet-plan-banner">
+  <!-- ===== BMI & CALORIE CALCULATOR ===== -->
+  <section class="section bmi-section" id="bmi-calculator">
     <div class="container">
-      <div class="diet-plan-content">
-        <div class="diet-plan-icon">🥗</div>
-        <div class="diet-plan-text">
-          <h3>FREE Personalized Diet Plan</h3>
-          <p>
-            Every member gets a <strong>customized nutrition plan</strong> designed specifically for their goals - 
-            whether it's weight loss, muscle gain, or athletic performance. Our expert trainers create 
-            individual diet charts to maximize your results at no extra cost!
-          </p>
+
+      <div class="section-head">
+        <h2>⚖️ Free BMI & Calorie Calculator</h2>
+        <p>Know your Body Mass Index and exact daily calorie needs — instantly and for free.</p>
+      </div>
+
+      <div class="bmi-wrap">
+
+        <!-- LEFT: INPUT FORM -->
+        <div class="bmi-form-card" id="bmiFormCard">
+          <div class="bmi-form-title">📋 Enter Your Details</div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Gender</label>
+            <div class="bmi-toggle-group">
+              <button type="button" class="bmi-toggle-btn active" id="bmiGenderMale">♂ Male</button>
+              <button type="button" class="bmi-toggle-btn" id="bmiGenderFemale">♀ Female</button>
+            </div>
+          </div>
+
+          <div class="bmi-row-2">
+            <div class="bmi-field-group">
+              <label class="bmi-label">Age <span class="bmi-unit-label">(years)</span></label>
+              <input type="number" class="bmi-input" id="bmiAge" placeholder="e.g. 25" min="10" max="100">
+            </div>
+            <div class="bmi-field-group">
+              <label class="bmi-label">Height <span class="bmi-unit-label">(cm)</span></label>
+              <input type="number" class="bmi-input" id="bmiHeight" placeholder="e.g. 165" min="100" max="250">
+            </div>
+          </div>
+
+          <div class="bmi-row-2">
+            <div class="bmi-field-group">
+              <label class="bmi-label">Weight <span class="bmi-unit-label">(kg)</span></label>
+              <input type="number" class="bmi-input" id="bmiWeight" placeholder="e.g. 68" min="20" max="300">
+            </div>
+            <div class="bmi-field-group">
+              <label class="bmi-label">Activity Level</label>
+              <select class="bmi-input bmi-select" id="bmiActivity">
+                <option value="1.2">Sedentary (desk job, no exercise)</option>
+                <option value="1.375">Light (1–3 days/week)</option>
+                <option value="1.55" selected>Moderate (3–5 days/week)</option>
+                <option value="1.725">Active (6–7 days/week)</option>
+                <option value="1.9">Very Active (hard training daily)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Your Goal</label>
+            <div class="bmi-goal-group">
+              <button type="button" class="bmi-goal-btn" data-goal="lose">🔥 Lose Weight</button>
+              <button type="button" class="bmi-goal-btn active" data-goal="maintain">⚖️ Maintain</button>
+              <button type="button" class="bmi-goal-btn" data-goal="gain">💪 Gain Muscle</button>
+            </div>
+          </div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Gym Member ID <span class="bmi-unit-label">(Optional — existing members only)</span></label>
+            <input type="text" class="bmi-input" id="bmiMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
+          </div>
+
+          <button class="bmi-calc-btn" id="bmiCalcBtn">
+            Calculate My BMI & Calories →
+          </button>
         </div>
-        <div class="diet-plan-cta">
-          <a href="#contact" class="btn btn-primary">Join & Get Your Plan</a>
+
+        <!-- RIGHT: RESULT CARD (hidden until calculated) -->
+        <div class="bmi-result-card" id="bmiResultCard">
+
+          <div class="bmi-result-top">
+            <span class="bmi-result-title">📊 Your Results</span>
+            <button class="bmi-reset-btn" id="bmiResetBtn">← Recalculate</button>
+          </div>
+
+          <!-- BMI Circle + Info -->
+          <div class="bmi-score-row">
+            <div class="bmi-circle" id="bmiCircle">
+              <svg viewBox="0 0 120 120" class="bmi-circle-svg">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="#e2e8f0" stroke-width="10"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke-width="10"
+                  stroke-linecap="round"
+                  stroke-dasharray="314"
+                  stroke-dashoffset="314"
+                  class="bmi-circle-progress" id="bmiCircleProgress"
+                  transform="rotate(-90 60 60)"/>
+              </svg>
+              <div class="bmi-circle-inner">
+                <div class="bmi-circle-num" id="bmiNum">--</div>
+                <div class="bmi-circle-lbl">BMI</div>
+              </div>
+            </div>
+            <div class="bmi-score-info">
+              <div class="bmi-cat-badge" id="bmiCatBadge">--</div>
+              <div class="bmi-ideal-text" id="bmiIdealText">Ideal weight: --</div>
+              <div class="bmi-diff-text" id="bmiDiffText"></div>
+            </div>
+          </div>
+
+          <!-- BMI Scale -->
+          <div class="bmi-scale-wrap">
+            <div class="bmi-scale-track">
+              <div class="bmi-scale-segment bmi-seg-under">Under</div>
+              <div class="bmi-scale-segment bmi-seg-normal">Normal</div>
+              <div class="bmi-scale-segment bmi-seg-over">Over</div>
+              <div class="bmi-scale-segment bmi-seg-obese">Obese</div>
+              <div class="bmi-scale-pin" id="bmiScalePin"></div>
+            </div>
+            <div class="bmi-scale-nums">
+              <span>16</span><span>18.5</span><span>25</span><span>30</span><span>40</span>
+            </div>
+          </div>
+
+          <!-- Calorie Cards -->
+          <div class="bmi-cal-row">
+            <div class="bmi-cal-box bmi-cal-maintain">
+              <div class="bmi-cal-icon">⚖️</div>
+              <div class="bmi-cal-label">To Maintain</div>
+              <div class="bmi-cal-num" id="calMaintain">--</div>
+              <div class="bmi-cal-unit">kcal/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-goal-box" id="goalBox">
+              <div class="bmi-cal-icon" id="goalIcon">🎯</div>
+              <div class="bmi-cal-label" id="goalLabel">Goal</div>
+              <div class="bmi-cal-num" id="calGoal">--</div>
+              <div class="bmi-cal-unit">kcal/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-protein-box">
+              <div class="bmi-cal-icon">🥩</div>
+              <div class="bmi-cal-label">Protein</div>
+              <div class="bmi-cal-num" id="calProtein">--</div>
+              <div class="bmi-cal-unit">g/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-water-box">
+              <div class="bmi-cal-icon">💧</div>
+              <div class="bmi-cal-label">Water</div>
+              <div class="bmi-cal-num" id="calWater">--</div>
+              <div class="bmi-cal-unit">L/day</div>
+            </div>
+          </div>
+          </div>
+
+          <!-- Goal Message -->
+          <div class="bmi-goal-msg" id="bmiGoalMsg"></div>
+
+          <!-- CTA -->
+          <div class="bmi-cta-box">
+            <div class="bmi-cta-text">🎯 Want a <strong>FREE personalized diet + workout plan</strong> based on these results from our expert trainers?</div>
+            <button class="bmi-cta-btn" id="bmiGetPlanBtn">
+              🥗 Get My Free Plan on WhatsApp
+            </button>
+          </div>
+
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FREE DIET PLAN ANNOUNCEMENT ===== -->
+  <section class="diet-announce-section" id="diet-plan">
+    <div class="container">
+      <div class="diet-announce-wrap">
+
+        <div class="diet-announce-badge">🎉 LIMITED TIME — COMPLETELY FREE</div>
+
+        <div class="diet-announce-body">
+          <div class="diet-announce-left">
+            <div class="diet-announce-icon">🥗</div>
+            <div class="diet-announce-text">
+              <h2>FREE Personalized Diet Plan</h2>
+              <p>
+                We are now offering <strong>FREE customized diet plans</strong> for 
+                <strong>everyone</strong> — gym members and non-members alike! 
+                Get a nutrition plan built specifically for your body measurements, 
+                fitness goals, and health condition. No cost. No catch. Just results.
+              </p>
+              <ul class="diet-perks">
+                <li>✅ 100% Personalized for your body</li>
+                <li>✅ Based on your measurements & health</li>
+                <li>✅ For weight loss, muscle gain & more</li>
+                <li>✅ Available for non-gym members too</li>
+              </ul>
+            </div>
+          </div>
+          <div class="diet-announce-right">
+            <div class="diet-announce-card">
+              <div class="diet-announce-card-title">Grab Your FREE Diet Plan</div>
+              <p class="diet-announce-card-sub">Fill a quick form — receive your personalized diet plan on WhatsApp!</p>
+              <button class="btn btn-primary diet-plan-btn" id="dietPlanBtn">
+                🥗 Get My Free Diet Plan
+              </button>
+              <div class="diet-announce-note">
+                📸 After submitting, send your full body photo on WhatsApp for an accurate plan
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -872,6 +1087,98 @@
     </button>
   </div>
 
+
+
+  <!-- ===== Diet Plan Form Modal ===== -->
+<div class="join-modal" id="dietModal">
+  <div class="join-modal-overlay" id="dietModalOverlay"></div>
+
+  <div class="join-modal-content diet-modal-content">
+    <button class="join-modal-close" id="dietModalClose">&times;</button>
+
+    <div class="diet-modal-header">
+      <div class="diet-modal-emoji">🥗</div>
+      <h2>Get Your FREE Diet Plan</h2>
+      <p class="join-modal-sub">Fill in your details and we will send your personalized diet plan on WhatsApp!</p>
+    </div>
+
+    <form id="dietForm" class="join-form">
+
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="dietName" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Mobile Number *</label>
+        <input type="tel" id="dietMobile" placeholder="Enter your mobile number" required>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" id="dietAddress" placeholder="Your city / area">
+      </div>
+
+      <div class="form-group">
+        <label>Gym Member ID <span style="font-weight:500; color:#64748b;">(Optional — for existing members)</span></label>
+        <input type="text" id="dietMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
+      </div>
+
+      <div class="diet-form-row">
+        <div class="form-group">
+          <label>Height *</label>
+          <input type="text" id="dietHeight" placeholder="e.g. 165 cm" required>
+        </div>
+        <div class="form-group">
+          <label>Weight *</label>
+          <input type="text" id="dietWeight" placeholder="e.g. 68 kg" required>
+        </div>
+      </div>
+
+      <div class="diet-form-row">
+        <div class="form-group">
+          <label>Neck Measurement</label>
+          <input type="text" id="dietNeck" placeholder="e.g. 34 cm">
+        </div>
+        <div class="form-group">
+          <label>Hip Measurement</label>
+          <input type="text" id="dietHip" placeholder="e.g. 90 cm">
+        </div>
+      </div>
+
+      <div class="diet-form-row">
+        <div class="form-group">
+          <label>Thigh Measurement</label>
+          <input type="text" id="dietThigh" placeholder="e.g. 52 cm">
+        </div>
+        <div class="form-group">
+          <label>Chest Measurement</label>
+          <input type="text" id="dietChest" placeholder="e.g. 92 cm">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Arm Measurement</label>
+        <input type="text" id="dietArm" placeholder="e.g. 32 cm">
+      </div>
+
+      <div class="form-group">
+        <label>Any Medical Condition?</label>
+        <textarea id="dietMedical" rows="2" placeholder="e.g. Diabetes, BP, Thyroid — or write None"></textarea>
+      </div>
+
+      <div class="diet-photo-note">
+        <span class="diet-photo-icon">📸</span>
+        <p>After submitting, <strong>please send your full body photo</strong> in the WhatsApp chat for an accurate and personalized diet plan.</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full diet-submit-btn">
+        🥗 Send & Get My Diet Plan on WhatsApp
+      </button>
+
+    </form>
+  </div>
+</div>
 
 
   <!-- ===== Join Now -Form Modal ===== -->
