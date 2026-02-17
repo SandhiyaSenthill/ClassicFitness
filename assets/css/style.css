@@ -3339,7 +3339,7 @@
   color: var(--text);
   background: #fff;
   transition: border-color 0.2s;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }
 
 .bmi-input:focus {
