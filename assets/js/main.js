@@ -586,9 +586,25 @@ function initCustomSelects() {
         document.body.style.overflow = "auto";
         form.reset();
   
-        showToast(
-          "WhatsApp opened. Please tap <strong>Send</strong> to complete your enquiry."
-        );
+        // ===== Show Confirmation Screen =====
+        // Re-open modal to show confirmation
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        form.style.display = 'none';
+        document.querySelector('#joinModal h2').style.display = 'none';
+        document.querySelector('#joinModal .join-modal-sub').style.display = 'none';
+        const joinConfirmScreen = document.getElementById('joinConfirmScreen');
+        joinConfirmScreen.classList.add('show');
+
+        // Wire close button
+        document.getElementById('joinConfirmClose').onclick = () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+          form.style.display = '';
+          document.querySelector('#joinModal h2').style.display = '';
+          document.querySelector('#joinModal .join-modal-sub').style.display = '';
+          joinConfirmScreen.classList.remove('show');
+        };
       });
     }
   }
@@ -703,7 +719,24 @@ function initDietModal() {
       document.body.style.overflow = 'auto';
       form.reset();
 
-      showToast('WhatsApp opened! Please tap <strong>Send</strong> and then send your full body photo.');
+      // ===== Show Confirmation Screen =====
+      // Re-open modal to show confirmation
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      form.style.display = 'none';
+      const dietModalHeader = document.querySelector('.diet-modal-header');
+      if (dietModalHeader) dietModalHeader.style.display = 'none';
+      const dietConfirmScreen = document.getElementById('dietConfirmScreen');
+      dietConfirmScreen.classList.add('show');
+
+      // Wire close button
+      document.getElementById('dietConfirmClose').onclick = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        form.style.display = '';
+        if (dietModalHeader) dietModalHeader.style.display = '';
+        dietConfirmScreen.classList.remove('show');
+      };
     });
   }
 }

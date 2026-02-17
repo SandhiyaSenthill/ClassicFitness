@@ -41,7 +41,7 @@
   </div>
 
   <!-- ===== Top Bar ===== -->
-  <div class="topbar">
+  <!-- <div class="topbar">
     <div class="container topbar-row">
       <div class="topbar-left">
         <span>📍 No 19/10, Pillayar Kovil Street, Griblispet, Arakkonam - 631002</span>
@@ -52,7 +52,7 @@
         <a href="tel:9789444997">📞 9789444997</a>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ===== Enhanced Navbar with Dropdowns ===== -->
   <header class="navbar" id="top">
@@ -99,7 +99,7 @@
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="#location" class="nav-link">Location</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="#bmi-calculator" class="nav-link nav-link-bmi">⚖️ BMI Check</a>
+        <a href="bmi.html" class="nav-link nav-link-bmi">⚖️ BMI Check</a>
         <a href="#diet-plan" class="nav-link nav-link-diet">🥗 Free Diet Plan</a>
 
         <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
@@ -165,7 +165,7 @@
             </svg>
             Call Now
           </a>
-          <a href="#bmi-calculator" class="btn btn-outline btn-bmi-hero">
+          <a href="bmi.html" class="btn btn-outline btn-bmi-hero">
             ⚖️ BMI Check
           </a>
           <button class="btn-join-mobile" onclick="document.getElementById('joinModal').classList.add('active'); document.body.style.overflow='hidden';">
@@ -657,167 +657,8 @@
   </section>
 
 
-  <!-- ===== BMI & CALORIE CALCULATOR ===== -->
-  <section class="section bmi-section" id="bmi-calculator">
-    <div class="container">
-
-      <div class="section-head">
-        <h2>⚖️ Free BMI & Calorie Calculator</h2>
-        <p>Know your Body Mass Index and exact daily calorie needs — instantly and for free.</p>
-      </div>
-
-      <div class="bmi-wrap">
-
-        <!-- LEFT: INPUT FORM -->
-        <div class="bmi-form-card" id="bmiFormCard">
-          <div class="bmi-form-title">📋 Enter Your Details</div>
-
-          <div class="bmi-field-group">
-            <label class="bmi-label">Gender</label>
-            <div class="bmi-toggle-group">
-              <button type="button" class="bmi-toggle-btn active" id="bmiGenderMale">♂ Male</button>
-              <button type="button" class="bmi-toggle-btn" id="bmiGenderFemale">♀ Female</button>
-            </div>
-          </div>
-
-          <div class="bmi-row-2">
-            <div class="bmi-field-group">
-              <label class="bmi-label">Age <span class="bmi-unit-label">(years)</span></label>
-              <input type="number" class="bmi-input" id="bmiAge" placeholder="e.g. 25" min="10" max="100">
-            </div>
-            <div class="bmi-field-group">
-              <label class="bmi-label">Height <span class="bmi-unit-label">(cm)</span></label>
-              <input type="number" class="bmi-input" id="bmiHeight" placeholder="e.g. 165" min="100" max="250">
-            </div>
-          </div>
-
-          <div class="bmi-row-2">
-            <div class="bmi-field-group">
-              <label class="bmi-label">Weight <span class="bmi-unit-label">(kg)</span></label>
-              <input type="number" class="bmi-input" id="bmiWeight" placeholder="e.g. 68" min="20" max="300">
-            </div>
-            <div class="bmi-field-group">
-              <label class="bmi-label">Activity Level</label>
-              <select class="bmi-input bmi-select" id="bmiActivity">
-                <option value="1.2">Sedentary (desk job, no exercise)</option>
-                <option value="1.375">Light (1–3 days/week)</option>
-                <option value="1.55" selected>Moderate (3–5 days/week)</option>
-                <option value="1.725">Active (6–7 days/week)</option>
-                <option value="1.9">Very Active (hard training daily)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="bmi-field-group">
-            <label class="bmi-label">Your Goal</label>
-            <div class="bmi-goal-group">
-              <button type="button" class="bmi-goal-btn" data-goal="lose">🔥 Lose Weight</button>
-              <button type="button" class="bmi-goal-btn active" data-goal="maintain">⚖️ Maintain</button>
-              <button type="button" class="bmi-goal-btn" data-goal="gain">💪 Gain Muscle</button>
-            </div>
-          </div>
-
-          <div class="bmi-field-group">
-            <label class="bmi-label">Gym Member ID <span class="bmi-unit-label">(Optional — existing members only)</span></label>
-            <input type="text" class="bmi-input" id="bmiMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
-          </div>
-
-          <button class="bmi-calc-btn" id="bmiCalcBtn">
-            Calculate My BMI & Calories →
-          </button>
-        </div>
-
-        <!-- RIGHT: RESULT CARD (hidden until calculated) -->
-        <div class="bmi-result-card" id="bmiResultCard">
-
-          <div class="bmi-result-top">
-            <span class="bmi-result-title">📊 Your Results</span>
-            <button class="bmi-reset-btn" id="bmiResetBtn">← Recalculate</button>
-          </div>
-
-          <!-- BMI Circle + Info -->
-          <div class="bmi-score-row">
-            <div class="bmi-circle" id="bmiCircle">
-              <svg viewBox="0 0 120 120" class="bmi-circle-svg">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="#e2e8f0" stroke-width="10"/>
-                <circle cx="60" cy="60" r="50" fill="none" stroke-width="10"
-                  stroke-linecap="round"
-                  stroke-dasharray="314"
-                  stroke-dashoffset="314"
-                  class="bmi-circle-progress" id="bmiCircleProgress"
-                  transform="rotate(-90 60 60)"/>
-              </svg>
-              <div class="bmi-circle-inner">
-                <div class="bmi-circle-num" id="bmiNum">--</div>
-                <div class="bmi-circle-lbl">BMI</div>
-              </div>
-            </div>
-            <div class="bmi-score-info">
-              <div class="bmi-cat-badge" id="bmiCatBadge">--</div>
-              <div class="bmi-ideal-text" id="bmiIdealText">Ideal weight: --</div>
-              <div class="bmi-diff-text" id="bmiDiffText"></div>
-            </div>
-          </div>
-
-          <!-- BMI Scale -->
-          <div class="bmi-scale-wrap">
-            <div class="bmi-scale-track">
-              <div class="bmi-scale-segment bmi-seg-under">Under</div>
-              <div class="bmi-scale-segment bmi-seg-normal">Normal</div>
-              <div class="bmi-scale-segment bmi-seg-over">Over</div>
-              <div class="bmi-scale-segment bmi-seg-obese">Obese</div>
-              <div class="bmi-scale-pin" id="bmiScalePin"></div>
-            </div>
-            <div class="bmi-scale-nums">
-              <span>16</span><span>18.5</span><span>25</span><span>30</span><span>40</span>
-            </div>
-          </div>
-
-          <!-- Calorie Cards -->
-          <div class="bmi-cal-row">
-            <div class="bmi-cal-box bmi-cal-maintain">
-              <div class="bmi-cal-icon">⚖️</div>
-              <div class="bmi-cal-label">To Maintain</div>
-              <div class="bmi-cal-num" id="calMaintain">--</div>
-              <div class="bmi-cal-unit">kcal/day</div>
-            </div>
-            <div class="bmi-cal-box bmi-cal-goal-box" id="goalBox">
-              <div class="bmi-cal-icon" id="goalIcon">🎯</div>
-              <div class="bmi-cal-label" id="goalLabel">Goal</div>
-              <div class="bmi-cal-num" id="calGoal">--</div>
-              <div class="bmi-cal-unit">kcal/day</div>
-            </div>
-            <div class="bmi-cal-box bmi-cal-protein-box">
-              <div class="bmi-cal-icon">🥩</div>
-              <div class="bmi-cal-label">Protein</div>
-              <div class="bmi-cal-num" id="calProtein">--</div>
-              <div class="bmi-cal-unit">g/day</div>
-            </div>
-            <div class="bmi-cal-box bmi-cal-water-box">
-              <div class="bmi-cal-icon">💧</div>
-              <div class="bmi-cal-label">Water</div>
-              <div class="bmi-cal-num" id="calWater">--</div>
-              <div class="bmi-cal-unit">L/day</div>
-            </div>
-          </div>
-
-          <!-- Goal Message -->
-          <div class="bmi-goal-msg" id="bmiGoalMsg"></div>
-
-          <!-- CTA -->
-          <div class="bmi-cta-box">
-            <div class="bmi-cta-text">🎯 Want a <strong>FREE personalized diet + workout plan</strong> based on these results from our expert trainers?</div>
-            <button class="bmi-cta-btn" id="bmiGetPlanBtn">
-              🥗 Get My Free Plan on WhatsApp
-            </button>
-          </div>
-
-        </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
+  
+  
 
 
   <!-- ===== FREE DIET PLAN ANNOUNCEMENT ===== -->
@@ -1178,6 +1019,36 @@
       </button>
 
     </form>
+
+    <!-- ===== Diet Plan Confirmation Screen ===== -->
+    <div class="confirm-screen" id="dietConfirmScreen">
+      <div class="confirm-icon">✅</div>
+      <h2 class="confirm-title">Request Received!</h2>
+      <p class="confirm-msg">
+        We have received your diet plan details.<br>
+        <strong>Classic Fitness</strong> will review your information and 
+        update your personalized diet plan <strong>as soon as possible</strong>.
+      </p>
+      <div class="confirm-steps">
+        <div class="confirm-step">
+          <span class="confirm-step-num">1</span>
+          <span>Tap <strong>Send</strong> on WhatsApp that just opened</span>
+        </div>
+        <div class="confirm-step">
+          <span class="confirm-step-num">2</span>
+          <span>Send your <strong>full body photo</strong> in the same WhatsApp chat</span>
+        </div>
+        <div class="confirm-step">
+          <span class="confirm-step-num">3</span>
+          <span>Our Classic Fitness will send your <strong>FREE personalized diet plan</strong> shortly!</span>
+        </div>
+      </div>
+      <div class="confirm-footer-note">📲 Check your WhatsApp for updates from Classic Fitness</div>
+      <button class="btn btn-primary btn-full confirm-close-btn" id="dietConfirmClose">
+        ✓ Got it, Close
+      </button>
+    </div>
+
   </div>
 </div>
 
@@ -1264,6 +1135,36 @@
       </button>
 
     </form>
+
+    <!-- ===== Join Confirmation Screen ===== -->
+    <div class="confirm-screen" id="joinConfirmScreen">
+      <div class="confirm-icon">🎉</div>
+      <h2 class="confirm-title">Enquiry Sent!</h2>
+      <p class="confirm-msg">
+        We have received your membership enquiry.<br>
+        The <strong>Classic Fitness</strong> team will contact you
+        <strong>shortly</strong> on WhatsApp or by phone.
+      </p>
+      <div class="confirm-steps">
+        <div class="confirm-step">
+          <span class="confirm-step-num">1</span>
+          <span>Tap <strong>Send</strong> on WhatsApp that just opened</span>
+        </div>
+        <div class="confirm-step">
+          <span class="confirm-step-num">2</span>
+          <span>Our team will call or WhatsApp you <strong>within 24 hours</strong></span>
+        </div>
+        <div class="confirm-step">
+          <span class="confirm-step-num">3</span>
+          <span>Visit us and <strong>start your fitness journey!</strong> 💪</span>
+        </div>
+      </div>
+      <div class="confirm-footer-note">📞 8668007901 / 9789444997 — Call us anytime!</div>
+      <button class="btn btn-primary btn-full confirm-close-btn" id="joinConfirmClose">
+        ✓ Got it, Close
+      </button>
+    </div>
+
   </div>
 </div>
 

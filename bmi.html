@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Free BMI & Calorie Calculator — Classic Fitness Gym | Arakkonam</title>
+  <meta name="description" content="Calculate your BMI, daily calories, protein and water intake for free. Classic Fitness Gym — Arakkonam's Premier Unisex AC Gym." />
+  <meta name="keywords" content="BMI calculator, calorie calculator, body mass index, gym arakkonam, classic fitness" />
+  <meta name="author" content="Classic Fitness Gym" />
+
+  <meta property="og:title" content="Free BMI & Calorie Calculator — Classic Fitness Gym" />
+  <meta property="og:description" content="Know your BMI and exact daily calorie needs instantly — free for everyone." />
+  <meta property="og:image" content="assets/img/logo-1.jpeg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Main site styles (navbar, footer, buttons, etc.) -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- BMI-specific styles -->
+  <link rel="stylesheet" href="assets/css/bmi.css" />
+</head>
+
+<body>
+
+  <!-- ===== STICKY DIET PLAN ANNOUNCEMENT BAR ===== -->
+  <div class="diet-announce-bar" id="dietAnnounceBar">
+    <div class="diet-bar-inner">
+      <span class="diet-bar-pulse"></span>
+      <span class="diet-bar-text">
+        🥗 <strong>FREE Personalized Diet Plan</strong> — Open to Everyone, Gym Members & Non-Members!
+        <span class="diet-bar-sub">Limited Time Offer</span>
+      </span>
+      <button class="diet-bar-btn" id="dietBarBtn">Grab It Free →</button>
+      <button class="diet-bar-close" id="dietBarClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="top">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">
+        <div class="brand-logo">
+          <img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">CLASSIC FITNESS</div>
+          <div class="brand-sub">UNISEX [AC] GYM • ARAKKONAM</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">Who We are</a>
+
+        <!-- Services Dropdown -->
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-link dropdown-toggle">
+            Facilities <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="index.html#services">Weight Training</a>
+            <a href="index.html#services">Cardio Zone</a>
+            <a href="index.html#services">Personal Training</a>
+            <a href="index.html#services">Fat Loss Programs</a>
+            <a href="index.html#services">Muscle Gain Programs</a>
+            <a href="index.html#services">Group Training</a>
+            <a href="index.html#services">Aerobics</a>
+            <a href="index.html#services">Body Transformation</a>
+          </div>
+        </div>
+
+        <a href="index.html#pricing" class="nav-link">Membership</a>
+        <a href="index.html#trainers" class="nav-link">Our Instructer</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="index.html#location" class="nav-link">Location</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="bmi.html" class="nav-link nav-link-bmi active-page">⚖️ BMI Check</a>
+        <a href="index.html#diet-plan" class="nav-link nav-link-diet">🥗 Free Diet Plan</a>
+
+        <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
+      </nav>
+
+      <div class="nav-right">
+        <a href="index.html" class="nav-quick nav-quick-home" aria-label="Back to Home">
+          <span class="nav-quick-icon">🏠</span>
+          <span class="nav-quick-text">Home</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BMI PAGE HERO BANNER ===== -->
+  <section class="bmi-page-hero">
+    <div class="bmi-page-hero-bg"></div>
+    <div class="container bmi-page-hero-content">
+      <div class="bmi-page-hero-badge">⚖️ 100% Free Tool</div>
+      <h1>BMI & Calorie Calculator</h1>
+      <p>Know your Body Mass Index, daily calorie needs, protein & water intake — instantly and for free. Trusted by Classic Fitness members in Arakkonam.</p>
+      <div class="bmi-page-hero-stats">
+        <div class="bmi-hero-stat">
+          <span class="bmi-hero-stat-num">500+</span>
+          <span class="bmi-hero-stat-lbl">Members Calculated</span>
+        </div>
+        <div class="bmi-hero-stat-divider"></div>
+        <div class="bmi-hero-stat">
+          <span class="bmi-hero-stat-num">Free</span>
+          <span class="bmi-hero-stat-lbl">Always & Forever</span>
+        </div>
+        <div class="bmi-hero-stat-divider"></div>
+        <div class="bmi-hero-stat">
+          <span class="bmi-hero-stat-num">4 in 1</span>
+          <span class="bmi-hero-stat-lbl">BMI + Cal + Protein + Water</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BMI CALCULATOR SECTION ===== -->
+  <section class="section bmi-section bmi-page-section" id="bmi-calculator">
+    <div class="container">
+
+      <div class="bmi-wrap">
+
+        <!-- LEFT: INPUT FORM -->
+        <div class="bmi-form-card" id="bmiFormCard">
+          <div class="bmi-form-title">📋 Enter Your Details</div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Gender</label>
+            <div class="bmi-toggle-group">
+              <button type="button" class="bmi-toggle-btn active" id="bmiGenderMale">♂ Male</button>
+              <button type="button" class="bmi-toggle-btn" id="bmiGenderFemale">♀ Female</button>
+            </div>
+          </div>
+
+          <div class="bmi-row-2">
+            <div class="bmi-field-group">
+              <label class="bmi-label">Age <span class="bmi-unit-label">(years)</span></label>
+              <input type="number" class="bmi-input" id="bmiAge" placeholder="e.g. 25" min="10" max="100">
+            </div>
+            <div class="bmi-field-group">
+              <label class="bmi-label">Height <span class="bmi-unit-label">(cm)</span></label>
+              <input type="number" class="bmi-input" id="bmiHeight" placeholder="e.g. 165" min="100" max="250">
+            </div>
+          </div>
+
+          <div class="bmi-row-2">
+            <div class="bmi-field-group">
+              <label class="bmi-label">Weight <span class="bmi-unit-label">(kg)</span></label>
+              <input type="number" class="bmi-input" id="bmiWeight" placeholder="e.g. 68" min="20" max="300">
+            </div>
+            <div class="bmi-field-group">
+              <label class="bmi-label">Activity Level</label>
+              <select class="bmi-input bmi-select" id="bmiActivity">
+                <option value="1.2">Sedentary (desk job, no exercise)</option>
+                <option value="1.375">Light (1–3 days/week)</option>
+                <option value="1.55" selected>Moderate (3–5 days/week)</option>
+                <option value="1.725">Active (6–7 days/week)</option>
+                <option value="1.9">Very Active (hard training daily)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Your Goal</label>
+            <div class="bmi-goal-group">
+              <button type="button" class="bmi-goal-btn" data-goal="lose">🔥 Lose Weight</button>
+              <button type="button" class="bmi-goal-btn active" data-goal="maintain">⚖️ Maintain</button>
+              <button type="button" class="bmi-goal-btn" data-goal="gain">💪 Gain Muscle</button>
+            </div>
+          </div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Gym Member ID <span class="bmi-unit-label">(Optional — existing members only)</span></label>
+            <input type="text" class="bmi-input" id="bmiMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
+          </div>
+
+          <button class="bmi-calc-btn" id="bmiCalcBtn">
+            Calculate My BMI & Calories →
+          </button>
+        </div>
+
+        <!-- RIGHT: RESULT CARD (hidden until calculated) -->
+        <div class="bmi-result-card" id="bmiResultCard">
+
+          <div class="bmi-result-top">
+            <span class="bmi-result-title">📊 Your Results</span>
+            <button class="bmi-reset-btn" id="bmiResetBtn">← Recalculate</button>
+          </div>
+
+          <!-- BMI Circle + Info -->
+          <div class="bmi-score-row">
+            <div class="bmi-circle" id="bmiCircle">
+              <svg viewBox="0 0 120 120" class="bmi-circle-svg">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="#e2e8f0" stroke-width="10"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke-width="10"
+                  stroke-linecap="round"
+                  stroke-dasharray="314"
+                  stroke-dashoffset="314"
+                  class="bmi-circle-progress" id="bmiCircleProgress"
+                  transform="rotate(-90 60 60)"/>
+              </svg>
+              <div class="bmi-circle-inner">
+                <div class="bmi-circle-num" id="bmiNum">--</div>
+                <div class="bmi-circle-lbl">BMI</div>
+              </div>
+            </div>
+            <div class="bmi-score-info">
+              <div class="bmi-cat-badge" id="bmiCatBadge">--</div>
+              <div class="bmi-ideal-text" id="bmiIdealText">Ideal weight: --</div>
+              <div class="bmi-diff-text" id="bmiDiffText"></div>
+            </div>
+          </div>
+
+          <!-- BMI Scale -->
+          <div class="bmi-scale-wrap">
+            <div class="bmi-scale-track">
+              <div class="bmi-scale-segment bmi-seg-under">Under</div>
+              <div class="bmi-scale-segment bmi-seg-normal">Normal</div>
+              <div class="bmi-scale-segment bmi-seg-over">Over</div>
+              <div class="bmi-scale-segment bmi-seg-obese">Obese</div>
+              <div class="bmi-scale-pin" id="bmiScalePin"></div>
+            </div>
+            <div class="bmi-scale-nums">
+              <span>16</span><span>18.5</span><span>25</span><span>30</span><span>40</span>
+            </div>
+          </div>
+
+          <!-- Calorie Cards -->
+          <div class="bmi-cal-row">
+            <div class="bmi-cal-box bmi-cal-maintain">
+              <div class="bmi-cal-icon">⚖️</div>
+              <div class="bmi-cal-label">To Maintain</div>
+              <div class="bmi-cal-num" id="calMaintain">--</div>
+              <div class="bmi-cal-unit">kcal/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-goal-box" id="goalBox">
+              <div class="bmi-cal-icon" id="goalIcon">🎯</div>
+              <div class="bmi-cal-label" id="goalLabel">Goal</div>
+              <div class="bmi-cal-num" id="calGoal">--</div>
+              <div class="bmi-cal-unit">kcal/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-protein-box">
+              <div class="bmi-cal-icon">🥩</div>
+              <div class="bmi-cal-label">Protein</div>
+              <div class="bmi-cal-num" id="calProtein">--</div>
+              <div class="bmi-cal-unit">g/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-water-box">
+              <div class="bmi-cal-icon">💧</div>
+              <div class="bmi-cal-label">Water</div>
+              <div class="bmi-cal-num" id="calWater">--</div>
+              <div class="bmi-cal-unit">L/day</div>
+            </div>
+          </div>
+
+          <!-- Goal Message -->
+          <div class="bmi-goal-msg" id="bmiGoalMsg"></div>
+
+          <!-- CTA -->
+          <div class="bmi-cta-box">
+            <div class="bmi-cta-text">🎯 Want a <strong>FREE personalized diet + workout plan</strong> based on these results from our expert trainers?</div>
+            <button class="bmi-cta-btn" id="bmiGetPlanBtn">
+              🥗 Get My Free Plan on WhatsApp
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFO CARDS SECTION ===== -->
+  <section class="section bmi-info-section">
+    <div class="container">
+      <div class="bmi-info-grid">
+
+        <div class="bmi-info-card">
+          <div class="bmi-info-icon">📊</div>
+          <h3>What is BMI?</h3>
+          <p>Body Mass Index (BMI) is a value calculated from your height and weight. It indicates whether you are underweight, normal weight, overweight, or obese.</p>
+          <div class="bmi-range-list">
+            <div class="bmi-range-item"><span class="bmi-range-dot" style="background:#3b82f6"></span><span>Under 18.5 — Underweight</span></div>
+            <div class="bmi-range-item"><span class="bmi-range-dot" style="background:#22c55e"></span><span>18.5 – 24.9 — Normal Weight</span></div>
+            <div class="bmi-range-item"><span class="bmi-range-dot" style="background:#f59e0b"></span><span>25 – 29.9 — Overweight</span></div>
+            <div class="bmi-range-item"><span class="bmi-range-dot" style="background:#ef4444"></span><span>30 & above — Obese</span></div>
+          </div>
+        </div>
+
+        <div class="bmi-info-card">
+          <div class="bmi-info-icon">🔥</div>
+          <h3>How Calories Work</h3>
+          <p>Your TDEE (Total Daily Energy Expenditure) is the total calories your body burns daily. We use the scientifically proven Mifflin-St Jeor formula to calculate this accurately based on your age, height, weight and activity level.</p>
+          <ul class="bmi-info-list">
+            <li>Deficit of 500 kcal/day → lose ~0.5 kg/week</li>
+            <li>Surplus of 250 kcal/day → steady muscle gain</li>
+            <li>Match your TDEE → maintain current weight</li>
+          </ul>
+        </div>
+
+        <div class="bmi-info-card">
+          <div class="bmi-info-icon">🎯</div>
+          <h3>Want Expert Help?</h3>
+          <p>Our certified trainers at Classic Fitness can create a fully personalized diet and workout plan based on your BMI results — completely free for members and non-members alike.</p>
+          <a href="index.html#diet-plan" class="bmi-info-btn">Get Your Free Plan →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo">
+            </div>
+            <div>
+              <div class="footer-title">CLASSIC FITNESS</div>
+              <div class="footer-sub">Unisex [AC] Gym • Arakkonam</div>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Transform your body and mind at Arakkonam's premier fitness destination.
+            Professional training, modern equipment, and a supportive community.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#services">Facilities</a></li>
+            <li><a href="index.html#pricing">Membership</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="bmi.html">BMI Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#services">Weight Training</a></li>
+            <li><a href="index.html#services">Cardio</a></li>
+            <li><a href="index.html#services">Personal Training</a></li>
+            <li><a href="index.html#services">Fat Loss</a></li>
+            <li><a href="index.html#services">Muscle Gain</a></li>
+            <li><a href="index.html#services">Group Training</a></li>
+            <li><a href="index.html#services">Aerobics</a></li>
+            <li><a href="index.html#services">Body Transformation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact">
+            <li>📍 Griblispet, Arakkonam - 631002</li>
+            <li>📞 <a href="tel:8668007901">8668007901</a></li>
+            <li>📞 <a href="tel:9789444997">9789444997</a></li>
+            <li>🕒 Mon-Sat: 5AM-11PM</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Classic Fitness Gym. All Rights Reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Buttons -->
+  <div class="float-actions">
+    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">
+      💬
+    </a>
+    <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">
+      📞
+    </a>
+    <button class="float-btn float-top" id="backToTop" aria-label="Back to top">
+      ↑
+    </button>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">
+    <div class="toast-icon">✅</div>
+    <div class="toast-text">
+      WhatsApp opened. Please tap <strong>Send</strong> to complete your enquiry.
+    </div>
+  </div>
+
+  <!-- Join Modal -->
+  <div class="join-modal" id="joinModal">
+    <div class="join-modal-overlay" id="joinModalOverlay"></div>
+    <div class="join-modal-content">
+      <button class="join-modal-close" id="joinModalClose">&times;</button>
+      <h2>Join Classic Fitness</h2>
+      <p class="join-modal-sub">Fill the details below and we will contact you shortly.</p>
+      <form id="joinForm" class="join-form">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="joinName" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input type="tel" id="joinMobile" required>
+        </div>
+        <div class="form-group">
+          <label>Fitness Goal *</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="joinGoalSelect">
+              <div class="custom-select-trigger">Select Goal <span class="custom-arrow">▾</span></div>
+              <div class="custom-options">
+                <div class="custom-option" data-value="">Select Goal</div>
+                <div class="custom-option" data-value="Weight Loss">Weight Loss</div>
+                <div class="custom-option" data-value="Muscle Gain">Muscle Gain</div>
+                <div class="custom-option" data-value="General Fitness">General Fitness</div>
+                <div class="custom-option" data-value="Body Transformation">Body Transformation</div>
+              </div>
+            </div>
+            <input type="hidden" id="joinGoal" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="joinTimeSelect">
+              <div class="custom-select-trigger">Morning <span class="custom-arrow">▾</span></div>
+              <div class="custom-options">
+                <div class="custom-option" data-value="Morning">Morning</div>
+                <div class="custom-option" data-value="Evening">Evening</div>
+                <div class="custom-option" data-value="Flexible">Flexible</div>
+              </div>
+            </div>
+            <input type="hidden" id="joinTime" value="Morning">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea id="joinMessage" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          Submit & Contact on WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- BMI page JS -->
+  <script src="assets/js/bmi.js"></script>
+</body>
+</html>
