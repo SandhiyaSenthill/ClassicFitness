@@ -315,13 +315,18 @@ function initScrollAnimations() {
       const name = form.querySelector('input[name="name"]');
       const phone = form.querySelector('input[name="phone"]');
       
-      if (!name.value || !phone.value) {
-        alert('Please fill in all required fields');
-        return;
+      if (!name.value) {
+        showToast('⚠️ Please enter your Name.', true); return;
       }
-      
+      if (!phone.value) {
+        showToast('⚠️ Please enter your Phone Number.', true); return;
+      }
+      if (!/^[6-9]\d{9}$/.test(phone.value.trim().replace(/\s/g, ''))) {
+        showToast('⚠️ Enter a valid 10-digit mobile number.', true); return;
+      }
+
       // Submit form or send to backend
-      alert('Thank you! We will contact you soon.');
+      showToast('✅ Thank you! We will contact you soon.');
       form.reset();
     });
   }
@@ -523,6 +528,22 @@ function initCustomSelects() {
   
     if (!modal) return;
   
+
+    // Food preference toggle
+  const vegBtn = document.getElementById('dietVeg');
+  const nonVegBtn = document.getElementById('dietNonVeg');
+  if (vegBtn && nonVegBtn) {
+    vegBtn.addEventListener('click', function() {
+      vegBtn.classList.add('active');
+      nonVegBtn.classList.remove('active');
+    });
+    nonVegBtn.addEventListener('click', function() {
+      nonVegBtn.classList.add('active');
+      vegBtn.classList.remove('active');
+    });
+  }
+
+  
     // Open modal
     if (joinBtn) {
       joinBtn.addEventListener('click', () => {
@@ -559,9 +580,18 @@ function initCustomSelects() {
         const exp = document.getElementById('joinExperience').value;
         const message = document.getElementById('joinMessage').value.trim();
   
-        if (!name || !mobile || !goal) {
-          showToast("Please fill all required fields.", true);
-          return;
+        // Field-by-field validation
+        if (!name) {
+          showToast('⚠️ Please enter your Full Name.', true); return;
+        }
+        if (!mobile) {
+          showToast('⚠️ Please enter your Mobile Number.', true); return;
+        }
+        if (!/^[6-9]\d{9}$/.test(mobile.replace(/\s/g, ''))) {
+          showToast('⚠️ Enter a valid 10-digit mobile number (e.g. 9876543210).', true); return;
+        }
+        if (!goal) {
+          showToast('⚠️ Please select your Fitness Goal.', true); return;
         }
   
         const text = encodeURIComponent(
@@ -624,6 +654,44 @@ function initDietModal() {
 
   if (!modal) return;
 
+  // ===== Food preference toggle =====
+  const vegBtn    = document.getElementById('dietVeg');
+  const nonVegBtn = document.getElementById('dietNonVeg');
+  if (vegBtn && nonVegBtn) {
+    vegBtn.addEventListener('click', function () {
+      vegBtn.classList.add('active');
+      nonVegBtn.classList.remove('active');
+    });
+    nonVegBtn.addEventListener('click', function () {
+      nonVegBtn.classList.add('active');
+      vegBtn.classList.remove('active');
+    });
+  }
+
+  // ===== Gender toggle =====
+  const genderMaleBtn   = document.getElementById('dietGenderMale');
+  const genderFemaleBtn = document.getElementById('dietGenderFemale');
+  if (genderMaleBtn && genderFemaleBtn) {
+    genderMaleBtn.addEventListener('click', function () {
+      genderMaleBtn.classList.add('active');
+      genderFemaleBtn.classList.remove('active');
+    });
+    genderFemaleBtn.addEventListener('click', function () {
+      genderFemaleBtn.classList.add('active');
+      genderMaleBtn.classList.remove('active');
+    });
+  }
+
+  // ===== Goal toggle =====
+  let selectedDietGoal = 'Maintain';
+  document.querySelectorAll('[data-dietgoal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-dietgoal]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedDietGoal = btn.getAttribute('data-dietgoal');
+    });
+  });
+
   // Helper to open diet modal
   function openDietModal() {
     modal.classList.add('active');
@@ -676,6 +744,7 @@ function initDietModal() {
       const name    = document.getElementById('dietName').value.trim();
       const mobile  = document.getElementById('dietMobile').value.trim();
       const address = document.getElementById('dietAddress').value.trim();
+      const age     = document.getElementById('dietAge').value.trim();
       const height  = document.getElementById('dietHeight').value.trim();
       const weight  = document.getElementById('dietWeight').value.trim();
       const neck    = document.getElementById('dietNeck').value.trim();
@@ -684,11 +753,31 @@ function initDietModal() {
       const medical = document.getElementById('dietMedical').value.trim();
       const chest   = document.getElementById('dietChest').value.trim();
       const arm     = document.getElementById('dietArm').value.trim();
-      const memberId = document.getElementById('dietMemberId').value.trim();
+      const foodPref  = document.getElementById('dietVeg').classList.contains('active') ? 'Vegetarian 🥦' : 'Non-Vegetarian 🍗';
+      const gender    = document.getElementById('dietGenderMale').classList.contains('active') ? 'Male ♂' : 'Female ♀';
+      const memberId  = document.getElementById('dietMemberId').value.trim();
 
-      if (!name || !mobile || !height || !weight) {
-        showToast('Please fill Name, Mobile, Height and Weight.', true);
-        return;
+      // Field-by-field validation with specific messages
+      if (!name) {
+        showToast('⚠️ Please enter your Full Name.', true); return;
+      }
+      if (!mobile) {
+        showToast('⚠️ Please enter your Mobile Number.', true); return;
+      }
+      if (!/^[6-9]\d{9}$/.test(mobile.replace(/\s/g, ''))) {
+        showToast('⚠️ Enter a valid 10-digit mobile number (e.g. 9876543210).', true); return;
+      }
+      if (!age) {
+        showToast('⚠️ Please enter your Age (e.g. 25).', true); return;
+      }
+      if (isNaN(age) || Number(age) < 10 || Number(age) > 100) {
+        showToast('⚠️ Age must be a number between 10 and 100.', true); return;
+      }
+      if (!height) {
+        showToast('⚠️ Please enter your Height (e.g. 165 cm).', true); return;
+      }
+      if (!weight) {
+        showToast('⚠️ Please enter your Weight (e.g. 68 kg).', true); return;
       }
 
       const text = encodeURIComponent(
@@ -699,13 +788,18 @@ function initDietModal() {
 📍 Address     : ${address || 'Not provided'}
 🪪 Member ID   : ${memberId || 'Non-Member'}
 
+👤 Gender      : ${gender}
+🎂 Age         : ${age} years
+🎯 Goal        : ${selectedDietGoal}
+🥗 Food Pref   : ${foodPref}
+
 📏 Height      : ${height}
 ⚖️ Weight      : ${weight}
 📐 Neck        : ${neck || 'Not provided'}
 📐 Hip         : ${hip || 'Not provided'}
 📐 Thigh       : ${thigh || 'Not provided'}
 📐 Chest       : ${chest || 'Not provided'}
-💪 Arm         : ${arm || 'Not provided'}}
+💪 Arm         : ${arm || 'Not provided'}
 
 🏥 Medical     : ${medical || 'None'}
 
@@ -810,10 +904,24 @@ function initBMICalculator() {
     const activity = parseFloat(document.getElementById('bmiActivity').value);
     const bmiMemberId = document.getElementById('bmiMemberId').value.trim();
 
-    // Validation
-    if (!age || !heightCm || !weightKg || age < 10 || age > 100 || heightCm < 100 || heightCm > 250 || weightKg < 20 || weightKg > 300) {
-      showToast('Please enter valid Age, Height and Weight.', true);
-      return;
+    // Field-by-field validation with specific messages
+    if (!age || isNaN(age)) {
+      showToast('⚠️ Please enter your Age (e.g. 25).', true); return;
+    }
+    if (age < 10 || age > 100) {
+      showToast('⚠️ Age must be between 10 and 100 years.', true); return;
+    }
+    if (!heightCm || isNaN(heightCm)) {
+      showToast('⚠️ Please enter your Height in cm (e.g. 165).', true); return;
+    }
+    if (heightCm < 100 || heightCm > 250) {
+      showToast('⚠️ Height must be between 100 cm and 250 cm.', true); return;
+    }
+    if (!weightKg || isNaN(weightKg)) {
+      showToast('⚠️ Please enter your Weight in kg (e.g. 68).', true); return;
+    }
+    if (weightKg < 20 || weightKg > 300) {
+      showToast('⚠️ Weight must be between 20 kg and 300 kg.', true); return;
     }
 
     // --- BMI Calculation ---

@@ -966,6 +966,28 @@
         <input type="text" id="dietMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
       </div>
 
+      <div class="form-group">
+        <label>Gender *</label>
+        <div class="bmi-toggle-group">
+          <button type="button" class="bmi-toggle-btn active" id="dietGenderMale">♂ Male</button>
+          <button type="button" class="bmi-toggle-btn" id="dietGenderFemale">♀ Female</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Age * <span style="font-weight:500; color:#64748b;">(years)</span></label>
+        <input type="number" id="dietAge" placeholder="e.g. 28" min="10" max="100" required>
+      </div>
+
+      <div class="form-group">
+        <label>Your Goal *</label>
+        <div class="bmi-goal-group">
+          <button type="button" class="bmi-goal-btn" data-dietgoal="Fat Loss">🔥 Fat Loss</button>
+          <button type="button" class="bmi-goal-btn active" data-dietgoal="Maintain">⚖️ Maintain</button>
+          <button type="button" class="bmi-goal-btn" data-dietgoal="Muscle Gain">💪 Muscle Gain</button>
+        </div>
+      </div>
+
       <div class="diet-form-row">
         <div class="form-group">
           <label>Height *</label>
@@ -1004,6 +1026,14 @@
         <input type="text" id="dietArm" placeholder="e.g. 32 cm">
       </div>
 
+      <div class="form-group">
+        <label>Food Preference *</label>
+        <div class="bmi-toggle-group">
+          <button type="button" class="bmi-toggle-btn active" id="dietVeg">🥦 Vegetarian</button>
+          <button type="button" class="bmi-toggle-btn" id="dietNonVeg">🍗 Non-Vegetarian</button>
+        </div>
+      </div>
+      
       <div class="form-group">
         <label>Any Medical Condition?</label>
         <textarea id="dietMedical" rows="2" placeholder="e.g. Diabetes, BP, Thyroid — or write None"></textarea>

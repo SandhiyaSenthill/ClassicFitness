@@ -116,8 +116,8 @@
         </div>
         <div class="bmi-hero-stat-divider"></div>
         <div class="bmi-hero-stat">
-          <span class="bmi-hero-stat-num">4 in 1</span>
-          <span class="bmi-hero-stat-lbl">BMI + Cal + Protein + Water</span>
+          <span class="bmi-hero-stat-num">7 in 1</span>
+          <span class="bmi-hero-stat-lbl">BMI + Cal + Protein + Carbs + Fats + Fibre + Water</span>
         </div>
       </div>
     </div>
@@ -132,6 +132,11 @@
         <!-- LEFT: INPUT FORM -->
         <div class="bmi-form-card" id="bmiFormCard">
           <div class="bmi-form-title">📋 Enter Your Details</div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Your Name <span class="bmi-unit-label">(Optional)</span></label>
+            <input type="text" class="bmi-input" id="bmiName" placeholder="e.g. Senthill — so we can personalise your plan">
+          </div>
 
           <div class="bmi-field-group">
             <label class="bmi-label">Gender</label>
@@ -179,11 +184,68 @@
           </div>
 
           <div class="bmi-field-group">
+            <label class="bmi-label">Body Type <span class="bmi-unit-label">(Select the one that looks most like you)</span></label>
+            <div class="bmi-bodytype-img-wrap">
+              <img src="assets/img/body-types.jpg" alt="Ectomorph Mesomorph Endomorph body types" class="bmi-bodytype-img">
+              <div class="bmi-bodytype-note">👆 Look at the image above and select your body type below</div>
+            </div>
+            <div class="bmi-bodytype-group">
+              <button type="button" class="bmi-bodytype-btn" data-bodytype="ectomorph">
+                <span class="bmi-bodytype-icon">🦴</span>
+                <span class="bmi-bodytype-name">Ectomorph</span>
+                <span class="bmi-bodytype-desc">Slim, lean, hard to gain weight</span>
+              </button>
+              <button type="button" class="bmi-bodytype-btn" data-bodytype="mesomorph">
+                <span class="bmi-bodytype-icon">💪</span>
+                <span class="bmi-bodytype-name">Mesomorph</span>
+                <span class="bmi-bodytype-desc">Athletic, gains muscle easily</span>
+              </button>
+              <button type="button" class="bmi-bodytype-btn" data-bodytype="endomorph">
+                <span class="bmi-bodytype-icon">🔵</span>
+                <span class="bmi-bodytype-name">Endomorph</span>
+                <span class="bmi-bodytype-desc">Larger frame, gains fat easily</span>
+              </button>
+            </div>
+          </div>
+
+
+          <div class="bmi-row-2">
+            <div class="bmi-field-group">
+              <label class="bmi-label">Experience Level</label>
+              <select class="bmi-input bmi-select" id="bmiExperience">
+                <option value="beginner">Beginner (0–6 months)</option>
+                <option value="intermediate" selected>Intermediate (6m–2 years)</option>
+                <option value="advanced">Advanced (2+ years)</option>
+              </select>
+            </div>
+            <div class="bmi-field-group">
+              <label class="bmi-label">Equipment Available</label>
+              <select class="bmi-input bmi-select" id="bmiEquipment">
+                <option value="gym" selected>Full Gym (Machines + Weights)</option>
+                <option value="dumbbells">Dumbbells Only</option>
+                <option value="home">Home (No Equipment)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bmi-field-group">
+            <label class="bmi-label">Waist Size <span class="bmi-unit-label">(cm) — Optional but improves accuracy</span></label>
+            <input type="number" class="bmi-input" id="bmiWaist" placeholder="e.g. 85 — measure around your belly button" min="40" max="200">
+            <div class="bmi-waist-note">📏 Your waist size helps detect belly fat even when BMI looks normal. This is more accurate for Indian body types.</div>
+          </div>
+
+          <div class="bmi-field-group">
             <label class="bmi-label">Gym Member ID <span class="bmi-unit-label">(Optional — existing members only)</span></label>
             <input type="text" class="bmi-input" id="bmiMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
           </div>
 
-          <button class="bmi-calc-btn" id="bmiCalcBtn">
+          <div class="bmi-field-group">
+            <label class="bmi-label">Medical Conditions <span class="bmi-unit-label">(Optional — helps us give safer advice)</span></label>
+            <textarea class="bmi-input bmi-textarea" id="bmiMedical" rows="2" placeholder="e.g. Diabetes, Knee pain, High BP, Lower back injury — Leave blank if none"></textarea>
+            <div class="bmi-medical-note">⚕️ Your medical info helps our personalise exercises and supplements safely. This is <strong>not a substitute for medical advice</strong> — always consult your doctor before starting any new fitness or supplement program.</div>
+          </div>
+
+          <button class="bmi-calc-btn" id="bmiCalcBtn" disabled>
             Calculate My BMI & Calories →
           </button>
         </div>
@@ -195,6 +257,7 @@
             <span class="bmi-result-title">📊 Your Results</span>
             <button class="bmi-reset-btn" id="bmiResetBtn">← Recalculate</button>
           </div>
+          <div class="bmi-name-greeting" id="bmiNameGreeting"></div>
 
           <!-- BMI Circle + Info -->
           <div class="bmi-score-row">
@@ -216,7 +279,11 @@
             <div class="bmi-score-info">
               <div class="bmi-cat-badge" id="bmiCatBadge">--</div>
               <div class="bmi-ideal-text" id="bmiIdealText">Ideal weight: --</div>
+
+              <div class="bmi-ideal-waist" id="bmiIdealWaist" style="display:none;font-size:13px;color:#64748b;margin-top:4px;"></div>
+              
               <div class="bmi-diff-text" id="bmiDiffText"></div>
+              <div class="bmi-limitation-warning" id="bmiLimitationWarning"></div>
             </div>
           </div>
 
@@ -236,11 +303,18 @@
 
           <!-- Calorie Cards -->
           <div class="bmi-cal-row">
-            <div class="bmi-cal-box bmi-cal-maintain">
+            <!-- <div class="bmi-cal-box bmi-cal-maintain">
               <div class="bmi-cal-icon">⚖️</div>
               <div class="bmi-cal-label">To Maintain</div>
               <div class="bmi-cal-num" id="calMaintain">--</div>
               <div class="bmi-cal-unit">kcal/day</div>
+            </div> -->
+
+            <div class="bmi-cal-box bmi-whr-box" id="whrBox" style="display:none;">
+              <div class="bmi-cal-icon">📐</div>
+              <div class="bmi-cal-label">Waist/Height</div>
+              <div class="bmi-cal-num" id="calWHR">--</div>
+              <div class="bmi-cal-unit" id="calWHRLabel">w÷h</div>
             </div>
             <div class="bmi-cal-box bmi-cal-goal-box" id="goalBox">
               <div class="bmi-cal-icon" id="goalIcon">🎯</div>
@@ -260,7 +334,27 @@
               <div class="bmi-cal-num" id="calWater">--</div>
               <div class="bmi-cal-unit">L/day</div>
             </div>
+
+            <div class="bmi-cal-box bmi-cal-carbs-box">
+              <div class="bmi-cal-icon">🍚</div>
+              <div class="bmi-cal-label">Carbs</div>
+              <div class="bmi-cal-num" id="calCarbs">--</div>
+              <div class="bmi-cal-unit">g/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-fats-box">
+              <div class="bmi-cal-icon">🥑</div>
+              <div class="bmi-cal-label">Fats</div>
+              <div class="bmi-cal-num" id="calFats">--</div>
+              <div class="bmi-cal-unit">g/day</div>
+            </div>
+            <div class="bmi-cal-box bmi-cal-fibre-box">
+              <div class="bmi-cal-icon">🌾</div>
+              <div class="bmi-cal-label">Fibre</div>
+              <div class="bmi-cal-num" id="calFibre">--</div>
+              <div class="bmi-cal-unit">g/day</div>
+            </div>
           </div>
+         
 
           <!-- Goal Message -->
           <div class="bmi-goal-msg" id="bmiGoalMsg"></div>
@@ -272,6 +366,70 @@
               🥗 Get My Free Plan on WhatsApp
             </button>
           </div>
+
+          <!-- ===== EXPERT ANALYSIS PANEL ===== -->
+          <div class="expert-panel" id="expertPanel" style="display:none">
+
+            <div class="expert-panel-header">
+              <div class="expert-panel-title">
+                <span class="expert-panel-icon">🏅</span>
+                <span>Personalised Expert Analysis</span>
+              </div>
+              <div class="expert-panel-sub">Based on your BMI & fitness data — curated for you</div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="expert-tabs">
+              <button class="expert-tab active" data-tab="supplements">💊 Nutrition Support</button>
+              <button class="expert-tab" data-tab="workout">🏋️ Workout Plan</button>
+              <button class="expert-tab" data-tab="health">⚠️ Health Risk</button>
+            </div>
+
+            <!-- Loading State -->
+            <div class="expert-loading" id="expertLoading">
+              <div class="expert-loading-spinner"></div>
+              <p>Analysing your results...</p>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="expert-content" id="expertContent" style="display:none;">
+
+              <!-- Supplements Tab -->
+              <div class="expert-tab-panel active" id="tab-supplements">
+                <div id="supplementsList"></div>
+                <div class="expert-disclaimer">⚕️ <strong>Note:</strong> Consult your doctor before starting any supplement. The supplement suggestions above are general recommendations based on your inputs — not a prescription.</div>
+              </div>
+
+              <!-- Workout Tab -->
+              <div class="expert-tab-panel" id="tab-workout">
+                <div id="workoutPlan"></div>
+              </div>
+
+              <!-- Health Risk Tab -->
+              <div class="expert-tab-panel" id="tab-health">
+                <div id="healthRisk"></div>
+              </div>
+
+            </div>
+
+            <!-- Legal Disclaimer -->
+            <div class="expert-legal-disclaimer">
+              <div class="expert-legal-icon">⚠️</div>
+              <div class="expert-legal-body">
+                <div class="expert-legal-title">Important Health Legal Disclaimer</div>
+                <div class="expert-legal-text">
+                  The supplement recommendations, workout plan, and health analysis shown above are <strong>general generated suggestions based solely on the inputs you provided</strong>. They are not a substitute for professional medical advice, diagnosis, or treatment. <strong>Please consult your doctor before starting any new workout program, supplement, or diet</strong> — especially if you have any existing medical conditions, injuries, or are on medication.
+                </div>
+              </div>
+            </div>
+
+            <!-- WhatsApp Full Plan -->
+            <button class="expert-wa-btn" id="expertWaBtn">
+              📲 Send Full Analysis to WhatsApp
+            </button>
+
+          </div>
+          <!-- ===== END EXPERT ANALYSIS ===== -->
 
         </div>
 
