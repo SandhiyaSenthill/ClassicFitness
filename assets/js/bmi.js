@@ -331,6 +331,26 @@ Please contact me regarding joining Classic Fitness Gym!`
       }
       bodyFat = Math.round(bodyFat);
 
+      // ---- Body Fat Classification ----
+      let bodyFatLabel = '';
+      let bodyFatColor = '';
+      let bodyFatAdvice = '';
+      if (selectedGender === 'male') {
+        if (bodyFat < 6)       { bodyFatLabel = 'Essential Fat'; bodyFatColor = '#3b82f6'; bodyFatAdvice = 'Extremely low — monitor closely.'; }
+        else if (bodyFat < 14) { bodyFatLabel = 'Athletic';      bodyFatColor = '#22c55e'; bodyFatAdvice = 'Excellent body composition. Keep it up!'; }
+        else if (bodyFat < 18) { bodyFatLabel = 'Fit';           bodyFatColor = '#22c55e'; bodyFatAdvice = 'Good body fat range. Maintain with strength training.'; }
+        else if (bodyFat < 25) { bodyFatLabel = 'Average';       bodyFatColor = '#f59e0b'; bodyFatAdvice = 'Acceptable range, but fat loss + strength training will improve health.'; }
+        else if (bodyFat < 32) { bodyFatLabel = 'Overweight';    bodyFatColor = '#f97316'; bodyFatAdvice = '⚠️ High body fat. Prioritise cardio + calorie deficit + strength training to reduce fat.'; }
+        else                   { bodyFatLabel = 'Obese';         bodyFatColor = '#ef4444'; bodyFatAdvice = '🚨 Very high body fat. Risk of insulin resistance and heart disease. Consult a trainer immediately.'; }
+      } else {
+        if (bodyFat < 14)      { bodyFatLabel = 'Essential Fat'; bodyFatColor = '#3b82f6'; bodyFatAdvice = 'Extremely low — monitor closely.'; }
+        else if (bodyFat < 21) { bodyFatLabel = 'Athletic';      bodyFatColor = '#22c55e'; bodyFatAdvice = 'Excellent body composition. Keep it up!'; }
+        else if (bodyFat < 25) { bodyFatLabel = 'Fit';           bodyFatColor = '#22c55e'; bodyFatAdvice = 'Good body fat range. Maintain with strength training.'; }
+        else if (bodyFat < 32) { bodyFatLabel = 'Average';       bodyFatColor = '#f59e0b'; bodyFatAdvice = 'Acceptable range. Fat loss + strength training will improve body composition.'; }
+        else if (bodyFat < 39) { bodyFatLabel = 'Overweight';    bodyFatColor = '#f97316'; bodyFatAdvice = '⚠️ High body fat. Prioritise cardio + calorie deficit + strength training to reduce fat.'; }
+        else                   { bodyFatLabel = 'Obese';         bodyFatColor = '#ef4444'; bodyFatAdvice = '🚨 Very high body fat. Risk of insulin resistance and PCOD/hormonal issues. Consult a trainer immediately.'; }
+      }
+
       // ---- Category ----
       let category, catClass, catColor;
       if (bmi < 18.5)    { category = 'Underweight';   catClass = 'bmi-cat-underweight'; catColor = '#3b82f6'; }
@@ -451,9 +471,25 @@ Please contact me regarding joining Classic Fitness Gym!`
       document.getElementById('calFats').textContent     = fats;
       document.getElementById('calFibre').textContent    = fibre;
 
-      // ---- Display Body Fat % ----
-      const bfEl = document.getElementById('calBodyFat');
-      if (bfEl) bfEl.textContent = bodyFat + '%';
+    // ---- Display Body Fat % ----
+    const bfEl = document.getElementById('calBodyFat');
+    if (bfEl) bfEl.textContent = bodyFat + '%';
+
+    // ---- Body Fat Label under the % ----
+    const bfLabelEl = document.getElementById('calBodyFatLabel');
+    if (bfLabelEl) {
+      bfLabelEl.textContent = bodyFatLabel;
+      bfLabelEl.style.color = bodyFatColor;
+    }
+
+    // ---- Body Fat Advice warning (shown below result cards) ----
+    const bfAdviceEl = document.getElementById('bodyFatAdvice');
+    if (bfAdviceEl) {
+      // Show advice only if body fat is Average or worse (i.e. BMI might look fine but fat is high)
+      const showAdvice = (selectedGender === 'male' && bodyFat >= 25) || (selectedGender === 'female' && bodyFat >= 32);
+      bfAdviceEl.textContent = showAdvice ? '🧬 Body Fat Alert: ' + bodyFatAdvice : '';
+      bfAdviceEl.style.display = showAdvice ? '' : 'none';
+    }
 
       // ---- Waist-to-Height ratio display ----
       const whrBox = document.getElementById('whrBox');
@@ -527,10 +563,12 @@ Please contact me regarding joining Classic Fitness Gym!`
         mobile:     bmiMobile,
         memberId:   bmiMemberId,
         medical:    bmiMedical,
-        bodyType:   selectedBodyType,
-        waist:      bmiWaist || 0,
-        whr:        whrValue || 0,
-        whrLabel:   whrLabel || 'Not measured'
+        bodyType:      selectedBodyType,
+        waist:         bmiWaist || 0,
+        whr:           whrValue || 0,
+        whrLabel:      whrLabel || 'Not measured',
+        bodyFatLabel:  bodyFatLabel,
+        bodyFatAdvice: bodyFatAdvice
       });
 
       // ---- WhatsApp "Get My Diet Free Plan" button ----
@@ -791,7 +829,8 @@ PERSON DATA:
 - Height: ${userData.heightCm} cm
 - Weight: ${userData.weightKg} kg
 - BMI: ${userData.bmi} (${userData.category})
-- Estimated Body Fat: ${userData.bodyFat}%
+- Estimated Body Fat: ${userData.bodyFat}% (Classification: ${userData.bodyFatLabel})
+- Body Fat Advice: ${userData.bodyFatAdvice}
 - Goal: ${userData.goal}
 - Activity Level: ${userData.activityLabel}
 - Experience Level: ${expLabel[userData.experience] || userData.experience}
@@ -802,7 +841,13 @@ PERSON DATA:
 - Body Type: ${userData.bodyType ? userData.bodyType.charAt(0).toUpperCase() + userData.bodyType.slice(1) : 'Not specified'}
 - Medical Conditions / Injuries: ${userData.medical || 'None reported'}
 - Waist Circumference: ${userData.waist ? userData.waist + ' cm (Waist-to-Height Ratio: ' + userData.whr + ' — classified as: ' + userData.whrLabel + ')' : 'Not provided'}
-- Body Composition Note: ${userData.waist && userData.whr > 0.52 && userData.bmi < 25 ? 'IMPORTANT: This person has NORMAL BMI but HIGH waist-to-height ratio. This is called Normal Weight Obesity or Skinny Fat — common in Indian body types. The supplements, workout, and health risk MUST address belly fat reduction, visceral fat, and body recomposition — not just weight maintenance.' : 'No special body composition conflict detected.'}
+- Body Composition Note: ${
+  (userData.waist && userData.whr > 0.52 && userData.bmi < 25)
+    ? 'IMPORTANT: This person has NORMAL BMI but HIGH waist-to-height ratio. This is called Normal Weight Obesity or Skinny Fat — common in Indian body types. The supplements, workout, and health risk MUST address belly fat reduction, visceral fat, and body recomposition — not just weight maintenance.'
+  : (userData.bmi < 25 && (userData.bodyFatLabel === 'Overweight' || userData.bodyFatLabel === 'Obese'))
+    ? 'IMPORTANT: This person has a NORMAL BMI but ELEVATED BODY FAT (' + userData.bodyFat + '% — ' + userData.bodyFatLabel + '). This is a classic Skinny Fat / Normal Weight Obesity case. The workout, supplements, and health analysis MUST prioritise body recomposition: losing fat while building muscle. Do NOT treat this as a simple maintenance case.'
+  : 'No special body composition conflict detected.'
+}
 
 STRICT SUPPLEMENT RULES:
 - If goal is "Gain Weight" AND BMI is below 22: recommend Mass Gainer (NOT Whey Protein — they are redundant together)
