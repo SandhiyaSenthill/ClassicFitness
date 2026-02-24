@@ -223,7 +223,9 @@ Please contact me regarding joining Classic Fitness Gym!`
       const age      = document.getElementById('bmiAge').value.trim();
       const heightCm = document.getElementById('bmiHeight').value.trim();
       const weightKg = document.getElementById('bmiWeight').value.trim();
-      const allFilled = age !== '' && heightCm !== '' && weightKg !== '';
+      const name     = document.getElementById('bmiName').value.trim();
+      const mobile   = document.getElementById('bmiMobile').value.trim();
+      const allFilled = age !== '' && heightCm !== '' && weightKg !== '' && name !== '' && mobile !== '';
       calcBtn.disabled = !allFilled;
       calcBtn.style.opacity = allFilled ? '1' : '0.5';
       calcBtn.style.cursor  = allFilled ? 'pointer' : 'not-allowed';
@@ -232,6 +234,8 @@ Please contact me regarding joining Classic Fitness Gym!`
     document.getElementById('bmiAge').addEventListener('input', updateCalcBtnState);
     document.getElementById('bmiHeight').addEventListener('input', updateCalcBtnState);
     document.getElementById('bmiWeight').addEventListener('input', updateCalcBtnState);
+    document.getElementById('bmiName').addEventListener('input', updateCalcBtnState);
+    document.getElementById('bmiMobile').addEventListener('input', updateCalcBtnState);
 
     // Run once on load to set initial disabled state
     updateCalcBtnState();
@@ -275,19 +279,25 @@ Please contact me regarding joining Classic Fitness Gym!`
 
     // Calculate
     calcBtn.addEventListener('click', () => {
-      const age      = parseFloat(document.getElementById('bmiAge').value);
-      const heightCm = parseFloat(document.getElementById('bmiHeight').value);
-      const weightKg = parseFloat(document.getElementById('bmiWeight').value);
-      const activity = parseFloat(document.getElementById('bmiActivity').value);
-      const bmiName      = document.getElementById('bmiName').value.trim();
-      const bmiMemberId  = document.getElementById('bmiMemberId').value.trim();
-      const bmiMedical   = document.getElementById('bmiMedical').value.trim();
+      const age           = parseFloat(document.getElementById('bmiAge').value);
+      const heightCm      = parseFloat(document.getElementById('bmiHeight').value);
+      const weightKg      = parseFloat(document.getElementById('bmiWeight').value);
+      const activity      = parseFloat(document.getElementById('bmiActivity').value);
+      const bmiName       = document.getElementById('bmiName').value.trim();
+      const bmiMemberId   = document.getElementById('bmiMemberId').value.trim();
+      const bmiMobile     = document.getElementById('bmiMobile').value.trim();
+      const bmiMedical    = document.getElementById('bmiMedical').value.trim();
       const bmiExperience = document.getElementById('bmiExperience').value;
       const bmiEquipment  = document.getElementById('bmiEquipment').value;
+      const bmiWaist      = parseFloat(document.getElementById('bmiWaist').value) || 0;
 
-      const bmiWaist = parseFloat(document.getElementById('bmiWaist').value) || 0;
-
-      // Specific validation with clear messages for each field
+      // ---- Validation ----
+      if (!bmiName) {
+        showToast('⚠️ Please enter your Name to personalise your plan.', true); return;
+      }
+      if (!bmiMobile || bmiMobile.length < 10) {
+        showToast('⚠️ Please enter a valid 10-digit Mobile Number.', true); return;
+      }
       if (!age || isNaN(age)) {
         showToast('⚠️ Please enter your Age (e.g. 25)', true); return;
       }
@@ -307,24 +317,32 @@ Please contact me regarding joining Classic Fitness Gym!`
         showToast('⚠️ Weight must be between 20 kg and 300 kg.', true); return;
       }
 
-      // BMI
-      const heightM   = heightCm / 100;
-      const bmi       = weightKg / (heightM * heightM);
+      // ---- BMI ----
+      const heightM    = heightCm / 100;
+      const bmi        = weightKg / (heightM * heightM);
       const bmiRounded = Math.round(bmi * 10) / 10;
 
-      // Category
-      let category, catClass, catColor;
-      if (bmi < 18.5)      { category = 'Underweight';  catClass = 'bmi-cat-underweight'; catColor = '#3b82f6'; }
-      else if (bmi < 25)   { category = 'Normal Weight'; catClass = 'bmi-cat-normal';      catColor = '#22c55e'; }
-      else if (bmi < 30)   { category = 'Overweight';   catClass = 'bmi-cat-overweight';  catColor = '#f59e0b'; }
-      else                 { category = 'Obese';         catClass = 'bmi-cat-obese';        catColor = '#ef4444'; }
+      // ---- Estimated Body Fat % (Deurenberg formula) ----
+      let bodyFat = 0;
+      if (selectedGender === 'male') {
+        bodyFat = (1.20 * bmi) + (0.23 * age) - 16.2;
+      } else {
+        bodyFat = (1.20 * bmi) + (0.23 * age) - 5.4;
+      }
+      bodyFat = Math.round(bodyFat);
 
-      // Ideal weight
+      // ---- Category ----
+      let category, catClass, catColor;
+      if (bmi < 18.5)    { category = 'Underweight';   catClass = 'bmi-cat-underweight'; catColor = '#3b82f6'; }
+      else if (bmi < 25) { category = 'Normal Weight'; catClass = 'bmi-cat-normal';      catColor = '#22c55e'; }
+      else if (bmi < 30) { category = 'Overweight';    catClass = 'bmi-cat-overweight';  catColor = '#f59e0b'; }
+      else               { category = 'Obese';          catClass = 'bmi-cat-obese';       catColor = '#ef4444'; }
+
+      // ---- Ideal weight ----
       const idealMin = Math.round(18.5 * heightM * heightM);
       const idealMax = Math.round(24.9 * heightM * heightM);
 
-
-      // Waist-to-Height Ratio & Skinny Fat Warning
+      // ---- Waist-to-Height Ratio ----
       let whrValue = 0;
       let whrLabel = '';
       let whrWarning = '';
@@ -337,7 +355,7 @@ Please contact me regarding joining Classic Fitness Gym!`
         else                       { whrLabel = 'Very High Risk'; }
       }
 
-      // Skinny Fat warning — Normal BMI but Endomorph body type or high waist ratio
+      // ---- Skinny Fat Warning ----
       if (bmi >= 18.5 && bmi < 25) {
         if (selectedBodyType === 'endomorph') {
           whrWarning = '⚠️ Your BMI is in the Normal range, but your Endomorph body type suggests you may carry more body fat than the number shows. Consider a body composition check with our trainer.';
@@ -349,6 +367,7 @@ Please contact me regarding joining Classic Fitness Gym!`
         whrWarning = 'ℹ️ BMI has limits — it cannot measure body fat directly. If you visually carry excess weight, enter your waist size above for a more accurate check.';
       }
 
+      // ---- Diff text ----
       let diffText = '';
       if (bmi < 18.5)     diffText = `Gain ${(idealMin - weightKg).toFixed(1)} kg to reach ideal weight`;
       else if (bmi >= 25) diffText = `Lose ${(weightKg - idealMax).toFixed(1)} kg to reach ideal weight`;
@@ -360,14 +379,13 @@ Please contact me regarding joining Classic Fitness Gym!`
         }
       }
 
-      
-      // Calories — Mifflin-St Jeor
+      // ---- Calories — Mifflin-St Jeor ----
       let bmr;
       if (selectedGender === 'male') bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
       else                           bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
       const tdee = Math.round(bmr * activity);
 
-      // Goal calories
+      // ---- Goal calories ----
       let goalCal, goalIcon, goalLabel, goalMsg;
       if (selectedGoal === 'lose') {
         goalCal = tdee - 500; goalIcon = '🔥'; goalLabel = 'To Lose Weight';
@@ -375,27 +393,28 @@ Please contact me regarding joining Classic Fitness Gym!`
       } else if (selectedGoal === 'gain') {
         goalCal = tdee + 250; goalIcon = '💪'; goalLabel = 'To Gain Muscle';
         goalMsg = `Eat ${goalCal} kcal/day (250 kcal surplus). Focus on strength training and ensure high protein intake for muscle growth.`;
+      } else if (selectedGoal === 'gainweight') {
+        goalCal = tdee + 500; goalIcon = '🍽️'; goalLabel = 'To Gain Weight';
+        goalMsg = `Eat ${goalCal} kcal/day (500 kcal surplus). Focus on calorie-dense whole foods and strength training to gain healthy weight.`;
       } else {
         goalCal = tdee; goalIcon = '⚖️'; goalLabel = 'To Maintain';
         goalMsg = `Eat ${goalCal} kcal/day to maintain your current weight. Stay consistent with balanced meals and regular activity.`;
       }
 
-      // Protein
+      // ---- Protein ----
       const protein = Math.round(weightKg * 1.8);
 
-      // Carbs & Fats — based on goal calories
-      // Carbs, Fats & Fibre — based on goal calories
+      // ---- Carbs, Fats & Fibre ----
       const proteinCals = protein * 4;
-      const fatCals     = Math.round(goalCal * 0.25);       // 25% of calories from fat
+      const fatCals     = Math.round(goalCal * 0.25);
       const carbCals    = goalCal - proteinCals - fatCals;
       const fats        = Math.round(fatCals / 9);
       const carbs       = Math.round(carbCals / 4);
 
-      // Fibre — WHO recommends 14g per 1000 kcal, adjusted slightly by goal
-      const fibreBase   = Math.round((goalCal / 1000) * 14);
-      const fibre       = selectedGoal === 'lose' ? fibreBase + 5 : selectedGoal === 'gain' ? fibreBase + 3 : fibreBase;
+      const fibreBase = Math.round((goalCal / 1000) * 14);
+      const fibre     = selectedGoal === 'lose' ? fibreBase + 5 : selectedGoal === 'gain' ? fibreBase + 3 : fibreBase;
 
-      // Water
+      // ---- Water ----
       let waterMultiplier = 35;
       if (activity >= 1.725)      waterMultiplier = 45;
       else if (activity >= 1.55)  waterMultiplier = 40;
@@ -404,307 +423,366 @@ Please contact me regarding joining Classic Fitness Gym!`
       const waterExtra  = (selectedGoal === 'lose' || selectedGoal === 'gain') ? 0.5 : 0;
       const waterLitres = Math.round((waterBase + waterExtra) * 10) / 10;
 
-      // Update DOM
-     // Update DOM
-     document.getElementById('bmiNum').textContent       = bmiRounded;
-     const nameGreeting = document.getElementById('bmiNameGreeting');
-     if (nameGreeting) nameGreeting.textContent = bmiName ? `Hi ${bmiName}! Here are your results 👋` : '';
-      document.getElementById('bmiCatBadge').textContent  = category;
-      document.getElementById('bmiCatBadge').className    = 'bmi-cat-badge ' + catClass;
+      // ---- Update DOM ----
+      document.getElementById('bmiNum').textContent      = bmiRounded;
+      const nameGreeting = document.getElementById('bmiNameGreeting');
+      if (nameGreeting) nameGreeting.textContent = bmiName ? `Hi ${bmiName}! Here are your results 👋` : '';
+      document.getElementById('bmiCatBadge').textContent = category;
+      document.getElementById('bmiCatBadge').className   = 'bmi-cat-badge ' + catClass;
       document.getElementById('bmiIdealText').textContent = `Ideal weight: ${idealMin}–${idealMax} kg`;
+
       const idealWaistEl = document.getElementById('bmiIdealWaist');
-        if (idealWaistEl) {
-          const idealWaistMax = selectedGender === 'male'
-            ? Math.round(heightCm * 0.50)
-            : Math.round(heightCm * 0.48);
-          idealWaistEl.textContent = `Ideal waist: under ${idealWaistMax} cm (for your height)`;
-          idealWaistEl.style.display = bmiWaist > 0 ? '' : 'none';
-        }
+      if (idealWaistEl) {
+        const idealWaistMax = selectedGender === 'male'
+          ? Math.round(heightCm * 0.50)
+          : Math.round(heightCm * 0.48);
+        idealWaistEl.textContent = `Ideal waist: under ${idealWaistMax} cm (for your height)`;
+        idealWaistEl.style.display = bmiWaist > 0 ? '' : 'none';
+      }
 
-      document.getElementById('bmiDiffText').textContent  = diffText;
-      // document.getElementById('calMaintain').textContent  = tdee.toLocaleString();
-      document.getElementById('calGoal').textContent      = goalCal.toLocaleString();
-      document.getElementById('calProtein').textContent   = protein;
-      document.getElementById('calWater').textContent     = waterLitres;
-      document.getElementById('goalIcon').textContent     = goalIcon;
-      document.getElementById('goalLabel').textContent    = goalLabel;
-      document.getElementById('bmiGoalMsg').textContent   = goalMsg;
+      document.getElementById('bmiDiffText').textContent = diffText;
+      document.getElementById('calGoal').textContent     = goalCal.toLocaleString();
+      document.getElementById('calProtein').textContent  = protein;
+      document.getElementById('calWater').textContent    = waterLitres;
+      document.getElementById('goalIcon').textContent    = goalIcon;
+      document.getElementById('goalLabel').textContent   = goalLabel;
+      document.getElementById('bmiGoalMsg').textContent  = goalMsg;
+      document.getElementById('calCarbs').textContent    = carbs;
+      document.getElementById('calFats').textContent     = fats;
+      document.getElementById('calFibre').textContent    = fibre;
 
-      document.getElementById('calCarbs').textContent  = carbs;
-      document.getElementById('calFats').textContent   = fats;
-      document.getElementById('calFibre').textContent  = fibre;
+      // ---- Display Body Fat % ----
+      const bfEl = document.getElementById('calBodyFat');
+      if (bfEl) bfEl.textContent = bodyFat + '%';
 
-      // Waist-to-Height ratio display
+      // ---- Waist-to-Height ratio display ----
       const whrBox = document.getElementById('whrBox');
       if (bmiWaist > 0 && whrBox) {
         document.getElementById('calWHR').textContent = whrValue;
         document.getElementById('calWHRLabel').textContent = whrLabel;
-
         if (whrValue > 0.52) {
           document.getElementById('calWHRLabel').style.color = whrValue > 0.57 ? '#ef4444' : '#f59e0b';
           document.getElementById('calWHRLabel').style.fontWeight = '700';
         }
-
-
-        whrBox.style.display = '';
-        whrBox.style.background = whrValue > 0.57 ? '#fef2f2' : whrValue > 0.52 ? '#fff7ed' : '#f0fdf4';
+        whrBox.style.display     = '';
+        whrBox.style.background  = whrValue > 0.57 ? '#fef2f2' : whrValue > 0.52 ? '#fff7ed' : '#f0fdf4';
         whrBox.style.borderColor = whrValue > 0.57 ? '#fca5a5' : whrValue > 0.52 ? '#fdba74' : '#86efac';
       } else if (whrBox) {
         whrBox.style.display = 'none';
       }
 
-      // BMI limitation warning
+      // ---- BMI limitation warning ----
       const limitWarn = document.getElementById('bmiLimitationWarning');
       if (limitWarn) {
-        limitWarn.textContent = whrWarning;
+        limitWarn.textContent  = whrWarning;
         limitWarn.style.display = whrWarning ? '' : 'none';
       }
 
-      // Circle animation
-      const progress    = document.getElementById('bmiCircleProgress');
+      // ---- Circle animation ----
+      const progress      = document.getElementById('bmiCircleProgress');
       const circumference = 314;
       const pct    = Math.min(Math.max((bmi - 10) / 30, 0), 1);
       const offset = circumference - (pct * circumference);
       progress.style.strokeDashoffset = offset;
       progress.style.stroke           = catColor;
 
-      // Scale pin
+      // ---- Scale pin ----
       const pinPct = Math.min(Math.max((bmi - 16) / 24, 0), 1) * 100;
       document.getElementById('bmiScalePin').style.left = pinPct + '%';
 
-      // Show result
+      // ---- Show result ----
       formCard.style.display = 'none';
       resultCard.classList.add('visible');
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      // Activity label for WhatsApp message
+      // ---- Activity label ----
       const activityLabels = {
         '1.2': 'Sedentary', '1.375': 'Light', '1.55': 'Moderate',
         '1.725': 'Active', '1.9': 'Very Active'
       };
       const activityLabel = activityLabels[String(activity)] || 'Moderate';
 
-      // Trigger expert analysis panel
+      // ---- Trigger expert analysis panel ----
       loadExpertAnalysis({
         gender: selectedGender,
         age, heightCm, weightKg,
         bmi: bmiRounded,
         category,
-        goal: selectedGoal === 'lose' ? 'Lose Weight' : selectedGoal === 'gain' ? 'Gain Muscle' : 'Maintain Weight',
+        goal: selectedGoal === 'lose' ? 'Lose Weight'
+            : selectedGoal === 'gain' ? 'Gain Muscle'
+            : selectedGoal === 'gainweight' ? 'Gain Weight'
+            : 'Maintain Weight',
         activityLabel,
         tdee,
         goalCal,
         carbs,
         fats,
         fibre,
+        protein,
+        waterLitres,
+        bodyFat,
         experience: bmiExperience,
-        equipment: bmiEquipment,
-        name: bmiName,
-        medical: bmiMedical,
-        bodyType: selectedBodyType,
-        waist: bmiWaist || 0,
-        whr: whrValue || 0,
-        whrLabel: whrLabel || 'Not measured'
+        equipment:  bmiEquipment,
+        name:       bmiName,
+        mobile:     bmiMobile,
+        memberId:   bmiMemberId,
+        medical:    bmiMedical,
+        bodyType:   selectedBodyType,
+        waist:      bmiWaist || 0,
+        whr:        whrValue || 0,
+        whrLabel:   whrLabel || 'Not measured'
       });
-      // WhatsApp plan button
+
+      // ---- WhatsApp "Get My Diet Free Plan" button ----
       getPlanBtn.onclick = () => {
         const text = encodeURIComponent(
-          `⚖️ BMI Calculator Result — Classic Fitness
-          
-          👤 Name          : ${bmiName || 'Not provided'}
-          🏋️ Body Type     : ${selectedBodyType.charAt(0).toUpperCase() + selectedBodyType.slice(1)}
-          📊 My BMI        : ${bmiRounded} (${category})
-          ⚖️ Ideal Weight  : ${idealMin}–${idealMax} kg
-          👤 Gender        : ${selectedGender === 'male' ? 'Male' : 'Female'}
-          🔢 Age           : ${age} years
-          🪪 Member ID     : ${bmiMemberId || 'Non-Member'}
-          📏 Height        : ${heightCm} cm
-          ⚖️ Weight        : ${weightKg} kg
-          
-          🎯 Daily Calories (${goalLabel})  : ${goalCal} kcal
-          🥩 Daily Protein                  : ${protein} g
-          🍚 Daily Carbs                    : ${carbs} g
-          🥑 Daily Fats                     : ${fats} g
-          🌾 Daily Fibre                    : ${fibre} g
-          💧 Daily Water                    : ${waterLitres} L
-          🏥 Medical Conditions             : ${bmiMedical || 'None'}
-          
-          🙏 Please create a FREE personalized diet + workout plan for me based on these details.`
-          );
+`⚖️ BMI Calculator Result — Classic Fitness
+
+👤 Name          : ${bmiName || 'Not provided'}
+📱 Mobile        : ${bmiMobile || 'Not provided'}
+🏋️ Body Type     : ${selectedBodyType.charAt(0).toUpperCase() + selectedBodyType.slice(1)}
+📊 My BMI        : ${bmiRounded} (${category})
+⚖️ Ideal Weight  : ${idealMin}–${idealMax} kg
+👤 Gender        : ${selectedGender === 'male' ? 'Male' : 'Female'}
+🔢 Age           : ${age} years
+🪪 Member ID     : ${bmiMemberId || 'Non-Member'}
+📏 Height        : ${heightCm} cm
+⚖️ Weight        : ${weightKg} kg
+📐 Waist         : ${bmiWaist > 0 ? bmiWaist + ' cm (WHR: ' + whrValue + ' — ' + whrLabel + ')' : 'Not provided'}
+🧬 Est. Body Fat : ${bodyFat}%
+
+🎯 Daily Calories (${goalLabel})  : ${goalCal} kcal
+🥩 Daily Protein                  : ${protein} g
+🍚 Daily Carbs                    : ${carbs} g
+🥑 Daily Fats                     : ${fats} g
+🌾 Daily Fibre                    : ${fibre} g
+💧 Daily Water                    : ${waterLitres} L
+🏥 Medical Conditions             : ${bmiMedical || 'None'}
+
+🙏 Please create a FREE personalized diet + workout plan for me based on these details.`
+        );
         window.open(`https://wa.me/918668007901?text=${text}`, '_blank');
       };
     });
 
-    // Reset
+    // ---- Reset ----
     resetBtn.addEventListener('click', () => {
       resultCard.classList.remove('visible');
       formCard.style.display = '';
       document.getElementById('bmiAge').value    = '';
       document.getElementById('bmiHeight').value = '';
       document.getElementById('bmiWeight').value = '';
-      // Hide expert panel on reset
       const ep = document.getElementById('expertPanel');
       if (ep) ep.style.display = 'none';
-
       updateCalcBtnState();
     });
   }
 
-// ===== EXPERT ANALYSIS PANEL =====
-function initExpertPanel() {
-  const tabBtns = document.querySelectorAll('.expert-tab');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const target = btn.getAttribute('data-tab');
-      document.querySelectorAll('.expert-tab-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('tab-' + target).classList.add('active');
+  // ===== EXPERT ANALYSIS PANEL TABS =====
+  function initExpertPanel() {
+    const tabBtns = document.querySelectorAll('.expert-tab');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-tab');
+        document.querySelectorAll('.expert-tab-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('tab-' + target).classList.add('active');
+      });
     });
-  });
-}
+  }
 
-// Build supplement HTML from API response
-function buildSupplements(data) {
-  const list = document.getElementById('supplementsList');
-  if (!list || !data.supplements) return;
-  let html = '<div class="supplement-grid">';
-  data.supplements.forEach(s => {
-    const priorityClass = s.priority === 'High' ? 'priority-high' : s.priority === 'Medium' ? 'priority-medium' : 'priority-low';
-    html += `
-      <div class="supplement-card">
-        <div class="supplement-card-icon">${s.icon}</div>
-        <span class="supplement-card-priority ${priorityClass}">${s.priority} Priority</span>
-        <div class="supplement-card-name">${s.name}</div>
-        <div class="supplement-card-benefit">${s.benefit}</div>
-        <span class="supplement-card-dose">📋 ${s.dose}</span>
-      </div>`;
-  });
-  html += '</div>';
-  list.innerHTML = html;
-}
+  // ===== Supplement Filter Rules (client-side safety net) =====
+  function filterSupplementsByRules(userData, supplements) {
+    return supplements.filter(s => {
+      const name = s.name.toLowerCase();
 
-// Build workout HTML from API response
-function buildWorkout(data) {
-  const plan = document.getElementById('workoutPlan');
-  if (!plan || !data.workout) return;
-  let html = '<div class="workout-week">';
-  data.workout.days.forEach((d, dayIndex) => {
-    const isRest = d.type.toLowerCase().includes('rest');
-    const restClass = isRest ? 'rest' : '';
-    html += `
-      <div class="workout-day-block">
-        <div class="workout-day-header">
-          <span class="workout-day-label ${restClass}">${d.day}</span>
-          <div class="workout-day-header-info">
-            <span class="workout-day-type">${d.focus || ''} ${d.type}</span>
-            <span class="workout-day-muscle-note">Tap any exercise to see the tip</span>
-          </div>
-        </div>`;
+      if (userData.goal === 'Gain Weight') {
+        if (userData.bmi < 22) {
+          return !name.includes('whey');
+        } else {
+          return !name.includes('mass gainer');
+        }
+      }
 
-    if (!isRest && d.cardio) {
+      if (userData.goal === 'Lose Weight') {
+        return !name.includes('mass gainer');
+      }
+
+      if (userData.goal === 'Maintain Weight') {
+        return !name.includes('mass gainer') && !name.includes('creatine');
+      }
+
+      return true;
+    }).slice(0, 4);
+  }
+
+  // ===== Build Supplements HTML =====
+  function buildSupplements(data, userData) {
+    const list = document.getElementById('supplementsList');
+    if (!list || !data.supplements) return;
+    let html = '<div class="supplement-grid">';
+    const filtered = filterSupplementsByRules(userData, data.supplements);
+    filtered.forEach(s => {
+      const priorityClass = s.priority === 'High' ? 'priority-high' : s.priority === 'Medium' ? 'priority-medium' : 'priority-low';
       html += `
-        <div class="workout-cardio-row">
-          <span class="workout-cardio-icon">🏃</span>
-          <div class="workout-cardio-details">
-            <span class="workout-cardio-label">CARDIO</span>
-            <span class="workout-cardio-name">${d.cardio.name}</span>
-          </div>
-          <div class="workout-cardio-tags">
-            <span class="workout-cardio-tag">⏱ ${d.cardio.duration}</span>
-            <span class="workout-cardio-tag">🔥 ${d.cardio.intensity}</span>
-          </div>
+        <div class="supplement-card">
+          <div class="supplement-card-icon">${s.icon}</div>
+          <span class="supplement-card-priority ${priorityClass}">${s.priority} Priority</span>
+          <div class="supplement-card-name">${s.name}</div>
+          <div class="supplement-card-benefit">${s.benefit}</div>
+          <span class="supplement-card-dose">📋 ${s.dose}</span>
         </div>`;
-    }
+    });
+    html += '</div>';
+    list.innerHTML = html;
+  }
 
-    if (!isRest && d.exercises && d.exercises.length > 0) {
-      html += `<div class="workout-exercises">`;
-      d.exercises.forEach((ex, i) => {
-        const tipId = `tip-${dayIndex}-${i}`;
-        const showId = `show-${dayIndex}-${i}`;
-        html += `
-          <div class="workout-exercise-row">
-            <div class="workout-ex-num">${i + 1}</div>
-            <div class="workout-ex-details">
-              <div class="workout-ex-name">${ex.name}</div>
-              <div class="workout-ex-meta">
-                <span class="workout-ex-tag">🔁 ${ex.sets} sets</span>
-                <span class="workout-ex-tag">📊 ${ex.reps} reps</span>
-                <span class="workout-ex-tag">⏱ ${ex.rest} rest</span>
-              </div>
-              <div class="workout-ex-tip" style="display:none" onclick="this.style.display='none';document.getElementById('${showId}').style.display='block'" id="${tipId}">💡 ${ex.tip}</div>
-              <div class="workout-ex-show-tip" id="${showId}" onclick="document.getElementById('${tipId}').style.display='block';this.style.display='none'">💡 Show tip</div>
+  // ===== Build Workout HTML =====
+  function buildWorkout(data) {
+    const plan = document.getElementById('workoutPlan');
+    if (!plan || !data.workout) return;
+    let html = '<div class="workout-week">';
+    data.workout.days.forEach((d, dayIndex) => {
+      const isRest = d.type.toLowerCase().includes('rest');
+      const restClass = isRest ? 'rest' : '';
+      html += `
+        <div class="workout-day-block">
+          <div class="workout-day-header">
+            <span class="workout-day-label ${restClass}">${d.day}</span>
+            <div class="workout-day-header-info">
+              <span class="workout-day-type">${d.focus || ''} ${d.type}</span>
+              <span class="workout-day-muscle-note">Tap any exercise to see the tip</span>
             </div>
           </div>`;
-      });
+
+      if (!isRest && d.cardio) {
+        html += `
+          <div class="workout-cardio-row">
+            <span class="workout-cardio-icon">🏃</span>
+            <div class="workout-cardio-details">
+              <span class="workout-cardio-label">CARDIO</span>
+              <span class="workout-cardio-name">${d.cardio.name}</span>
+            </div>
+            <div class="workout-cardio-tags">
+              <span class="workout-cardio-tag">⏱ ${d.cardio.duration}</span>
+              <span class="workout-cardio-tag">🔥 ${d.cardio.intensity}</span>
+            </div>
+          </div>`;
+      }
+
+      if (!isRest && d.exercises && d.exercises.length > 0) {
+        html += `<div class="workout-exercises">`;
+        d.exercises.forEach((ex, i) => {
+          const tipId  = `tip-${dayIndex}-${i}`;
+          const showId = `show-${dayIndex}-${i}`;
+          html += `
+            <div class="workout-exercise-row">
+              <div class="workout-ex-num">${i + 1}</div>
+              <div class="workout-ex-details">
+                <div class="workout-ex-name">${ex.name}</div>
+                <div class="workout-ex-meta">
+                  <span class="workout-ex-tag">🔁 ${ex.sets} sets</span>
+                  <span class="workout-ex-tag">📊 ${ex.reps} reps</span>
+                  <span class="workout-ex-tag">⏱ ${ex.rest} rest</span>
+                </div>
+                <div class="workout-ex-tip" style="display:none" onclick="this.style.display='none';document.getElementById('${showId}').style.display='block'" id="${tipId}">💡 ${ex.tip}</div>
+                <div class="workout-ex-show-tip" id="${showId}" onclick="document.getElementById('${tipId}').style.display='block';this.style.display='none'">💡 Show tip</div>
+              </div>
+            </div>`;
+        });
+        html += `</div>`;
+      } else if (isRest) {
+        html += `<div class="workout-rest-msg">🛌 Rest, recover and rehydrate. Light stretching optional.</div>`;
+      }
       html += `</div>`;
-    } else if (isRest) {
-      html += `<div class="workout-rest-msg">🛌 Rest, recover and rehydrate. Light stretching optional.</div>`;
-    }
-    html += `</div>`;
-  });
-  html += `</div>
-    <div class="workout-tip">💡 ${data.workout.tip}</div>`;
-  plan.innerHTML = html;
-}
+    });
+    html += `</div>
+      <div class="workout-tip">💡 ${data.workout.tip}</div>`;
+    plan.innerHTML = html;
+  }
 
-// Build health risk HTML from API response
-function buildHealthRisk(data) {
-  const risk = document.getElementById('healthRisk');
-  if (!risk || !data.health) return;
-  const colorMap = { green: 'green', yellow: 'yellow', orange: 'orange', red: 'red' };
-  const col = colorMap[data.health.color] || 'green';
-  let html = `
-    <div class="health-risk-banner ${col}">
-      <div class="health-risk-icon">${data.health.icon}</div>
-      <div>
-        <div class="health-risk-title">${data.health.title}</div>
-        <div class="health-risk-desc">${data.health.description}</div>
+  // ===== Build Health Risk HTML =====
+  function buildHealthRisk(data) {
+    const risk = document.getElementById('healthRisk');
+    if (!risk || !data.health) return;
+    const colorMap = { green: 'green', yellow: 'yellow', orange: 'orange', red: 'red' };
+    const col = colorMap[data.health.color] || 'green';
+    let html = `
+      <div class="health-risk-banner ${col}">
+        <div class="health-risk-icon">${data.health.icon}</div>
+        <div>
+          <div class="health-risk-title">${data.health.title}</div>
+          <div class="health-risk-desc">${data.health.description}</div>
+        </div>
       </div>
-    </div>
-    <div class="health-risk-list">`;
-  data.health.risks.forEach(r => {
-    html += `
-      <div class="health-risk-item">
-        <span class="health-risk-item-icon">${r.icon}</span>
-        <span>${r.text}</span>
-      </div>`;
-  });
-  html += `</div>
-    <div class="health-focus-box">
-      <div class="health-focus-title">🎯 Focus Areas for You</div>
-      <div class="health-focus-items">`;
-  data.health.focus.forEach(f => {
-    html += `<span class="health-focus-tag">${f}</span>`;
-  });
-  html += '</div></div>';
-  risk.innerHTML = html;
-}
+      <div class="health-risk-list">`;
+    data.health.risks.forEach(r => {
+      html += `
+        <div class="health-risk-item">
+          <span class="health-risk-item-icon">${r.icon}</span>
+          <span>${r.text}</span>
+        </div>`;
+    });
+    html += `</div>
+      <div class="health-focus-box">
+        <div class="health-focus-title">🎯 Focus Areas for You</div>
+        <div class="health-focus-items">`;
+    data.health.focus.forEach(f => {
+      html += `<span class="health-focus-tag">${f}</span>`;
+    });
+    html += '</div></div>';
+    risk.innerHTML = html;
+  }
 
-// Main function to call API and populate panel
-async function loadExpertAnalysis(userData) {
-  const panel   = document.getElementById('expertPanel');
-  const loading = document.getElementById('expertLoading');
-  const content = document.getElementById('expertContent');
-  const waBtn   = document.getElementById('expertWaBtn');
+  // ===== Main Expert Analysis API Call =====
+  async function loadExpertAnalysis(userData) {
+    const panel   = document.getElementById('expertPanel');
+    const loading = document.getElementById('expertLoading');
+    const content = document.getElementById('expertContent');
+    const waBtn   = document.getElementById('expertWaBtn');
 
-  if (!panel) return;
+    if (!panel) return;
 
-  // Show panel and loading state
-  panel.style.display = 'block';
-  loading.style.display = 'flex';
-  content.style.display = 'none';
+    // ---- Confidence score ----
+    let confidence = 70;
+    if (userData.waist)      confidence += 5;
+    if (userData.medical)    confidence += 5;
+    if (userData.experience) confidence += 5;
+    if (userData.equipment)  confidence += 5;
+    confidence = Math.min(confidence, 95);
 
-  waBtn.disabled = true;
-  waBtn.style.opacity = '0.5';
+    // ---- Show panel and loading ----
+    panel.style.display   = 'block';
+    loading.style.display = 'flex';
+    content.style.display = 'none';
 
-  // Scroll to panel
-  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 300);
+    const loadingText = document.getElementById('expertLoadingText');
+    const steps = [
+      'Checking BMI...',
+      'Analysing body type...',
+      'Designing supplements...',
+      'Creating workout plan...',
+      'Finalizing report...'
+    ];
+    let stepIndex = 0;
+    const loadingInterval = setInterval(() => {
+      if (loadingText) {
+        loadingText.textContent = steps[stepIndex % steps.length];
+        stepIndex++;
+      }
+    }, 1200);
 
-  const expLabel = { beginner: 'Beginner (0–6 months)', intermediate: 'Intermediate (6 months–2 years)', advanced: 'Advanced (2+ years)' };
-  const eqLabel  = { gym: 'Full Gym with machines and free weights', dumbbells: 'Dumbbells only', home: 'Home with no equipment' };
+    waBtn.disabled       = true;
+    waBtn.style.opacity  = '0.5';
 
-  const prompt = `You are a certified fitness and nutrition expert at Classic Fitness Gym, Arakkonam. Based on this person's data, give a highly personalised plan. Always address the person by their name if provided.
+    // ---- Scroll to panel ----
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 300);
+
+    const expLabel = { beginner: 'Beginner (0–6 months)', intermediate: 'Intermediate (6 months–2 years)', advanced: 'Advanced (2+ years)' };
+    const eqLabel  = { gym: 'Full Gym with machines and free weights', dumbbells: 'Dumbbells only', home: 'Home with no equipment' };
+
+    const prompt = `You are a highly experienced, certified sports nutritionist and strength coach at Classic Fitness Gym, Arakkonam. Your recommendations must be evidence-based, practical, and non-redundant. Never recommend two supplements that serve the same purpose (e.g. do NOT give both Whey Protein and Mass Gainer together — choose only ONE based on the person's BMI, body type and goal). Avoid hallucination — only suggest supplements that are genuinely appropriate for this person's specific data. Always address the person by their name if provided.
 
 PERSON DATA:
 - Name: ${userData.name || 'Not provided'}
@@ -713,18 +791,27 @@ PERSON DATA:
 - Height: ${userData.heightCm} cm
 - Weight: ${userData.weightKg} kg
 - BMI: ${userData.bmi} (${userData.category})
+- Estimated Body Fat: ${userData.bodyFat}%
 - Goal: ${userData.goal}
 - Activity Level: ${userData.activityLabel}
 - Experience Level: ${expLabel[userData.experience] || userData.experience}
 - Equipment Available: ${eqLabel[userData.equipment] || userData.equipment}
 - Daily Calories Needed: ${userData.tdee} kcal
 - Goal Calories: ${userData.goalCal} kcal
-- Daily Nutrition: ${userData.carbs ? userData.carbs : ''}g Carbs, ${userData.fats ? userData.fats : ''}g Fats, ${userData.fibre ? userData.fibre : ''}g Fibre
+- Daily Nutrition: ${userData.carbs}g Carbs, ${userData.fats}g Fats, ${userData.fibre}g Fibre, ${userData.protein}g Protein
 - Body Type: ${userData.bodyType ? userData.bodyType.charAt(0).toUpperCase() + userData.bodyType.slice(1) : 'Not specified'}
 - Medical Conditions / Injuries: ${userData.medical || 'None reported'}
 - Waist Circumference: ${userData.waist ? userData.waist + ' cm (Waist-to-Height Ratio: ' + userData.whr + ' — classified as: ' + userData.whrLabel + ')' : 'Not provided'}
 - Body Composition Note: ${userData.waist && userData.whr > 0.52 && userData.bmi < 25 ? 'IMPORTANT: This person has NORMAL BMI but HIGH waist-to-height ratio. This is called Normal Weight Obesity or Skinny Fat — common in Indian body types. The supplements, workout, and health risk MUST address belly fat reduction, visceral fat, and body recomposition — not just weight maintenance.' : 'No special body composition conflict detected.'}
 
+STRICT SUPPLEMENT RULES:
+- If goal is "Gain Weight" AND BMI is below 22: recommend Mass Gainer (NOT Whey Protein — they are redundant together)
+- If goal is "Gain Weight" AND BMI is 22 or above: recommend Whey Protein only (NOT Mass Gainer — they don't need extra calories)
+- If goal is "Gain Muscle": recommend Whey Protein + Creatine (no Mass Gainer unless BMI is under 18.5)
+- If goal is "Lose Weight": NEVER recommend Mass Gainer or high-calorie supplements
+- If goal is "Maintain": recommend only micronutrients and general wellness supplements
+- Maximum 4 supplements total. No duplicates in purpose.
+- Each supplement must have a clear, specific reason tied to THIS person's data — not a generic reason.
 
 Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks. Use this exact structure:
 {
@@ -844,81 +931,78 @@ Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks.
 }
 }`;
 
-  try {
-      // const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       'Authorization': 'Bearer API'
-      //     },
-      //     body: JSON.stringify({
-      //       model: 'gpt-4o-mini',
-      //       max_tokens: 4000,
-      //       messages: [{ role: 'user', content: prompt }]
-      //     })
-      //   });
-
-
-      // For Production
-      const response = await fetch('https://classicfitness-api.sandhiyasenthill3.workers.dev', {
-
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          prompt: prompt
-        })
-      });
-      
-        
-        const raw  = await response.json();
-
-        // Check if API returned a valid response
-        if (!raw || !raw.choices || !raw.choices[0] || !raw.choices[0].message) {
-          const apiErr = (raw && raw.error && raw.error.message) ? raw.error.message : 'Server returned an unexpected response.';
-          throw new Error('API_INVALID: ' + apiErr);
-        }
-
-        const text = raw.choices[0].message.content.trim();
-
-        if (!text) {
-          throw new Error('API_EMPTY');
-        }
-
-    // Strip any accidental backticks
-    const clean = text.replace(/```json|```/g, '').trim();
-
-    let data;
+    // ---- API Call ----
     try {
-      data = JSON.parse(clean);
-    } catch (parseErr) {
-      throw new Error('API_PARSE');
-    }
+      const response = await fetch('https://classicfitness-api.sandhiyasenthill3.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
 
-    // Populate all tabs
-    buildSupplements(data);
-    buildWorkout(data);
-    buildHealthRisk(data);
+      if (!response.ok) {
+        throw new Error('Server error: ' + response.status);
+      }
 
-    // Wire WhatsApp button with full analysis
-    waBtn.onclick = () => {
-      const supp  = data.supplements.map(s => `• ${s.name} — ${s.dose}`).join('\n');
-      const work  = data.workout.days.map(d => {
-        if (!d.exercises || d.exercises.length === 0) return `${d.day}: ${d.type}`;
-        const exList = d.exercises.map(e => `   • ${e.name} — ${e.sets}×${e.reps}`).join('\n');
-        return `${d.day}: ${d.type}\n${exList}`;
-      }).join('\n');
-      const risks = data.health.risks.map(r => `• ${r.text}`).join('\n');
-      const focus = data.health.focus.join(', ');
+      const raw = await response.json();
 
-      const waText = encodeURIComponent(
-`⚖️ BMI Analysis — Classic Fitness
+      // Validate response structure
+      if (!raw || !raw.choices || !raw.choices[0] || !raw.choices[0].message) {
+        const apiErr = (raw && raw.error && raw.error.message) ? raw.error.message : 'Server returned an unexpected response.';
+        throw new Error('API_INVALID: ' + apiErr);
+      }
 
-👤 ${userData.name ? userData.name + ' | ' : ''}${userData.gender === 'male' ? 'Male' : 'Female'}, ${userData.age} yrs | ${userData.heightCm}cm | ${userData.weightKg}kg
-📊 BMI: ${userData.bmi} (${userData.category}) | Goal: ${userData.goal}
-🏥 Medical: ${userData.medical || 'None'}
-🍚 Carbs: ${userData.carbs}g | 🥑 Fats: ${userData.fats}g | 🌾 Fibre: ${userData.fibre}g
+      const text = raw.choices[0].message.content.trim();
+      if (!text) throw new Error('API_EMPTY');
+
+      // Strip accidental backticks
+      const clean = text.replace(/```json|```/g, '').trim();
+
+      let data;
+      try {
+        data = JSON.parse(clean);
+      } catch (parseErr) {
+        throw new Error('API_PARSE');
+      }
+
+      // ---- Populate all tabs ----
+      buildSupplements(data, userData);
+      buildWorkout(data);
+      buildHealthRisk(data);
+
+      // ---- Wire WhatsApp "Send Full Analysis" button ----
+      waBtn.onclick = () => {
+        const supp  = data.supplements.map(s => `• ${s.name} — ${s.dose}`).join('\n');
+        const work  = data.workout.days.map(d => {
+          if (!d.exercises || d.exercises.length === 0) return `${d.day}: ${d.type}`;
+          const cardioLine = d.cardio ? `   🏃 Cardio: ${d.cardio.name} — ${d.cardio.duration} @ ${d.cardio.intensity}\n` : '';
+          const exList = d.exercises.map(e => `   • ${e.name} — ${e.sets}×${e.reps}`).join('\n');
+          return `${d.day}: ${d.type}\n${cardioLine}${exList}`;
+        }).join('\n');
+        const risks = data.health.risks.map(r => `• ${r.text}`).join('\n');
+        const focus = data.health.focus.join(', ');
+
+        const waText = encodeURIComponent(
+`⚖️ Full BMI Analysis — Classic Fitness
+
+👤 Name       : ${userData.name || 'Not provided'}
+📱 Mobile     : ${userData.mobile || 'Not provided'}
+🪪 Member ID  : ${userData.memberId || 'Non-Member'}
+⚥ Gender     : ${userData.gender === 'male' ? 'Male' : 'Female'}
+🔢 Age        : ${userData.age} yrs
+📏 Height     : ${userData.heightCm} cm
+⚖️ Weight     : ${userData.weightKg} kg
+🏋️ Body Type  : ${userData.bodyType ? userData.bodyType.charAt(0).toUpperCase() + userData.bodyType.slice(1) : 'Not specified'}
+📊 BMI        : ${userData.bmi} (${userData.category})
+🧬 Body Fat   : ${userData.bodyFat}%
+🎯 Goal       : ${userData.goal}
+🏃 Activity   : ${userData.activityLabel}
+🏅 Experience : ${userData.experience}
+🏋️ Equipment  : ${userData.equipment}
+🍚 Carbs      : ${userData.carbs}g | 🥑 Fats: ${userData.fats}g | 🌾 Fibre: ${userData.fibre}g
+💧 Water      : ${userData.waterLitres}L | 🥩 Protein: ${userData.protein}g
+🔥 Goal Cal   : ${userData.goalCal} kcal/day
+🏥 Medical    : ${userData.medical || 'None'}
+📐 Waist      : ${userData.waist ? userData.waist + ' cm (WHR: ' + userData.whr + ' — ' + userData.whrLabel + ')' : 'Not provided'}
 
 💊 RECOMMENDED SUPPLEMENTS:
 ${supp}
@@ -932,84 +1016,84 @@ ${risks}
 🎯 Focus: ${focus}
 
 🙏 Please help me with a full personalised plan!`
-      );
-      window.open(`https://wa.me/918668007901?text=${waText}`, '_blank');
-    };
+        );
+        window.open(`https://wa.me/918668007901?text=${waText}`, '_blank');
+      };
 
-    // Show content
-    loading.style.display = 'none';
-    content.style.display = 'block';
+      // ---- Show content ----
+      clearInterval(loadingInterval);
+      loading.style.display = 'none';
+      content.style.display = 'block';
+      waBtn.disabled        = false;
+      waBtn.style.opacity   = '1';
 
-    waBtn.disabled = false;
-    waBtn.style.opacity = '1';
+    } catch (err) {
+      console.error('Expert analysis error:', err);
+      clearInterval(loadingInterval);
 
-  } catch (err) {
-    console.error('Expert analysis error:', err);
+      let userMsg = '';
+      let userTip = '';
+      const errStr = err && err.message ? err.message : '';
 
-    // Pick a clear user-friendly message based on error type
-    let userMsg = '';
-    let userTip = '';
+      if (!navigator.onLine) {
+        userMsg = '📵 No Internet Connection';
+        userTip = 'Please check your Wi-Fi or mobile data and try again.';
+      } else if (errStr.includes('API_INVALID')) {
+        userMsg = '⚠️ Server Error';
+        userTip = 'Our analysis server returned an unexpected response. Please wait a moment and try recalculating.';
+      } else if (errStr.includes('API_EMPTY')) {
+        userMsg = '⚠️ Empty Response';
+        userTip = 'The AI returned no result. This can happen with unusual inputs. Please check your details and try again.';
+      } else if (errStr.includes('API_PARSE')) {
+        userMsg = '⚠️ Response Error';
+        userTip = 'The analysis could not be read correctly. Please try again in a moment.';
+      } else if (errStr.includes('Failed to fetch') || errStr.includes('NetworkError') || errStr.includes('net::')) {
+        userMsg = '🌐 Connection Failed';
+        userTip = 'Could not reach our server. Please check your internet connection and try again.';
+      } else {
+        userMsg = '⚠️ Analysis Failed';
+        userTip = 'Something went wrong while loading your analysis. Please try recalculating.';
+      }
 
-    const errStr = err && err.message ? err.message : '';
+      loading.innerHTML = `
+        <div style="
+          padding: 24px 20px;
+          text-align: center;
+          background: rgba(239,68,68,0.08);
+          border: 1px solid rgba(239,68,68,0.25);
+          border-radius: 14px;
+          margin: 8px;
+        ">
+          <div style="font-size: 32px; margin-bottom: 10px;">😕</div>
+          <div style="
+            font-size: 16px;
+            font-weight: 800;
+            color: #fca5a5;
+            margin-bottom: 8px;
+          ">${userMsg}</div>
+          <div style="
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 18px;
+          ">${userTip}</div>
+          <button onclick="location.reload()" style="
+            background: rgba(239,68,68,0.2);
+            border: 1px solid rgba(239,68,68,0.4);
+            border-radius: 10px;
+            color: #fca5a5;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+          ">🔄 Try Again</button>
+        </div>`;
 
-    if (!navigator.onLine) {
-      userMsg = '📵 No Internet Connection';
-      userTip = 'Please check your Wi-Fi or mobile data and try again.';
-    } else if (errStr.includes('API_INVALID')) {
-      userMsg = '⚠️ Server Error';
-      userTip = 'Our analysis server returned an unexpected response. Please wait a moment and try recalculating.';
-    } else if (errStr.includes('API_EMPTY')) {
-      userMsg = '⚠️ Empty Response';
-      userTip = 'The AI returned no result. This can happen with unusual inputs. Please check your details and try again.';
-    } else if (errStr.includes('API_PARSE')) {
-      userMsg = '⚠️ Response Error';
-      userTip = 'The analysis could not be read correctly. Please try again in a moment.';
-    } else if (errStr.includes('Failed to fetch') || errStr.includes('NetworkError') || errStr.includes('net::')) {
-      userMsg = '🌐 Connection Failed';
-      userTip = 'Could not reach our server. Please check your internet connection and try again.';
-    } else {
-      userMsg = '⚠️ Analysis Failed';
-      userTip = 'Something went wrong while loading your analysis. Please try recalculating.';
+      loading.style.display = 'flex';
+      waBtn.style.opacity   = '0.5';
     }
-
-    loading.innerHTML = `
-      <div style="
-        padding: 24px 20px;
-        text-align: center;
-        background: rgba(239,68,68,0.08);
-        border: 1px solid rgba(239,68,68,0.25);
-        border-radius: 14px;
-        margin: 8px;
-      ">
-        <div style="font-size: 32px; margin-bottom: 10px;">😕</div>
-        <div style="
-          font-size: 16px;
-          font-weight: 800;
-          color: #fca5a5;
-          margin-bottom: 8px;
-        ">${userMsg}</div>
-        <div style="
-          font-size: 14px;
-          color: #94a3b8;
-          line-height: 1.6;
-          margin-bottom: 18px;
-        ">${userTip}</div>
-        <button onclick="location.reload()" style="
-          background: rgba(239,68,68,0.2);
-          border: 1px solid rgba(239,68,68,0.4);
-          border-radius: 10px;
-          color: #fca5a5;
-          font-size: 14px;
-          font-weight: 700;
-          padding: 10px 20px;
-          cursor: pointer;
-          font-family: inherit;
-        ">🔄 Try Again</button>
-      </div>`;
-
-    waBtn.style.opacity = '0.5';
   }
-}
 
   // ===== INIT =====
   function init() {

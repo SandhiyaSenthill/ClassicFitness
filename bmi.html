@@ -134,7 +134,7 @@
           <div class="bmi-form-title">📋 Enter Your Details</div>
 
           <div class="bmi-field-group">
-            <label class="bmi-label">Your Name <span class="bmi-unit-label">(Optional)</span></label>
+            <label class="bmi-label">Your Name <span class="bmi-unit-label" style="color:#ef4444">*Required</span></label>
             <input type="text" class="bmi-input" id="bmiName" placeholder="e.g. Senthill — so we can personalise your plan">
           </div>
 
@@ -180,8 +180,11 @@
               <button type="button" class="bmi-goal-btn" data-goal="lose">🔥 Lose Weight</button>
               <button type="button" class="bmi-goal-btn active" data-goal="maintain">⚖️ Maintain</button>
               <button type="button" class="bmi-goal-btn" data-goal="gain">💪 Gain Muscle</button>
+              <button type="button" class="bmi-goal-btn" data-goal="gainweight">🍽️ Gain Weight</button>
             </div>
           </div>
+
+          
 
           <div class="bmi-field-group">
             <label class="bmi-label">Body Type <span class="bmi-unit-label">(Select the one that looks most like you)</span></label>
@@ -234,6 +237,12 @@
             <div class="bmi-waist-note">📏 Your waist size helps detect belly fat even when BMI looks normal. This is more accurate for Indian body types.</div>
           </div>
 
+          <div class="bmi-field-group">
+            <label class="bmi-label">Mobile Number <span class="bmi-unit-label" style="color:#ef4444">*Required</span></label>
+            <input type="tel" class="bmi-input" id="bmiMobile" placeholder="e.g. 9876543210" maxlength="10">
+          </div>
+
+          
           <div class="bmi-field-group">
             <label class="bmi-label">Gym Member ID <span class="bmi-unit-label">(Optional — existing members only)</span></label>
             <input type="text" class="bmi-input" id="bmiMemberId" placeholder="e.g. CF-2025-001 — Leave blank if not a member">
@@ -353,6 +362,13 @@
               <div class="bmi-cal-num" id="calFibre">--</div>
               <div class="bmi-cal-unit">g/day</div>
             </div>
+
+            <div class="bmi-cal-box">
+              <div class="bmi-cal-icon">🧬</div>
+              <div class="bmi-cal-label">Body Fat</div>
+              <div class="bmi-cal-num" id="calBodyFat">--</div>
+              <div class="bmi-cal-unit">%</div>
+            </div>
           </div>
          
 
@@ -363,7 +379,7 @@
           <div class="bmi-cta-box">
             <div class="bmi-cta-text">🎯 Want a <strong>FREE personalized diet + workout plan</strong> based on these results from our expert trainers?</div>
             <button class="bmi-cta-btn" id="bmiGetPlanBtn">
-              🥗 Get My Free Plan on WhatsApp
+              🥗 Get My Free Diet Plan on WhatsApp
             </button>
           </div>
 
@@ -388,7 +404,7 @@
             <!-- Loading State -->
             <div class="expert-loading" id="expertLoading">
               <div class="expert-loading-spinner"></div>
-              <p>Analysing your results...</p>
+              <p id="expertLoadingText">Checking BMI...</p>
             </div>
 
             <!-- Tab Content -->

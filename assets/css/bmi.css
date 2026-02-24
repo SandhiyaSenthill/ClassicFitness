@@ -1328,8 +1328,9 @@ box-shadow: 0 4px 16px rgba(37,99,235,0.35) !important;
 
 /* ===== GOAL BUTTONS ===== */
 .bmi-goal-group {
-display: flex !important;
-gap: 8px !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
 }
 
 .bmi-goal-btn {
@@ -1378,6 +1379,13 @@ color: #fff !important;
 box-shadow: 0 4px 16px rgba(22,163,74,0.35) !important;
 }
 
+
+.bmi-goal-btn[data-goal="gainweight"].active {
+  background: linear-gradient(135deg, #b45309, #d97706) !important;
+  border-color: #fbbf24 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(217,119,6,0.35) !important;
+  }
 /* ===== BODY TYPE BUTTONS — override for dark ===== */
 .bmi-form-card .bmi-bodytype-btn {
 background: rgba(255,255,255,0.04) !important;
@@ -1879,9 +1887,10 @@ border-radius: 0 10px 10px 0 !important;
 }
 
 .bmi-goal-group {
-  flex-direction: column !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
   gap: 8px !important;
-}
+  }
 
 .bmi-goal-btn {
   font-size: 15px !important;
@@ -1921,4 +1930,14 @@ border-radius: 0 10px 10px 0 !important;
   border-radius: 20px !important;
   padding: 20px 16px !important;
 }
+}
+
+
+.float-actions {
+  z-index: 9999;
+  position: fixed;
+}
+.float-top.show {
+  display: flex;
+  pointer-events: auto;
 }

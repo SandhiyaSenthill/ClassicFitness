@@ -3832,3 +3832,12 @@
     padding: 20px 16px;
   }
 }
+
+.float-actions {
+  z-index: 9999;
+  position: fixed;
+}
+.float-top.show {
+  display: flex;
+  pointer-events: auto;
+}
