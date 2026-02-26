@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Free Food Calorie Calculator — Indian Foods | Classic Fitness Gym | Arakkonam</title>
+  <meta name="description" content="Free Indian Food Calorie Calculator. Search 10,000+ foods via USDA database. Track calories, protein, carbs, fat, fiber & sugar. Meal-wise breakdown. Classic Fitness Gym, Arakkonam." />
+  <meta name="keywords" content="indian food calorie calculator, food calories, idli calories, dosa calories, rice calories, gym arakkonam, classic fitness, diet tracker" />
+  <meta name="author" content="Classic Fitness Gym" />
+
+  <meta property="og:title" content="Free Indian Food Calorie Calculator — Classic Fitness Gym" />
+  <meta property="og:description" content="Track your daily calories with 15000+ Indian foods. Meal-wise breakdown, macros, and save your daily log — free forever." />
+  <meta property="og:image" content="assets/img/logo-1.jpeg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/calorie.css" />
+</head>
+
+<body>
+
+  <!-- ===== STICKY DIET PLAN ANNOUNCEMENT BAR ===== -->
+  <div class="diet-announce-bar" id="dietAnnounceBar">
+    <div class="diet-bar-inner">
+      <span class="diet-bar-pulse"></span>
+      <span class="diet-bar-text">
+        🥗 <strong>FREE Personalized Diet Plan</strong> — Open to Everyone, Gym Members & Non-Members!
+        <span class="diet-bar-sub">Limited Time Offer</span>
+      </span>
+      <button class="diet-bar-btn" id="dietBarBtn">Grab It Free →</button>
+      <button class="diet-bar-close" id="dietBarClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="top">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">
+        <div class="brand-logo">
+          <img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">CLASSIC FITNESS</div>
+          <div class="brand-sub">UNISEX [AC] GYM • ARAKKONAM</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">Who We are</a>
+
+        <!-- Services Dropdown -->
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-link dropdown-toggle">
+            Facilities <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="index.html#services">Weight Training</a>
+            <a href="index.html#services">Cardio Zone</a>
+            <a href="index.html#services">Personal Training</a>
+            <a href="index.html#services">Fat Loss Programs</a>
+            <a href="index.html#services">Muscle Gain Programs</a>
+            <a href="index.html#services">Group Training</a>
+            <a href="index.html#services">Aerobics</a>
+            <a href="index.html#services">Body Transformation</a>
+          </div>
+        </div>
+
+        <a href="index.html#pricing" class="nav-link">Membership</a>
+        <a href="index.html#trainers" class="nav-link">Our Instructer</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="index.html#location" class="nav-link">Location</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="bmi.html" class="nav-link nav-link-bmi">⚖️ BMI Check</a>
+        <a href="calorie.html" class="nav-link nav-link-calorie active-page">🍱 Calorie Calc</a>
+        <a href="index.html#diet-plan" class="nav-link nav-link-diet">🥗 Free Diet Plan</a>
+
+        <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
+      </nav>
+
+      <div class="nav-right">
+        <a href="index.html" class="nav-quick nav-quick-home" aria-label="Back to Home">
+          <span class="nav-quick-icon">🏠</span>
+          <span class="nav-quick-text">Home</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO BANNER ===== -->
+  <section class="cal-hero">
+    <div class="cal-hero-bg"></div>
+    <div class="container cal-hero-content">
+      <div class="cal-hero-badge">🍱 100% Free Tool</div>
+      <h1>Indian Food Calorie Calculator</h1>
+      <p>Search 15000+ Indian foods. Track calories, protein, carbs & fat meal by meal — breakfast, lunch, dinner & snacks. Your daily log saves automatically.</p>
+      <div class="cal-hero-stats">
+        <div class="cal-hero-stat">
+          <span class="cal-hero-stat-num">15000+</span>
+          <span class="cal-hero-stat-lbl">Indian Foods</span>
+        </div>
+        <div class="cal-hero-stat-divider"></div>
+        <div class="cal-hero-stat">
+          <span class="cal-hero-stat-num">4</span>
+          <span class="cal-hero-stat-lbl">Meal Types</span>
+        </div>
+        <div class="cal-hero-stat-divider"></div>
+        <div class="cal-hero-stat">
+          <span class="cal-hero-stat-num">Free</span>
+          <span class="cal-hero-stat-lbl">Always & Forever</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CALCULATOR SECTION ===== -->
+  <section class="section cal-section" id="calorie-calculator">
+    <div class="container">
+
+      <!-- Daily Summary Bar (sticky top) -->
+      <div class="cal-daily-bar" id="calDailyBar">
+        <div class="cal-daily-bar-inner">
+          <div class="cal-daily-macro">
+            <span class="cal-daily-num" id="totalCalDisplay">0</span>
+            <span class="cal-daily-lbl">kcal</span>
+          </div>
+          <div class="cal-daily-divider"></div>
+          <div class="cal-daily-macro">
+            <span class="cal-daily-num" id="totalProtDisplay">0g</span>
+            <span class="cal-daily-lbl">Protein</span>
+          </div>
+          <div class="cal-daily-divider"></div>
+          <div class="cal-daily-macro">
+            <span class="cal-daily-num" id="totalCarbDisplay">0g</span>
+            <span class="cal-daily-lbl">Carbs</span>
+          </div>
+          <div class="cal-daily-divider"></div>
+          <div class="cal-daily-macro">
+            <span class="cal-daily-num" id="totalFatDisplay">0g</span>
+            <span class="cal-daily-lbl">Fat</span>
+          </div>
+          <button class="cal-reset-btn" id="resetDayBtn" title="Reset Today's Log">🗑 Reset Day</button>
+        </div>
+      </div>
+
+      <!-- Two Column Layout -->
+      <div class="cal-layout">
+
+        <!-- LEFT: Search + Add Food -->
+        <div class="cal-left">
+
+          <!-- Search Card -->
+          <div class="cal-card cal-search-card">
+            <div class="cal-card-title">🔍 Search Indian Foods</div>
+
+            <div class="cal-search-row">
+              <div class="cal-search-box-wrap">
+                <span class="cal-search-icon">🔍</span>
+                <input
+                  type="text"
+                  id="foodSearch"
+                  class="cal-search-input"
+                  placeholder="Search food — idli, rice, chicken curry..."
+                  autocomplete="off"
+                />
+                <button class="cal-search-clear" id="searchClear" style="display:none">✕</button>
+              </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="cal-category-pills" id="categoryPills">
+              <button class="cal-pill active" data-cat="all">All</button>
+              <button class="cal-pill" data-cat="breakfast">🌅 Breakfast</button>
+              <button class="cal-pill" data-cat="rice">🍚 Rice</button>
+              <button class="cal-pill" data-cat="roti">🫓 Roti/Bread</button>
+              <button class="cal-pill" data-cat="dal">🥣 Dal/Curry</button>
+              <button class="cal-pill" data-cat="snacks">🥪 Snacks</button>
+              <button class="cal-pill" data-cat="chicken">🍗 Chicken</button>
+              <button class="cal-pill" data-cat="egg">🥚 Eggs</button>
+              <button class="cal-pill" data-cat="fruits">🍌 Fruits</button>
+              <button class="cal-pill" data-cat="dairy">🥛 Dairy</button>
+              <button class="cal-pill" data-cat="sweets">🍮 Sweets</button>
+              <button class="cal-pill" data-cat="drinks">☕ Drinks</button>
+            </div>
+
+            <!-- Search Results -->
+            <div class="cal-results" id="foodResults">
+              <div class="cal-results-placeholder">
+                <div class="cal-results-placeholder-icon">🥘</div>
+                <div>Type a food name or pick a category above</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add to Meal Card (shown after selecting food) -->
+          <div class="cal-card cal-add-card" id="calAddCard" style="display:none">
+            <div class="cal-card-title">➕ Add to Your Meal</div>
+
+            <div class="cal-selected-food" id="selectedFoodDisplay">
+              <!-- Filled by JS -->
+            </div>
+
+            <div class="cal-add-row">
+              <div class="cal-add-field">
+                <label class="cal-label">Quantity</label>
+                <div class="cal-qty-row">
+                  <button class="cal-qty-btn" id="qtyMinus">−</button>
+                  <input type="number" class="cal-qty-input" id="foodQty" value="1" min="0.5" max="20" step="0.5">
+                  <button class="cal-qty-btn" id="qtyPlus">+</button>
+                </div>
+              </div>
+              <div class="cal-add-field">
+                <label class="cal-label">Meal Type</label>
+                <div class="cal-meal-select-wrap">
+                  <select class="cal-meal-select" id="mealTypeSelect">
+                    <option value="breakfast">🌅 Breakfast</option>
+                    <option value="lunch" selected>☀️ Lunch</option>
+                    <option value="dinner">🌙 Dinner</option>
+                    <option value="snacks">🥪 Snacks</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="cal-preview" id="addPreview">
+              <!-- Preview macros filled by JS -->
+            </div>
+
+            <button class="cal-add-btn" id="addFoodBtn">➕ Add to Meal Log</button>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Meal Log -->
+        <div class="cal-right">
+
+          <!-- Meal Sections -->
+          <div class="cal-meals" id="calMeals">
+
+            <!-- Breakfast -->
+            <div class="cal-meal-section" id="mealBreakfast">
+              <div class="cal-meal-header">
+                <div class="cal-meal-icon">🌅</div>
+                <div class="cal-meal-info">
+                  <div class="cal-meal-name">Breakfast</div>
+                  <div class="cal-meal-total" id="breakfastTotal">0 kcal</div>
+                </div>
+                <button class="cal-meal-toggle" data-meal="breakfast">▾</button>
+              </div>
+              <div class="cal-meal-items" id="breakfastItems">
+                <div class="cal-meal-empty">No foods added yet</div>
+              </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="cal-meal-section" id="mealLunch">
+              <div class="cal-meal-header">
+                <div class="cal-meal-icon">☀️</div>
+                <div class="cal-meal-info">
+                  <div class="cal-meal-name">Lunch</div>
+                  <div class="cal-meal-total" id="lunchTotal">0 kcal</div>
+                </div>
+                <button class="cal-meal-toggle" data-meal="lunch">▾</button>
+              </div>
+              <div class="cal-meal-items" id="lunchItems">
+                <div class="cal-meal-empty">No foods added yet</div>
+              </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="cal-meal-section" id="mealDinner">
+              <div class="cal-meal-header">
+                <div class="cal-meal-icon">🌙</div>
+                <div class="cal-meal-info">
+                  <div class="cal-meal-name">Dinner</div>
+                  <div class="cal-meal-total" id="dinnerTotal">0 kcal</div>
+                </div>
+                <button class="cal-meal-toggle" data-meal="dinner">▾</button>
+              </div>
+              <div class="cal-meal-items" id="dinnerItems">
+                <div class="cal-meal-empty">No foods added yet</div>
+              </div>
+            </div>
+
+            <!-- Snacks -->
+            <div class="cal-meal-section" id="mealSnacks">
+              <div class="cal-meal-header">
+                <div class="cal-meal-icon">🥪</div>
+                <div class="cal-meal-info">
+                  <div class="cal-meal-name">Snacks</div>
+                  <div class="cal-meal-total" id="snacksTotal">0 kcal</div>
+                </div>
+                <button class="cal-meal-toggle" data-meal="snacks">▾</button>
+              </div>
+              <div class="cal-meal-items" id="snacksItems">
+                <div class="cal-meal-empty">No foods added yet</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Daily Summary Card -->
+          <div class="cal-card cal-summary-card" id="calSummaryCard">
+            <div class="cal-card-title">📊 Today's Summary</div>
+
+            <div class="cal-summary-total">
+              <span id="summaryCalories">0</span>
+              <span class="cal-summary-unit">kcal total</span>
+            </div>
+
+            <div class="cal-macro-bars">
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot protein"></span>
+                  <span>Protein</span>
+                  <span class="cal-macro-val" id="summaryProtein">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill protein" id="proteinBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot carbs"></span>
+                  <span>Carbs</span>
+                  <span class="cal-macro-val" id="summaryCarbs">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill carbs" id="carbsBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot fat"></span>
+                  <span>Fat</span>
+                  <span class="cal-macro-val" id="summaryFat">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill fat" id="fatBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot fiber"></span>
+                  <span>Fiber</span>
+                  <span class="cal-macro-val" id="summaryFiber">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill fiber" id="fiberBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot sugar"></span>
+                  <span>Sugar</span>
+                  <span class="cal-macro-val" id="summarySugar">0g</span>
+                </div>
+                <div class="cal-macro-bar-track" style="background:#fef9c3">
+                  <div class="cal-macro-bar-fill sugar" id="sugarBar" style="width:0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cal-save-row">
+              <button class="cal-save-btn" id="saveDayBtn">💾 Save Today's Log</button>
+              <button class="cal-reset-btn-full" id="resetDayBtn2">🗑 Reset</button>
+            </div>
+
+            <div class="cal-saved-notice" id="savedNotice" style="display:none">
+              ✅ Log saved! Reloading page will restore your entries.
+            </div>
+          </div>
+
+          <!-- Tip Card -->
+          <div class="cal-card cal-tip-card">
+            <div class="cal-tip-icon">💡</div>
+            <h3>Need a Personalised Diet Plan?</h3>
+            <p>Our certified trainers at Classic Fitness can design a custom meal plan based on your calorie goals — free for everyone, members and non-members alike.</p>
+            <a href="index.html#diet-plan" class="cal-tip-btn">Get Free Diet Plan →</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo">
+            </div>
+            <div>
+              <div class="footer-title">CLASSIC FITNESS</div>
+              <div class="footer-sub">Unisex [AC] Gym • Arakkonam</div>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Transform your body and mind at Arakkonam's premier fitness destination.
+            Professional training, modern equipment, and a supportive community.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#services">Facilities</a></li>
+            <li><a href="index.html#pricing">Membership</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="bmi.html">BMI Calculator</a></li>
+            <li><a href="calorie.html">Calorie Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#services">Weight Training</a></li>
+            <li><a href="index.html#services">Cardio</a></li>
+            <li><a href="index.html#services">Personal Training</a></li>
+            <li><a href="index.html#services">Fat Loss</a></li>
+            <li><a href="index.html#services">Muscle Gain</a></li>
+            <li><a href="index.html#services">Group Training</a></li>
+            <li><a href="index.html#services">Aerobics</a></li>
+            <li><a href="index.html#services">Body Transformation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact">
+            <li>📍 Griblispet, Arakkonam - 631002</li>
+            <li>📞 <a href="tel:8668007901">8668007901</a></li>
+            <li>📞 <a href="tel:9789444997">9789444997</a></li>
+            <li>🕒 Mon-Sat: 5AM-11PM</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Classic Fitness Gym. All Rights Reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Buttons -->
+  <div class="float-actions">
+    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">
+      💬
+    </a>
+    <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">
+      📞
+    </a>
+    <button class="float-btn float-top" id="backToTop" aria-label="Back to top">
+      ↑
+    </button>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">
+    <div class="toast-icon">✅</div>
+    <div class="toast-text" id="toastText">
+      Food added successfully!
+    </div>
+  </div>
+
+  <!-- Join Modal (same as other pages) -->
+  <div class="join-modal" id="joinModal">
+    <div class="join-modal-overlay" id="joinModalOverlay"></div>
+    <div class="join-modal-content">
+      <button class="join-modal-close" id="joinModalClose">&times;</button>
+      <h2>Join Classic Fitness</h2>
+      <p class="join-modal-sub">Fill the details below and we will contact you shortly.</p>
+      <form id="joinForm" class="join-form">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="joinName" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input type="tel" id="joinMobile" required>
+        </div>
+        <div class="form-group">
+          <label>Fitness Goal *</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="joinGoalSelect">
+              <div class="custom-select-trigger">Select Goal <span class="custom-arrow">▾</span></div>
+              <div class="custom-options">
+                <div class="custom-option" data-value="">Select Goal</div>
+                <div class="custom-option" data-value="Weight Loss">Weight Loss</div>
+                <div class="custom-option" data-value="Muscle Gain">Muscle Gain</div>
+                <div class="custom-option" data-value="General Fitness">General Fitness</div>
+                <div class="custom-option" data-value="Body Transformation">Body Transformation</div>
+              </div>
+            </div>
+            <input type="hidden" id="joinGoal" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="joinTimeSelect">
+              <div class="custom-select-trigger">Morning <span class="custom-arrow">▾</span></div>
+              <div class="custom-options">
+                <div class="custom-option" data-value="Morning">Morning</div>
+                <div class="custom-option" data-value="Evening">Evening</div>
+                <div class="custom-option" data-value="Flexible">Flexible</div>
+              </div>
+            </div>
+            <input type="hidden" id="joinTime" value="Morning">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea id="joinMessage" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          Submit & Contact on WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/calorie.js"></script>
+</body>
+</html>

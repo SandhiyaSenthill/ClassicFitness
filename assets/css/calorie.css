@@ -1,0 +1,1090 @@
+/* ==========================================
+   CLASSIC FITNESS GYM — CALORIE CALCULATOR CSS
+   File: assets/css/calorie.css
+   ========================================== */
+
+/* ===== HERO SECTION ===== */
+.cal-hero {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    padding: 100px 0 60px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .cal-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(249,115,22,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(234,179,8,0.10) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .cal-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cal-hero-badge {
+    display: inline-block;
+    background: rgba(249,115,22,0.15);
+    color: #fb923c;
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  
+  .cal-hero-content h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+  
+  .cal-hero-content p {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 28px;
+    line-height: 1.65;
+  }
+  
+  .cal-hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .cal-hero-stat {
+    text-align: center;
+    padding: 0 28px;
+  }
+  
+  .cal-hero-stat-num {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #f97316;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  
+  .cal-hero-stat-lbl {
+    font-size: 0.78rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  
+  .cal-hero-stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+  
+  /* ===== MAIN SECTION ===== */
+  .cal-section {
+    background: #f8fafc;
+    padding: 40px 0 60px;
+  }
+  
+  /* ===== DAILY SUMMARY BAR (sticky) ===== */
+  .cal-daily-bar {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    margin-bottom: 28px;
+    border: 1px solid #e2e8f0;
+    position: sticky;
+    top: 72px;
+    z-index: 100;
+  }
+  
+  .cal-daily-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .cal-daily-macro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 18px;
+    min-width: 70px;
+  }
+  
+  .cal-daily-num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  
+  .cal-daily-lbl {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .cal-daily-divider {
+    width: 1px;
+    height: 30px;
+    background: #e2e8f0;
+    flex-shrink: 0;
+  }
+  
+  .cal-reset-btn {
+    margin-left: auto;
+    background: #fef2f2;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  
+  .cal-reset-btn:hover {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+  }
+  
+  /* ===== LAYOUT ===== */
+  .cal-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  
+  @media (max-width: 900px) {
+    .cal-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* ===== CARD BASE ===== */
+  .cal-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    padding: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .cal-card-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+  
+  /* ===== SEARCH CARD ===== */
+  .cal-search-box-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  
+  .cal-search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .cal-search-input {
+    width: 100%;
+    padding: 12px 40px 12px 38px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  
+  .cal-search-input:focus {
+    border-color: #f97316;
+    background: #fff;
+  }
+  
+  .cal-search-input::placeholder {
+    color: #94a3b8;
+  }
+  
+  .cal-search-clear {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+  
+  .cal-search-clear:hover { color: #ef4444; }
+  
+  /* ===== CATEGORY PILLS ===== */
+  .cal-category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+  
+  .cal-pill {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  
+  .cal-pill:hover {
+    border-color: #f97316;
+    color: #f97316;
+  }
+  
+  .cal-pill.active {
+    background: #f97316;
+    color: #fff;
+    border-color: #f97316;
+  }
+  
+  /* ===== SEARCH RESULTS ===== */
+  .cal-results {
+    max-height: 340px;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+  }
+  
+  .cal-results::-webkit-scrollbar { width: 5px; }
+  .cal-results::-webkit-scrollbar-track { background: #f1f5f9; }
+  .cal-results::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+  
+  .cal-results-placeholder {
+    text-align: center;
+    padding: 32px 16px;
+    color: #94a3b8;
+    font-size: 0.88rem;
+  }
+  
+  .cal-results-placeholder-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Food Result Item */
+  .cal-result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  
+  .cal-result-item:last-child { border-bottom: none; }
+  
+  .cal-result-item:hover {
+    background: #fff7ed;
+  }
+  
+  .cal-result-item.selected {
+    background: #fff7ed;
+    border-left: 3px solid #f97316;
+  }
+  
+  .cal-result-left {
+    flex: 1;
+  }
+  
+  .cal-result-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  
+  .cal-result-meta {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+  
+  .cal-result-cal {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #f97316;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+  
+  .cal-result-unit {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  
+  /* No results */
+  .cal-no-results {
+    text-align: center;
+    padding: 24px;
+    color: #94a3b8;
+    font-size: 0.88rem;
+  }
+  
+  /* ===== ADD FOOD CARD ===== */
+  .cal-selected-food {
+    background: #fff7ed;
+    border: 1.5px solid #fed7aa;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+  
+  .cal-selected-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+  
+  .cal-selected-macros {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: #64748b;
+  }
+  
+  .cal-selected-macros span strong {
+    color: #0f172a;
+  }
+  
+  .cal-add-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  
+  .cal-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 7px;
+    display: block;
+  }
+  
+  .cal-qty-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .cal-qty-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .cal-qty-btn:hover {
+    border-color: #f97316;
+    color: #f97316;
+  }
+  
+  .cal-qty-input {
+    width: 70px;
+    text-align: center;
+    padding: 8px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    outline: none;
+    font-family: inherit;
+  }
+  
+  .cal-qty-input:focus { border-color: #f97316; }
+  
+  .cal-meal-select-wrap {
+    position: relative;
+  }
+  
+  .cal-meal-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  
+  .cal-meal-select:focus { border-color: #f97316; }
+  
+  .cal-preview {
+    background: #f0fdf4;
+    border: 1.5px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: #166534;
+  }
+  
+  .cal-preview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cal-preview-val {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #16a34a;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  
+  .cal-preview-lbl {
+    font-size: 0.7rem;
+    color: #4ade80;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  
+  .cal-add-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+  }
+  
+  .cal-add-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(249,115,22,0.35);
+  }
+  
+  .cal-add-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* ===== MEAL SECTIONS ===== */
+  .cal-meal-section {
+    background: #fff;
+    border-radius: 14px;
+    border: 1.5px solid #e2e8f0;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  
+  .cal-meal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .cal-meal-header:hover {
+    background: #f8fafc;
+  }
+  
+  .cal-meal-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  
+  .cal-meal-info {
+    flex: 1;
+  }
+  
+  .cal-meal-name {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  
+  .cal-meal-total {
+    font-size: 0.78rem;
+    color: #f97316;
+    font-weight: 700;
+  }
+  
+  .cal-meal-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    padding: 4px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cal-meal-section.collapsed .cal-meal-toggle {
+    transform: rotate(-90deg);
+  }
+  
+  .cal-meal-items {
+    border-top: 1px solid #f1f5f9;
+    padding: 8px 0;
+    transition: all 0.25s;
+  }
+  
+  .cal-meal-section.collapsed .cal-meal-items {
+    display: none;
+  }
+  
+  .cal-meal-empty {
+    text-align: center;
+    padding: 16px;
+    color: #94a3b8;
+    font-size: 0.82rem;
+    font-style: italic;
+  }
+  
+  /* Food Log Item inside meal */
+  .cal-log-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f8fafc;
+    gap: 10px;
+    animation: fadeInItem 0.25s ease;
+  }
+  
+  @keyframes fadeInItem {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .cal-log-item:last-child { border-bottom: none; }
+  
+  .cal-log-info {
+    flex: 1;
+  }
+  
+  .cal-log-name {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  
+  .cal-log-sub {
+    font-size: 0.73rem;
+    color: #94a3b8;
+  }
+  
+  .cal-log-cal {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #f97316;
+    white-space: nowrap;
+  }
+  
+  .cal-log-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    line-height: 1;
+  }
+  
+  .cal-log-delete:hover { color: #ef4444; }
+  
+  /* ===== SUMMARY CARD ===== */
+  .cal-summary-card {
+    margin-top: 0;
+  }
+  
+  .cal-summary-total {
+    text-align: center;
+    padding: 14px 0 18px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 18px;
+  }
+  
+  .cal-summary-total span:first-child {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1;
+  }
+  
+  .cal-summary-unit {
+    display: block;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  
+  /* Macro Bars */
+  .cal-macro-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .cal-macro-row {}
+  
+  .cal-macro-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 0.82rem;
+    color: #475569;
+  }
+  
+  .cal-macro-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .cal-macro-dot.protein { background: #3b82f6; }
+  .cal-macro-dot.carbs   { background: #f59e0b; }
+  .cal-macro-dot.fat     { background: #ef4444; }
+  .cal-macro-dot.fiber   { background: #22c55e; }
+  
+  .cal-macro-val {
+    margin-left: auto;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  
+  .cal-macro-bar-track {
+    height: 7px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .cal-macro-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 0%;
+    max-width: 100%;
+  }
+  
+  .cal-macro-bar-fill.protein { background: #3b82f6; }
+  .cal-macro-bar-fill.carbs   { background: #f59e0b; }
+  .cal-macro-bar-fill.fat     { background: #ef4444; }
+  .cal-macro-bar-fill.fiber   { background: #22c55e; }
+  
+  /* Save Row */
+  .cal-save-row {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cal-save-btn {
+    flex: 1;
+    background: #0f172a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  
+  .cal-save-btn:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+  }
+  
+  .cal-reset-btn-full {
+    background: #fef2f2;
+    color: #ef4444;
+    border: 1.5px solid #fecaca;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  
+  .cal-reset-btn-full:hover {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+  }
+  
+  .cal-saved-notice {
+    margin-top: 12px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #16a34a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  /* ===== TIP CARD ===== */
+  .cal-tip-card {
+    text-align: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border: none;
+  }
+  
+  .cal-tip-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .cal-tip-card h3 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  
+  .cal-tip-card p {
+    color: #94a3b8;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+  .cal-tip-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .cal-tip-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249,115,22,0.35);
+    color: #fff;
+  }
+  
+  /* ===== SUGAR MACRO DOT ===== */
+  .cal-macro-dot.sugar { background: #eab308; }
+  .cal-macro-bar-fill.sugar { background: linear-gradient(90deg, #eab308, #ca8a04); }
+  
+  /* ===== LOADING SPINNER ===== */
+  .cal-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 16px;
+    gap: 14px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+  }
+  
+  .cal-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #f1f5f9;
+    border-top-color: #f97316;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* ===== USDA BADGE ===== */
+  .cal-usda-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 5px;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+  }
+  
+  /* ===== RESULTS PLACEHOLDER SUB TEXT ===== */
+  .cal-results-placeholder-sub {
+    font-size: 0.74rem;
+    color: #cbd5e1;
+    margin-top: 6px;
+  }
+  
+  /* ===== SELECTED FOOD MACROS GRID ===== */
+  .cal-selected-unit {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-bottom: 12px;
+  }
+  
+  .cal-selected-macros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .cal-sel-macro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 4px;
+    border: 1.5px solid #e2e8f0;
+  }
+  
+  .cal-sel-val {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  
+  .cal-sel-lbl {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .cal-sel-sugar .cal-sel-val { color: #ca8a04; }
+  .cal-sel-sugar { border-color: #fef08a; background: #fefce8; }
+  
+  /* ===== LOG ITEM SUGAR + QTY BADGE ===== */
+  .cal-log-qty {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  
+  .cal-log-sugar {
+    color: #ca8a04;
+    font-weight: 600;
+  }
+  
+  /* ===== PREVIEW SUGAR ITEM ===== */
+  .cal-preview-sugar .cal-preview-val { color: #ca8a04; }
+  
+  /* ===== NAV CALORIE LINK ===== */
+  .nav-link-calorie {
+    background: linear-gradient(135deg, #16a34a, #15803d) !important;
+    color: #fff !important;
+    border-radius: 6px;
+    padding: 5px 12px !important;
+    font-weight: 700 !important;
+    transition: all 0.2s;
+  }
+  
+  .nav-link-calorie:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: #eef0f4;
+    color: #fff;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.35s ease;
+    z-index: 9999;
+    pointer-events: none;
+    white-space: nowrap;
+    border-left: 4px solid #22c55e;
+  }
+  
+  .toast.show {
+    display: flex;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  /* ===== MOBILE ADJUSTMENTS ===== */
+  @media (max-width: 600px) {
+    .cal-hero {
+      padding: 80px 0 40px;
+    }
+  
+    .cal-hero-stats {
+      gap: 6px;
+    }
+  
+    .cal-hero-stat {
+      padding: 0 16px;
+    }
+  
+    .cal-daily-bar {
+      top: 60px;
+    }
+  
+    .cal-daily-bar-inner {
+      padding: 10px 14px;
+      gap: 4px;
+    }
+  
+    .cal-daily-macro {
+      padding: 0 10px;
+      min-width: 55px;
+    }
+  
+    .cal-daily-num {
+      font-size: 1.1rem;
+    }
+  
+    .cal-daily-lbl {
+      font-size: 0.65rem;
+    }
+  
+    .cal-reset-btn {
+      font-size: 0.72rem;
+      padding: 6px 10px;
+    }
+  
+    .cal-add-row {
+      grid-template-columns: 1fr;
+    }
+  
+    .cal-summary-total span:first-child {
+      font-size: 2.2rem;
+    }
+  
+    .cal-card {
+      padding: 16px;
+    }
+  
+    .cal-preview {
+      gap: 10px;
+    }
+  }
+
+  /* ===== FIX: Force light background and correct text colors on meal log items ===== */
+.cal-meal-section,
+.cal-meal-items,
+.cal-log-item {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.cal-log-name {
+  color: #0f172a !important;
+}
+
+.cal-log-sub {
+  color: #64748b !important;
+}
+
+.cal-log-cal {
+  color: #f97316 !important;
+}
+
+.cal-log-delete {
+  color: #cbd5e1 !important;
+  background: transparent !important;
+}
