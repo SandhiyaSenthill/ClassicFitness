@@ -365,13 +365,11 @@
             </div>
 
             <div class="bmi-cal-box">
-              <div class="bmi-cal-icon">🧬</div>
+              <div class="bmi-cal-icon" aria-hidden="true">🧬</div>
               <div class="bmi-cal-label">Body Fat</div>
               <div class="bmi-cal-num" id="calBodyFat">--</div>
               <div class="bmi-cal-unit">%</div>
-
-              <div class="cal-value" id="calBodyFat"></div>
-              <div id="calBodyFatLabel" style="font-size:12px; font-weight:700; margin-top:2px; letter-spacing:0.5px;"></div>
+              <div id="calBodyFatLabel" style="font-size:12px; font-weight:700; margin-top:4px; letter-spacing:0.5px;"></div>
             </div>
           </div>
          
@@ -446,6 +444,11 @@
             <!-- WhatsApp Full Plan -->
             <button class="expert-wa-btn" id="expertWaBtn">
               📲 Send Full Analysis to WhatsApp
+            </button>
+
+            <!-- FIX 12: Print / Save as PDF button -->
+            <button class="expert-print-btn" id="expertPrintBtn" style="display:none;" aria-label="Print or Save as PDF">
+              🖨️ Print / Save as PDF
             </button>
 
           </div>

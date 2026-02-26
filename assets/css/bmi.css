@@ -1941,3 +1941,114 @@ border-radius: 0 10px 10px 0 !important;
   display: flex;
   pointer-events: auto;
 }
+
+/* ===== FIX 2: Inline field validation error messages ===== */
+.bmi-field-error {
+  display: none;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fca5a5;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-left: 3px solid #ef4444;
+  border-radius: 0 8px 8px 0;
+  padding: 6px 10px;
+  line-height: 1.5;
+  animation: fieldErrIn 0.2s ease;
+}
+
+@keyframes fieldErrIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== FIX 12: Print / Save as PDF button ===== */
+.expert-print-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: calc(100% - 44px);
+  margin: 0 22px 20px;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.expert-print-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #e2e8f0;
+  border-color: rgba(255,255,255,0.2);
+}
+
+@media (max-width: 600px) {
+  .expert-print-btn {
+    width: calc(100% - 32px);
+    margin: 0 16px 14px;
+  }
+}
+
+/* ===== FIX 12: Print stylesheet — clean A4 output ===== */
+@media print {
+  body * { visibility: hidden; }
+
+  #bmiResultCard, #bmiResultCard * { visibility: visible; }
+  #bmiResultCard {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 20px !important;
+  }
+
+  .expert-tab-panel { display: block !important; }
+  .expert-wa-btn,
+  .expert-print-btn,
+  .bmi-reset-btn,
+  .bmi-cta-box,
+  .expert-tabs,
+  .float-actions,
+  .navbar,
+  .bmi-page-hero,
+  .bmi-info-section,
+  footer { display: none !important; }
+
+  .expert-panel {
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+
+  .supplement-grid { grid-template-columns: 1fr 1fr !important; }
+  .supplement-card { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+  .supplement-card-name, .supplement-card-benefit { color: #000 !important; }
+
+  .workout-exercise-row { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+  .workout-ex-name, .workout-ex-tag { color: #000 !important; }
+
+  .health-risk-banner.green, .health-risk-banner.yellow,
+  .health-risk-banner.orange, .health-risk-banner.red {
+    background: #f8fafc !important;
+    border: 1px solid #ccc !important;
+  }
+  .health-risk-title, .health-risk-desc, .health-risk-item { color: #000 !important; }
+  .health-focus-box { background: #f1f5f9 !important; }
+  .health-focus-tag { color: #000 !important; background: #e2e8f0 !important; }
+
+  .bmi-cal-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+  .bmi-cal-num, .bmi-cal-label, .bmi-cal-unit { color: #000 !important; }
+  .bmi-cat-badge { color: #000 !important; }
+  .bmi-ideal-text, .bmi-diff-text { color: #000 !important; }
+  .bmi-goal-msg { background: #f8fafc !important; color: #000 !important; border: 1px solid #e2e8f0 !important; }
+  .bmi-name-greeting { background: #eff6ff !important; color: #1e3a5f !important; }
+}
