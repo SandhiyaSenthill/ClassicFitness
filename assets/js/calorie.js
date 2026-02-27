@@ -463,7 +463,7 @@ async function fetchAINutrition(query) {
         <div class="cal-results-placeholder">
           <div class="cal-results-placeholder-icon">🥘</div>
           <div>Type a food name or pick a category above</div>
-          <div class="cal-results-placeholder-sub">Powered by USDA — 10,000+ foods including Indian dishes</div>
+          <div class="cal-results-placeholder-sub">15,000+ Indian foods including Tamil dishes — powered by AI</div>
         </div>`;
     }
   
@@ -538,7 +538,7 @@ async function fetchAINutrition(query) {
       if (display) {
         display.innerHTML = `
           <div class="cal-selected-name">${food.name}</div>
-          <div class="cal-selected-unit">Per ${food.unit}${food.source === 'USDA' ? '&nbsp;<span class="cal-usda-badge">USDA</span>' : ''}</div>
+          <div class="cal-selected-unit">Per ${food.unit}${''}</div>
           <div class="cal-selected-macros">
             <div class="cal-sel-macro">
               <span class="cal-sel-val">${food.cal}</span>
