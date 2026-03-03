@@ -3,24 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Free Food Calorie Calculator — Indian Foods | Classic Fitness Gym | Arakkonam</title>
-  <meta name="description" content="Free Indian Food Calorie Calculator. Search 10,000+ foods via USDA database. Track calories, protein, carbs, fat, fiber & sugar. Meal-wise breakdown. Classic Fitness Gym, Arakkonam." />
+  <meta name="description" content="Free Indian Food Calorie Calculator. Search 15,000+ Indian foods via AI. Track calories, protein, carbs, fat, fiber & sugar. Meal-wise breakdown. Classic Fitness Gym, Arakkonam." />
   <meta name="keywords" content="indian food calorie calculator, food calories, idli calories, dosa calories, rice calories, gym arakkonam, classic fitness, diet tracker" />
   <meta name="author" content="Classic Fitness Gym" />
-
   <meta property="og:title" content="Free Indian Food Calorie Calculator — Classic Fitness Gym" />
   <meta property="og:description" content="Track your daily calories with 15000+ Indian foods. Meal-wise breakdown, macros, and save your daily log — free forever." />
   <meta property="og:image" content="assets/img/logo-1.jpeg" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/calorie.css" />
 </head>
-
 <body>
 
   <!-- ===== STICKY DIET PLAN ANNOUNCEMENT BAR ===== -->
@@ -48,16 +43,11 @@
           <div class="brand-sub">UNISEX [AC] GYM • ARAKKONAM</div>
         </div>
       </a>
-
       <nav class="nav-links" id="navLinks">
         <a href="index.html#home" class="nav-link">Home</a>
         <a href="index.html#about" class="nav-link">Who We are</a>
-
-        <!-- Services Dropdown -->
         <div class="nav-dropdown">
-          <a href="index.html#services" class="nav-link dropdown-toggle">
-            Facilities <span class="arrow">▼</span>
-          </a>
+          <a href="index.html#services" class="nav-link dropdown-toggle">Facilities <span class="arrow">▼</span></a>
           <div class="dropdown-menu">
             <a href="index.html#services">Weight Training</a>
             <a href="index.html#services">Cardio Zone</a>
@@ -69,7 +59,6 @@
             <a href="index.html#services">Body Transformation</a>
           </div>
         </div>
-
         <a href="index.html#pricing" class="nav-link">Membership</a>
         <a href="index.html#trainers" class="nav-link">Our Instructer</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
@@ -78,19 +67,15 @@
         <a href="bmi.html" class="nav-link nav-link-bmi">⚖️ BMI Check</a>
         <a href="calorie.html" class="nav-link nav-link-calorie active-page">🍱 Calorie Calc</a>
         <a href="index.html#diet-plan" class="nav-link nav-link-diet">🥗 Free Diet Plan</a>
-
         <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
       </nav>
-
       <div class="nav-right">
         <a href="index.html" class="nav-quick nav-quick-home" aria-label="Back to Home">
           <span class="nav-quick-icon">🏠</span>
           <span class="nav-quick-text">Home</span>
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
@@ -122,61 +107,70 @@
     </div>
   </section>
 
-  <!-- ===== MAIN CALCULATOR SECTION ===== -->
-  <section class="section cal-section" id="calorie-calculator">
-    <div class="container">
+  <!-- ===== MAIN APP SECTION ===== -->
+  <section class="cal-section" id="calorie-calculator">
+    <div class="cal-app-wrap">
 
-      <!-- Daily Summary Bar (sticky top) -->
-      <div class="cal-daily-bar" id="calDailyBar">
-        <div class="cal-daily-bar-inner">
-          <div class="cal-daily-macro">
-            <span class="cal-daily-num" id="totalCalDisplay">0</span>
-            <span class="cal-daily-lbl">kcal</span>
+      <!-- STICKY TOP MACRO BAR -->
+      <div class="cal-topbar" id="calTopbar">
+        <div class="cal-topbar-inner">
+          <div class="cal-topbar-macro">
+            <span class="cal-topbar-num" id="totalCalDisplay">0</span>
+            <span class="cal-topbar-lbl">kcal</span>
           </div>
-          <div class="cal-daily-divider"></div>
-          <div class="cal-daily-macro">
-            <span class="cal-daily-num" id="totalProtDisplay">0g</span>
-            <span class="cal-daily-lbl">Protein</span>
+          <div class="cal-topbar-divider"></div>
+          <div class="cal-topbar-macro">
+            <span class="cal-topbar-num" id="totalProtDisplay">0g</span>
+            <span class="cal-topbar-lbl">Protein</span>
           </div>
-          <div class="cal-daily-divider"></div>
-          <div class="cal-daily-macro">
-            <span class="cal-daily-num" id="totalCarbDisplay">0g</span>
-            <span class="cal-daily-lbl">Carbs</span>
+          <div class="cal-topbar-divider"></div>
+          <div class="cal-topbar-macro">
+            <span class="cal-topbar-num" id="totalCarbDisplay">0g</span>
+            <span class="cal-topbar-lbl">Carbs</span>
           </div>
-          <div class="cal-daily-divider"></div>
-          <div class="cal-daily-macro">
-            <span class="cal-daily-num" id="totalFatDisplay">0g</span>
-            <span class="cal-daily-lbl">Fat</span>
+          <div class="cal-topbar-divider"></div>
+          <div class="cal-topbar-macro">
+            <span class="cal-topbar-num" id="totalFatDisplay">0g</span>
+            <span class="cal-topbar-lbl">Fat</span>
           </div>
-          <button class="cal-reset-btn" id="resetDayBtn" title="Reset Today's Log">🗑 Reset Day</button>
+          <button class="cal-topbar-reset" id="resetDayBtn" title="Reset Today">🗑 Reset</button>
         </div>
       </div>
 
-      <!-- Two Column Layout -->
-      <div class="cal-layout">
+      <!-- TAB NAVIGATION -->
+      <div class="cal-tab-nav">
+        <button class="cal-tab-btn active" data-tab="search">
+          <span class="cal-tab-icon">🔍</span>
+          <span class="cal-tab-label">Add Food</span>
+        </button>
+        <button class="cal-tab-btn" data-tab="meals">
+          <span class="cal-tab-icon">🍽️</span>
+          <span class="cal-tab-label">My Meals</span>
+          <span class="cal-tab-badge" id="mealCountBadge" style="display:none">0</span>
+        </button>
+        <button class="cal-tab-btn" data-tab="summary">
+          <span class="cal-tab-icon">📊</span>
+          <span class="cal-tab-label">Summary</span>
+        </button>
+      </div>
 
-        <!-- LEFT: Search + Add Food -->
-        <div class="cal-left">
+      <!-- TAB PANELS -->
+      <div class="cal-tab-panels">
 
-          <!-- Search Card -->
-          <div class="cal-card cal-search-card">
-            <div class="cal-card-title">🔍 Search Indian Foods</div>
+        <!-- ========== TAB 1: ADD FOOD ========== -->
+        <div class="cal-tab-panel active" id="tab-search">
+          <div class="cal-panel-inner">
 
-            <div class="cal-search-row">
-              <div class="cal-search-box-wrap">
-                <span class="cal-search-icon">🔍</span>
-                <input
-                  type="text"
-                  id="foodSearch"
-                  class="cal-search-input"
-                  placeholder="Search food — idli, rice, chicken curry..."
-                  autocomplete="off"
-                />
-                <button class="cal-search-clear" id="searchClear" style="display:none">✕</button>
-              </div>
+            <!-- Search Box -->
+            <div class="cal-search-box-wrap">
+              <span class="cal-search-icon">🔍</span>
+              <input type="text" id="foodSearch" class="cal-search-input"
+                placeholder="Search — idli, rice, chicken curry..."
+                autocomplete="off" />
+              <button class="cal-search-clear" id="searchClear" style="display:none">✕</button>
             </div>
 
-            <!-- Category Filter Pills -->
+            <!-- Category Pills -->
             <div class="cal-category-pills" id="categoryPills">
               <button class="cal-pill active" data-cat="all">All</button>
               <button class="cal-pill" data-cat="breakfast">🌅 Breakfast</button>
@@ -192,131 +186,160 @@
               <button class="cal-pill" data-cat="drinks">☕ Drinks</button>
             </div>
 
+            <!-- Recent Section -->
+            <div id="recentSection" class="cal-recent-section" style="display:none;">
+              <h4 class="cal-section-title">Recent</h4>
+              <div id="recentList" class="cal-recent-list"></div>
+            </div>
+
+            <!-- Popular Foods -->
+            <div id="popularSection" class="cal-popular-section">
+              <h4 class="cal-section-title">Popular Indian Foods</h4>
+              <div id="popularChips" class="cal-popular-chips"></div>
+            </div>
+
             <!-- Search Results -->
             <div class="cal-results" id="foodResults">
               <div class="cal-results-placeholder">
                 <div class="cal-results-placeholder-icon">🥘</div>
                 <div>Type a food name or pick a category above</div>
+                <div class="cal-results-placeholder-sub">15,000+ Indian foods including Tamil dishes — powered by AI</div>
               </div>
             </div>
-          </div>
 
-          <!-- Add to Meal Card (shown after selecting food) -->
-          <div class="cal-card cal-add-card" id="calAddCard" style="display:none">
-            <div class="cal-card-title">➕ Add to Your Meal</div>
-
-            <div class="cal-selected-food" id="selectedFoodDisplay">
-              <!-- Filled by JS -->
-            </div>
-
-            <div class="cal-add-row">
-              <div class="cal-add-field">
-                <label class="cal-label">Quantity</label>
-                <div class="cal-qty-row">
-                  <button class="cal-qty-btn" id="qtyMinus">−</button>
-                  <input type="number" class="cal-qty-input" id="foodQty" value="1" min="0.5" max="20" step="0.5">
-                  <button class="cal-qty-btn" id="qtyPlus">+</button>
+            <!-- Add to Meal Card -->
+            <div class="cal-add-card" id="calAddCard" style="display:none">
+              <div class="cal-add-card-title">➕ Add to Your Meal</div>
+              <div class="cal-selected-food" id="selectedFoodDisplay"></div>
+              <div class="cal-add-row">
+                <div class="cal-add-field">
+                  <label class="cal-label">Quantity</label>
+                  <div class="cal-qty-row">
+                    <button class="cal-qty-btn" id="qtyMinus">−</button>
+                    <input type="number" class="cal-qty-input" id="foodQty" value="1" min="0.5" max="20" step="0.5">
+                    <button class="cal-qty-btn" id="qtyPlus">+</button>
+                  </div>
+                </div>
+                <div class="cal-add-field">
+                  <label class="cal-label">Meal Type</label>
+                  <div class="cal-meal-select-wrap">
+                    <select class="cal-meal-select" id="mealTypeSelect">
+                      <option value="breakfast">🌅 Breakfast</option>
+                      <option value="lunch" selected>☀️ Lunch</option>
+                      <option value="dinner">🌙 Dinner</option>
+                      <option value="snacks">🥪 Snacks</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <div class="cal-add-field">
-                <label class="cal-label">Meal Type</label>
-                <div class="cal-meal-select-wrap">
-                  <select class="cal-meal-select" id="mealTypeSelect">
-                    <option value="breakfast">🌅 Breakfast</option>
-                    <option value="lunch" selected>☀️ Lunch</option>
-                    <option value="dinner">🌙 Dinner</option>
-                    <option value="snacks">🥪 Snacks</option>
-                  </select>
-                </div>
+              <div class="cal-gram-toggle">
+                <label>
+                  <input type="checkbox" id="gramModeToggle" />
+                  Use grams instead of servings
+                </label>
               </div>
+              <div class="cal-preview" id="addPreview"></div>
+              <button class="cal-add-btn" id="addFoodBtn">➕ Add to Meal Log</button>
             </div>
 
-            <div class="cal-preview" id="addPreview">
-              <!-- Preview macros filled by JS -->
-            </div>
-
-            <button class="cal-add-btn" id="addFoodBtn">➕ Add to Meal Log</button>
           </div>
-
         </div>
 
-        <!-- RIGHT: Meal Log -->
-        <div class="cal-right">
+        <!-- ========== TAB 2: MY MEALS ========== -->
+        <div class="cal-tab-panel" id="tab-meals">
+          <div class="cal-panel-inner">
+            <div class="cal-meals" id="calMeals">
 
-          <!-- Meal Sections -->
-          <div class="cal-meals" id="calMeals">
-
-            <!-- Breakfast -->
-            <div class="cal-meal-section" id="mealBreakfast">
-              <div class="cal-meal-header">
-                <div class="cal-meal-icon">🌅</div>
-                <div class="cal-meal-info">
-                  <div class="cal-meal-name">Breakfast</div>
-                  <div class="cal-meal-total" id="breakfastTotal">0 kcal</div>
+              <div class="cal-meal-section" id="mealBreakfast">
+                <div class="cal-meal-header">
+                  <div class="cal-meal-icon">🌅</div>
+                  <div class="cal-meal-info">
+                    <div class="cal-meal-name">Breakfast</div>
+                    <div class="cal-meal-total" id="breakfastTotal">0 kcal</div>
+                  </div>
+                  <button class="cal-meal-toggle" data-meal="breakfast">▾</button>
                 </div>
-                <button class="cal-meal-toggle" data-meal="breakfast">▾</button>
+                <div class="cal-meal-items" id="breakfastItems">
+                  <div class="cal-meal-empty">No foods added yet</div>
+                </div>
               </div>
-              <div class="cal-meal-items" id="breakfastItems">
-                <div class="cal-meal-empty">No foods added yet</div>
+
+              <div class="cal-meal-section" id="mealLunch">
+                <div class="cal-meal-header">
+                  <div class="cal-meal-icon">☀️</div>
+                  <div class="cal-meal-info">
+                    <div class="cal-meal-name">Lunch</div>
+                    <div class="cal-meal-total" id="lunchTotal">0 kcal</div>
+                  </div>
+                  <button class="cal-meal-toggle" data-meal="lunch">▾</button>
+                </div>
+                <div class="cal-meal-items" id="lunchItems">
+                  <div class="cal-meal-empty">No foods added yet</div>
+                </div>
               </div>
+
+              <div class="cal-meal-section" id="mealDinner">
+                <div class="cal-meal-header">
+                  <div class="cal-meal-icon">🌙</div>
+                  <div class="cal-meal-info">
+                    <div class="cal-meal-name">Dinner</div>
+                    <div class="cal-meal-total" id="dinnerTotal">0 kcal</div>
+                  </div>
+                  <button class="cal-meal-toggle" data-meal="dinner">▾</button>
+                </div>
+                <div class="cal-meal-items" id="dinnerItems">
+                  <div class="cal-meal-empty">No foods added yet</div>
+                </div>
+              </div>
+
+              <div class="cal-meal-section" id="mealSnacks">
+                <div class="cal-meal-header">
+                  <div class="cal-meal-icon">🥪</div>
+                  <div class="cal-meal-info">
+                    <div class="cal-meal-name">Snacks</div>
+                    <div class="cal-meal-total" id="snacksTotal">0 kcal</div>
+                  </div>
+                  <button class="cal-meal-toggle" data-meal="snacks">▾</button>
+                </div>
+                <div class="cal-meal-items" id="snacksItems">
+                  <div class="cal-meal-empty">No foods added yet</div>
+                </div>
+              </div>
+
             </div>
 
-            <!-- Lunch -->
-            <div class="cal-meal-section" id="mealLunch">
-              <div class="cal-meal-header">
-                <div class="cal-meal-icon">☀️</div>
-                <div class="cal-meal-info">
-                  <div class="cal-meal-name">Lunch</div>
-                  <div class="cal-meal-total" id="lunchTotal">0 kcal</div>
-                </div>
-                <button class="cal-meal-toggle" data-meal="lunch">▾</button>
-              </div>
-              <div class="cal-meal-items" id="lunchItems">
-                <div class="cal-meal-empty">No foods added yet</div>
-              </div>
-            </div>
-
-            <!-- Dinner -->
-            <div class="cal-meal-section" id="mealDinner">
-              <div class="cal-meal-header">
-                <div class="cal-meal-icon">🌙</div>
-                <div class="cal-meal-info">
-                  <div class="cal-meal-name">Dinner</div>
-                  <div class="cal-meal-total" id="dinnerTotal">0 kcal</div>
-                </div>
-                <button class="cal-meal-toggle" data-meal="dinner">▾</button>
-              </div>
-              <div class="cal-meal-items" id="dinnerItems">
-                <div class="cal-meal-empty">No foods added yet</div>
-              </div>
-            </div>
-
-            <!-- Snacks -->
-            <div class="cal-meal-section" id="mealSnacks">
-              <div class="cal-meal-header">
-                <div class="cal-meal-icon">🥪</div>
-                <div class="cal-meal-info">
-                  <div class="cal-meal-name">Snacks</div>
-                  <div class="cal-meal-total" id="snacksTotal">0 kcal</div>
-                </div>
-                <button class="cal-meal-toggle" data-meal="snacks">▾</button>
-              </div>
-              <div class="cal-meal-items" id="snacksItems">
-                <div class="cal-meal-empty">No foods added yet</div>
-              </div>
-            </div>
-
+            <button class="cal-goto-search-btn" id="gotoSearchBtn">+ Add More Foods</button>
           </div>
+        </div>
 
-          <!-- Daily Summary Card -->
-          <div class="cal-card cal-summary-card" id="calSummaryCard">
-            <div class="cal-card-title">📊 Today's Summary</div>
+        <!-- ========== TAB 3: SUMMARY ========== -->
+        <div class="cal-tab-panel" id="tab-summary">
+          <div class="cal-panel-inner">
 
-            <div class="cal-summary-total">
-              <span id="summaryCalories">0</span>
-              <span class="cal-summary-unit">kcal total</span>
+            <!-- Calorie Goal Card -->
+            <div class="cal-goal-card">
+              <div class="cal-goal-header">
+                <span class="cal-goal-label">Daily Goal</span>
+                <input type="number" id="calorieGoalInput" value="2000" min="500" max="6000" class="cal-goal-input" />
+              </div>
+              <div class="cal-goal-bar">
+                <div id="calorieProgressBar" class="cal-goal-progress"></div>
+              </div>
+              <div id="calorieGoalText" class="cal-goal-text"></div>
             </div>
 
+            <!-- Summary Hero: Big Number + Chart -->
+            <div class="cal-summary-hero">
+              <div class="cal-summary-total-big">
+                <span id="summaryCalories">0</span>
+                <span class="cal-summary-unit">kcal total</span>
+              </div>
+              <div class="cal-chart-wrap">
+                <canvas id="macroChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Macro Bars -->
             <div class="cal-macro-bars">
               <div class="cal-macro-row">
                 <div class="cal-macro-label">
@@ -370,28 +393,88 @@
               </div>
             </div>
 
-            <div class="cal-save-row">
-              <button class="cal-save-btn" id="saveDayBtn">💾 Save Today's Log</button>
-              <button class="cal-reset-btn-full" id="resetDayBtn2">🗑 Reset</button>
+            <!-- Fat Sub-Types + Cholesterol -->
+            <div class="cal-macro-bars cal-fat-subgroup">
+              <div class="cal-subgroup-title">🥩 Fat Breakdown &amp; Cholesterol</div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot satfat"></span>
+                  <span>Saturated Fat</span>
+                  <span class="cal-macro-val" id="summarySatFat">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill satfat" id="satFatBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot polyfat"></span>
+                  <span>Polyunsaturated Fat</span>
+                  <span class="cal-macro-val" id="summaryPolyFat">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill polyfat" id="polyFatBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot monofat"></span>
+                  <span>Monounsaturated Fat</span>
+                  <span class="cal-macro-val" id="summaryMonoFat">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill monofat" id="monoFatBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot transfat"></span>
+                  <span>Trans Fat</span>
+                  <span class="cal-macro-val" id="summaryTransFat">0g</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill transfat" id="transFatBar" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cal-macro-row">
+                <div class="cal-macro-label">
+                  <span class="cal-macro-dot cholesterol"></span>
+                  <span>Cholesterol</span>
+                  <span class="cal-macro-val" id="summaryCholesterol">0mg</span>
+                </div>
+                <div class="cal-macro-bar-track">
+                  <div class="cal-macro-bar-fill cholesterol" id="cholesterolBar" style="width:0%"></div>
+                </div>
+              </div>
             </div>
 
+            <!-- Per-meal Macro Breakdown -->
+            <div id="mealMacroBreakdown"></div>
+
+            <!-- Save / WhatsApp / PDF / Reset -->
+            <div class="cal-action-row">
+              <button class="cal-action-btn cal-btn-save"      id="saveDayBtn">💾 Save Log</button>
+              <button class="cal-action-btn cal-btn-whatsapp"  id="shareWhatsappBtn">📤 Share on WhatsApp</button>
+              <button class="cal-action-btn cal-btn-pdf"       id="downloadPdfBtn">⬇️ Download PDF</button>
+              <button class="cal-action-btn cal-btn-reset"     id="resetDayBtn2">🗑 Reset</button>
+            </div>
             <div class="cal-saved-notice" id="savedNotice" style="display:none">
               ✅ Log saved! Reloading page will restore your entries.
             </div>
-          </div>
 
-          <!-- Tip Card -->
-          <div class="cal-card cal-tip-card">
-            <div class="cal-tip-icon">💡</div>
-            <h3>Need a Personalised Diet Plan?</h3>
-            <p>Our certified trainers at Classic Fitness can design a custom meal plan based on your calorie goals — free for everyone, members and non-members alike.</p>
-            <a href="index.html#diet-plan" class="cal-tip-btn">Get Free Diet Plan →</a>
-          </div>
+            <!-- Diet Plan Tip -->
+            <div class="cal-tip-card">
+              <div class="cal-tip-icon">💡</div>
+              <h3>Need a Personalised Diet Plan?</h3>
+              <p>Our certified trainers at Classic Fitness can design a custom meal plan based on your calorie goals — free for everyone.</p>
+              <a href="index.html#diet-plan" class="cal-tip-btn">Get Free Diet Plan →</a>
+            </div>
 
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div><!-- end cal-tab-panels -->
+    </div><!-- end cal-app-wrap -->
   </section>
 
   <!-- ===== FOOTER ===== -->
@@ -400,20 +483,14 @@
       <div class="footer-main">
         <div class="footer-col footer-brand-col">
           <div class="footer-brand">
-            <div class="footer-logo">
-              <img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo">
-            </div>
+            <div class="footer-logo"><img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo"></div>
             <div>
               <div class="footer-title">CLASSIC FITNESS</div>
               <div class="footer-sub">Unisex [AC] Gym • Arakkonam</div>
             </div>
           </div>
-          <p class="footer-desc">
-            Transform your body and mind at Arakkonam's premier fitness destination.
-            Professional training, modern equipment, and a supportive community.
-          </p>
+          <p class="footer-desc">Transform your body and mind at Arakkonam's premier fitness destination. Professional training, modern equipment, and a supportive community.</p>
         </div>
-
         <div class="footer-col">
           <h4>Quick Links</h4>
           <ul class="footer-links">
@@ -426,7 +503,6 @@
             <li><a href="calorie.html">Calorie Calculator</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h4>Services</h4>
           <ul class="footer-links">
@@ -440,7 +516,6 @@
             <li><a href="index.html#services">Body Transformation</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h4>Contact Info</h4>
           <ul class="footer-contact">
@@ -451,7 +526,6 @@
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>© <span id="year"></span> Classic Fitness Gym. All Rights Reserved.</p>
         <div class="footer-social">
@@ -463,28 +537,17 @@
     </div>
   </footer>
 
-  <!-- Floating Action Buttons -->
   <div class="float-actions">
-    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">
-      💬
-    </a>
-    <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">
-      📞
-    </a>
-    <button class="float-btn float-top" id="backToTop" aria-label="Back to top">
-      ↑
-    </button>
+    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">💬</a>
+    <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">📞</a>
+    <button class="float-btn float-top" id="backToTop" aria-label="Back to top">↑</button>
   </div>
 
-  <!-- Toast Notification -->
   <div class="toast" id="toastMessage">
     <div class="toast-icon">✅</div>
-    <div class="toast-text" id="toastText">
-      Food added successfully!
-    </div>
+    <div class="toast-text" id="toastText">Food added successfully!</div>
   </div>
 
-  <!-- Join Modal (same as other pages) -->
   <div class="join-modal" id="joinModal">
     <div class="join-modal-overlay" id="joinModalOverlay"></div>
     <div class="join-modal-content">
@@ -534,13 +597,15 @@
           <label>Message (Optional)</label>
           <textarea id="joinMessage" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-full">
-          Submit & Contact on WhatsApp
-        </button>
+        <button type="submit" class="btn btn-primary btn-full">Submit & Contact on WhatsApp</button>
       </form>
     </div>
   </div>
 
+  <script src="assets/js/indian_foods_extended.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
   <script src="assets/js/calorie.js"></script>
 </body>
 </html>
