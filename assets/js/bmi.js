@@ -208,7 +208,180 @@ Please contact me regarding joining Classic Fitness Gym!`
     setTimeout(() => toast.classList.remove('show'), 4000);
   }
 
-  // ===== BMI & CALORIE CALCULATOR =====
+  
+  // ===== Premium: Health Score (client-side) =====
+  function computeHealthScore(userData) {
+    const bmi = Number(userData.bmi) || 0;
+    const bf  = Number(userData.bodyFat) || 0;
+    const whr = Number(userData.whr) || 0;
+
+    let score = 100;
+
+    // BMI penalty (best around 22)
+    if (bmi > 0) {
+      score -= Math.min(30, Math.abs(bmi - 22) * 3);
+      if (bmi < 18.5 || bmi >= 30) score -= 8;
+    }
+
+    // Body fat penalty (India-friendly ranges)
+    const isMale = userData.gender === 'male';
+    const bfIdeal = isMale ? 16 : 28;
+    if (bf > 0) {
+      score -= Math.min(28, Math.abs(bf - bfIdeal) * 1.2);
+      if ((isMale && bf >= 25) || (!isMale && bf >= 32)) score -= 8;
+      if ((isMale && bf >= 32) || (!isMale && bf >= 39)) score -= 10;
+    }
+
+    // Waist-to-height ratio penalty (central fat)
+    if (whr > 0) {
+      if (whr > 0.52) score -= 10;
+      if (whr > 0.57) score -= 10;
+      if (whr > 0.62) score -= 10;
+    }
+
+    // Lifestyle / safety factors
+    const activity = (userData.activityLabel || '').toLowerCase();
+    if (activity.includes('sedentary')) score -= 6;
+    if ((userData.medical || '').trim()) score -= 8;
+
+    score = Math.max(0, Math.min(100, Math.round(score)));
+
+    let label = 'Average';
+    let color = '#f59e0b';
+    if (score >= 85) { label = 'Excellent'; color = '#22c55e'; }
+    else if (score >= 70) { label = 'Good'; color = '#3b82f6'; }
+    else if (score >= 55) { label = 'Average'; color = '#f59e0b'; }
+    else { label = 'Risk'; color = '#ef4444'; }
+
+    const summary = (score >= 70)
+      ? 'You are on a healthy track — keep consistency.'
+      : 'Small changes now can make a big difference.';
+
+    return { score, label, color, summary };
+  }
+
+  function renderHealthScore(userData) {
+    const pill  = document.getElementById('healthScorePill');
+    const numEl = document.getElementById('healthScoreNum');
+    const lblEl = document.getElementById('healthScoreLabel');
+    const sumEl = document.getElementById('healthSummaryText');
+    if (!pill || !numEl || !lblEl) return;
+
+    const hs = computeHealthScore(userData);
+    numEl.textContent = hs.score;
+    lblEl.textContent = hs.label;
+    lblEl.style.color = hs.color;
+    pill.style.borderColor = hs.color + '55';
+    pill.style.background  = hs.color + '1A'; // ~10% alpha
+    if (sumEl) sumEl.textContent = hs.summary;
+  }
+
+  function setExpertBadges(userData) {
+    const wrap = document.getElementById('expertBadges');
+    if (!wrap) return;
+
+    const hs = computeHealthScore(userData);
+    const items = [];
+
+    items.push({ text: `${hs.label} • ${hs.score}/100`, color: hs.color });
+    if (userData.bodyFatLabel) items.push({ text: `Body Fat: ${userData.bodyFatLabel}`, color: '#a78bfa' });
+    if (userData.whr && userData.whr > 0) items.push({ text: `Waist/Height: ${userData.whrLabel || 'Measured'}`, color: (userData.whr > 0.57 ? '#ef4444' : userData.whr > 0.52 ? '#f59e0b' : '#22c55e') });
+    items.push({ text: `Goal: ${userData.goal}`, color: '#06b6d4' });
+
+    wrap.innerHTML = items.map(it => (
+      `<span style="padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.2px;border:1px solid ${it.color}55;background:${it.color}1A;color:#0f172a;">${it.text}</span>`
+    )).join('');
+
+    wrap.style.display = 'flex';
+  }
+
+  function buildOverview(data, userData) {
+    const summary = document.getElementById('overviewSummary');
+    const focus   = document.getElementById('overviewFocus');
+    const actions = document.getElementById('overviewActions');
+    if (!summary || !focus || !actions) return;
+
+    const hs = computeHealthScore(userData);
+
+    // Top summary cards
+    summary.innerHTML = `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div class="expert-card expert-card-health">
+          <div style="font-weight:900;">🏅 Health Score</div>
+          <div style="margin-top:6px; font-size:22px; font-weight:950; color:${hs.color};">${hs.score}/100</div>
+          <div style="margin-top:4px; color:#0f172a; font-size:12.5px;">${hs.label} • ${hs.summary}</div>
+        </div>
+        <div class="expert-card expert-card-body">
+          <div style="font-weight:900;">📊 Body Composition</div>
+          <div style="margin-top:6px; color:#0f172a; line-height:1.6;">
+            <div><strong>BMI:</strong> ${userData.bmi} (${userData.category})</div>
+            <div><strong>Body Fat:</strong> ${userData.bodyFat}% ${userData.bodyFatLabel ? `(${userData.bodyFatLabel})` : ''}</div>
+            <div><strong>Waist:</strong> ${userData.waist ? `${userData.waist} cm` : 'Not provided'} ${userData.whr ? `(WHR ${userData.whr} • ${userData.whrLabel})` : ''}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div class="expert-card expert-card-health">
+          <div style="font-weight:900;">🔥 Daily Targets</div>
+          <div style="margin-top:6px; color:#0f172a; line-height:1.6;">
+            <div><strong>Calories:</strong> ${userData.goalCal} kcal/day</div>
+            <div><strong>Protein:</strong> ${userData.protein} g/day</div>
+            <div><strong>Water:</strong> ${userData.waterLitres} L/day</div>
+          </div>
+        </div>
+        <div class="expert-card expert-card-body">
+          <div style="font-weight:900;">🧠 Plan Summary</div>
+          <div style="margin-top:6px; color:#0f172a; line-height:1.6;">
+            <div><strong>Goal:</strong> ${userData.goal}</div>
+            <div><strong>Activity:</strong> ${userData.activityLabel}</div>
+            <div><strong>Experience:</strong> ${userData.experience}</div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Focus pills (prefer API focus list)
+    const apiFocus = (data && data.health && Array.isArray(data.health.focus)) ? data.health.focus : [];
+    const focusItems = apiFocus.length ? apiFocus : [
+      'Protein consistency',
+      (userData.goal.includes('Lose') ? 'Small calorie deficit' : 'Calorie surplus (if needed)'),
+      'Progressive overload',
+      'Sleep 7–8 hours'
+    ];
+
+    focus.innerHTML = focusItems.slice(0, 6).map(t =>
+      `<span style="padding:7px 10px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid rgba(148,163,184,.25);background:rgba(148,163,184,.10);color:#0f172a;">${t}</span>`
+    ).join('');
+
+    // Next actions (simple, high conversion)
+    const next = [];
+
+    // Action 1: protein
+    next.push(`Hit <strong>${userData.protein}g protein</strong> daily (split across 3–4 meals).`);
+
+    // Action 2: training
+    next.push(`Train <strong>4–6 days</strong> this week and track weights for main lifts (progressive overload).`);
+
+    // Action 3: steps/cardio
+    if (userData.goal.includes('Lose')) next.push(`Add <strong>20–30 min cardio</strong> 3×/week OR 7–9k steps/day.`);
+    else next.push(`Keep cardio <strong>20–25 min</strong> (2–3×/week) so muscle gain calories aren't lost.`);
+
+    // Action 4: waist/body fat
+    if (userData.whr && userData.whr > 0.52) next.push(`Focus on reducing belly fat: prioritize strength + daily activity (steps) + avoid sugary snacks.`);
+    else next.push(`Keep waist in check: aim for a balanced plate (protein + rice/chapati + vegetables).`);
+
+    // Action 5: sleep
+    next.push(`Sleep <strong>7–8 hours</strong> and drink <strong>${userData.waterLitres}L</strong> water daily.`);
+
+    // Action 6: CTA
+    next.push(`Tap <strong>"Send Full Analysis to WhatsApp"</strong> to get a trainer-approved plan.`);
+
+    actions.innerHTML = next.map(t => `<li>${t}</li>`).join('');
+  }
+
+
+// ===== BMI & CALORIE CALCULATOR =====
   function initBMICalculator() {
     const calcBtn    = document.getElementById('bmiCalcBtn');
     const resetBtn   = document.getElementById('bmiResetBtn');
@@ -611,7 +784,7 @@ Please contact me regarding joining Classic Fitness Gym!`
       calcBtn.style.cursor   = 'not-allowed';
       calcBtn.textContent    = '⏳ Analysing...';
 
-      loadExpertAnalysis({
+      const userPayload = {
         gender: selectedGender,
         age, heightCm, weightKg,
         bmi: bmiRounded,
@@ -641,7 +814,13 @@ Please contact me regarding joining Classic Fitness Gym!`
         whrLabel:      whrLabel || 'Not measured',
         bodyFatLabel:  bodyFatLabel,
         bodyFatAdvice: bodyFatAdvice
-      }).finally(() => {
+      };
+
+      // NEW: Premium score + badges
+      renderHealthScore(userPayload);
+      setExpertBadges(userPayload);
+
+      loadExpertAnalysis(userPayload).finally(() => {
         // FIX 10: Re-enable button after API completes (success or error)
         calcBtn.disabled      = false;
         calcBtn.style.opacity = '1';
@@ -771,7 +950,8 @@ Please contact me regarding joining Classic Fitness Gym!`
         btn.classList.add('active');
         const target = btn.getAttribute('data-tab');
         document.querySelectorAll('.expert-tab-panel').forEach(p => p.classList.remove('active'));
-        document.getElementById('tab-' + target).classList.add('active');
+        const panel = document.getElementById('tab-' + target);
+        if (panel) panel.classList.add('active');
       });
     });
   }
@@ -1039,6 +1219,7 @@ ${risks}
         content.style.display = 'block';
         waBtn.disabled        = false;
         waBtn.style.opacity   = '1';
+        buildOverview(cachedData, userData);
         buildSupplements(cachedData, userData);
         buildWorkout(cachedData);
         buildHealthRisk(cachedData);
@@ -1301,6 +1482,7 @@ Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks.
       }
 
       // ---- Populate all tabs ----
+      buildOverview(data, userData);
       buildSupplements(data, userData);
       buildWorkout(data);
       buildHealthRisk(data);

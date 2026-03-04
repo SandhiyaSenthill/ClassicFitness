@@ -253,9 +253,9 @@
 
   .bmi-hero-stat {
     padding: 8px 16px;
-    background: rgba(255,255,255,0.06);
+    background: rgba(238, 11, 11, 0.06);
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(186, 5, 5, 0.1);
   }
 
   .bmi-info-card {
@@ -297,7 +297,7 @@ font-size: 22px;
 }
 
 .expert-panel-sub {
-color: rgba(255,255,255,0.6);
+color: rgba(240, 12, 12, 0.6);
 font-size: 12px;
 font-weight: 500;
 }
@@ -316,7 +316,7 @@ background: none;
 border: none;
 font-size: 13px;
 font-weight: 700;
-color: #64748b;
+color: #086af4;
 cursor: pointer;
 transition: all 0.2s ease;
 border-bottom: 3px solid transparent;
@@ -324,13 +324,14 @@ font-family: inherit;
 }
 
 .expert-tab:hover {
-color: #1e293b;
-background: #f1f5f9;
-}
+  color:#0463fb;
+  background:#f1f5f9;
+  transform:translateY(-1px);
+  }
 
 .expert-tab.active {
-color: #1e3a5f;
-border-bottom-color: #1e3a5f;
+color: #0c70f1;
+border-bottom-color: #116fe9;
 background: #fff;
 }
 
@@ -348,7 +349,7 @@ gap: 14px;
 width: 36px;
 height: 36px;
 border: 3px solid #e2e8f0;
-border-top-color: #1e3a5f;
+border-top-color: #096ef1;
 border-radius: 50%;
 animation: expertSpin 0.8s linear infinite;
 }
@@ -412,7 +413,7 @@ margin-bottom: 4px;
 
 .supplement-card-benefit {
 font-size: 12px;
-color: #64748b;
+color: #146de9;
 line-height: 1.5;
 margin-bottom: 6px;
 }
@@ -421,7 +422,7 @@ margin-bottom: 6px;
 display: inline-block;
 font-size: 11px;
 font-weight: 700;
-color: #1e3a5f;
+color: #0e6ae3;
 background: #dbeafe;
 border-radius: 6px;
 padding: 2px 8px;
@@ -457,7 +458,7 @@ color: #16a34a;
 /* Expert disclaimer */
 .expert-disclaimer {
 font-size: 12px;
-color: #64748b;
+color: #0b69ec;
 background: #f8fafc;
 border-left: 3px solid #e2e8f0;
 padding: 10px 14px;
@@ -495,7 +496,7 @@ min-width: 38px;
 font-size: 11px;
 font-weight: 800;
 color: #fff;
-background: #1e3a5f;
+background: #0c6ae4;
 border-radius: 7px;
 padding: 4px 6px;
 text-align: center;
@@ -520,7 +521,7 @@ margin-bottom: 2px;
 
 .workout-day-detail {
 font-size: 12px;
-color: #64748b;
+color: #0b6aee;
 line-height: 1.5;
 }
 
@@ -2052,3 +2053,421 @@ border-radius: 0 10px 10px 0 !important;
   .bmi-goal-msg { background: #f8fafc !important; color: #000 !important; border: 1px solid #e2e8f0 !important; }
   .bmi-name-greeting { background: #eff6ff !important; color: #1e3a5f !important; }
 }
+
+/* New */
+/* ==========================================
+   EXPERT OVERVIEW DASHBOARD — PREMIUM COLORS
+   (No HTML changes required)
+   ========================================== */
+
+.expert-overview-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:14px;
+}
+
+@media(max-width:700px){
+  .expert-overview-grid{ grid-template-columns:1fr; }
+}
+
+/* Base card */
+.expert-overview-card{
+  border-radius:16px;
+  padding:18px 20px;
+  border:1px solid rgba(148,163,184,0.25); /* slate-400 */
+  background:linear-gradient(135deg,#ffffff,#f8fafc);
+  color:#0f172a;
+  font-weight:650;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  box-shadow:0 6px 18px rgba(15,23,42,0.08);
+}
+
+/* Make the 4 top cards visually different — works even if you didn't add extra classes */
+.expert-overview-grid .expert-overview-card:nth-child(1){
+  background:linear-gradient(135deg, rgba(34,197,94,0.14), rgba(16,185,129,0.08), #ffffff);
+  border-color:rgba(34,197,94,0.35);
+}
+.expert-overview-grid .expert-overview-card:nth-child(2){
+  background:linear-gradient(135deg, rgba(59,130,246,0.14), rgba(14,165,233,0.08), #ffffff);
+  border-color:rgba(59,130,246,0.35);
+}
+.expert-overview-grid .expert-overview-card:nth-child(3){
+  background:linear-gradient(135deg, rgba(249,115,22,0.14), rgba(245,158,11,0.10), #ffffff);
+  border-color:rgba(249,115,22,0.35);
+}
+.expert-overview-grid .expert-overview-card:nth-child(4){
+  background:linear-gradient(135deg, rgba(168,85,247,0.14), rgba(236,72,153,0.08), #ffffff);
+  border-color:rgba(168,85,247,0.35);
+}
+
+/* Hover */
+.expert-overview-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(59,130,246,0.55);
+  box-shadow:0 12px 28px rgba(15,23,42,0.16);
+}
+
+/* Titles + text */
+.expert-overview-title{
+  font-size:14px;
+  font-weight:900;
+  color:#0f172a;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.expert-overview-desc{
+  font-size:12px;
+  color:#475569; /* slate-600 */
+  line-height:1.65;
+}
+
+/* Health score number — gradient text (with standard + webkit properties) */
+.expert-overview-value{
+  font-size:34px;
+  font-weight:950;
+  background:linear-gradient(90deg,#16a34a,#22c55e,#10b981);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:4px;
+}
+
+/* Daily targets list */
+.expert-targets{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:13px;
+  font-weight:750;
+  color:#0f172a;
+}
+.expert-targets span{
+  color:#334155;
+  font-weight:800;
+}
+
+/* Focus Areas box */
+.expert-focus-box{
+  margin-top:12px;
+  border-radius:16px;
+  padding:18px;
+  background:linear-gradient(135deg, rgba(2,132,199,0.10), rgba(59,130,246,0.06), #ffffff);
+  border:1px solid rgba(2,132,199,0.35);
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+}
+
+.expert-focus-title{
+  font-size:13px;
+  font-weight:950;
+  color:#0f172a;
+  margin-bottom:10px;
+}
+
+.expert-focus-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-size:13px;
+  color:#334155;
+  font-weight:700;
+}
+.expert-focus-list div{
+  background:rgba(15,23,42,0.04);
+  border:1px solid rgba(148,163,184,0.25);
+  padding:10px 12px;
+  border-radius:12px;
+}
+
+/* Next actions box */
+.expert-actions-box{
+  margin-top:12px;
+  border-radius:16px;
+  padding:18px;
+  background:linear-gradient(135deg, rgba(34,197,94,0.10), rgba(16,185,129,0.06), #ffffff);
+  border:1px solid rgba(34,197,94,0.35);
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+}
+.expert-actions-box ol{
+  margin:10px 0 0 18px;
+  padding:0;
+}
+.expert-actions-box li{
+  margin:6px 0;
+  color:#334155;
+  font-weight:700;
+  line-height:1.55;
+}
+
+/* Badges row */
+.expert-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.expert-badge{
+  font-size:11px;
+  font-weight:900;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,0.35);
+  background:rgba(255,255,255,0.7);
+  color:#0f172a;
+  backdrop-filter: blur(6px);
+}
+
+.expert-badge.green{
+  background:rgba(34,197,94,0.12);
+  border-color:rgba(34,197,94,0.35);
+  color:#166534;
+}
+.expert-badge.blue{
+  background:rgba(59,130,246,0.12);
+  border-color:rgba(59,130,246,0.35);
+  color:#1e3a8a;
+}
+.expert-badge.purple{
+  background:rgba(168,85,247,0.12);
+  border-color:rgba(168,85,247,0.35);
+  color:#6b21a8;
+}
+
+/* Tiny entry animation */
+.expert-overview-card{
+  animation:fadeInUp .35s ease;
+}
+@keyframes fadeInUp{
+  from{ opacity:0; transform:translateY(6px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* Focus Area Card */
+.expert-focus-box{
+  margin-top:10px;
+  padding:16px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f1e8e3,#eea24b);
+  border:1px solid #93c5fd;
+  color:#0f172a;
+}
+
+/* Next Action Card */
+.expert-actions-box{
+  margin-top:10px;
+  padding:16px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+  border:1px solid #6ee7b7;
+  color:#0f172a;
+}
+
+/* Overview Cards */
+.expert-overview-card{
+  border-radius:16px;
+  padding:18px;
+  background:linear-gradient(135deg,#ffffff,#f8fafc);
+  border:1px solid rgba(148,163,184,0.25);
+  box-shadow:0 6px 18px rgba(15,23,42,0.08);
+}
+
+/* ===== PREMIUM EXPERT DASHBOARD ===== */
+
+.expert-card{
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  transition:all .25s ease;
+  }
+  
+  .expert-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 40px rgba(0,0,0,0.1);
+  }
+  
+  /* Health */
+  .expert-card-health{
+  background:linear-gradient(135deg,#121312,#d1fae5);
+  border-color:#6ee7b7;
+  }
+  
+  /* Body */
+  .expert-card-body{
+  background:linear-gradient(135deg,#eff6ff,#dbeafe);
+  border-color:#93c5fd;
+  }
+  
+  /* Target */
+  .expert-card-target{
+  background:linear-gradient(135deg,#fff7ed,#fed7aa);
+  border-color:#fdba74;
+  }
+  
+  /* Plan */
+  .expert-card-plan{
+  background:linear-gradient(135deg,#faf5ff,#e9d5ff);
+  border-color:#d8b4fe;
+  }
+
+  /* ============================= */
+/* PREMIUM EXPERT DASHBOARD UI */
+/* ============================= */
+
+.premium-header{
+  padding:18px 20px;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  border-radius:18px 18px 0 0;
+  color:white;
+  }
+  
+  .expert-title{
+  font-size:18px;
+  font-weight:800;
+  }
+  
+  .expert-subtitle{
+  font-size:13px;
+  opacity:.75;
+  margin-top:4px;
+  }
+  
+  .expert-accuracy-pill{
+  margin-top:8px;
+  display:inline-block;
+  background:rgba(255,255,255,.12);
+  padding:6px 12px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+  }
+  
+  /* GRID */
+  
+  .expert-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:16px;
+  }
+  
+  /* CARDS */
+  
+  .expert-card{
+  padding:16px;
+  border-radius:16px;
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:all .25s ease;
+  }
+  
+  .expert-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  }
+  
+  /* HEALTH SCORE */
+  
+  .expert-card-health{
+  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+  border-color:#6ee7b7;
+  }
+  
+  /* BODY */
+  
+  .expert-card-body{
+  background:linear-gradient(135deg,#eff6ff,#dbeafe);
+  border-color:#93c5fd;
+  }
+  
+  /* TARGET */
+  
+  .expert-card-target{
+  background:linear-gradient(135deg,#fff7ed,#fed7aa);
+  border-color:#fdba74;
+  }
+  
+  /* PLAN */
+  
+  .expert-card-plan{
+  background:linear-gradient(135deg,#faf5ff,#e9d5ff);
+  border-color:#c4b5fd;
+  }
+  
+  /* TEXT */
+  
+  .expert-card-title{
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:8px;
+  }
+  
+  .expert-big-number{
+  font-size:30px;
+  font-weight:900;
+  color:#16a34a;
+  }
+  
+  .expert-muted{
+  font-size:12px;
+  color:#475569;
+  margin-top:6px;
+  }
+
+  /* ===============================
+   HEALTH SCORE BADGE
+================================ */
+
+.health-score-pill {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 10px 18px;
+  border-radius: 999px;
+  
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  
+  color: #ffffff;
+  
+  background: linear-gradient(135deg,#16a34a,#22c55e);
+  
+  border: 1px solid rgba(255,255,255,0.15);
+  
+  box-shadow:
+  0 4px 14px rgba(34,197,94,0.45),
+  inset 0 1px 0 rgba(255,255,255,0.25);
+  
+  backdrop-filter: blur(6px);
+  
+  transition: all .25s ease;
+  
+  }
+  
+  /* hover effect */
+  
+  .health-score-pill:hover{
+  
+  transform: translateY(-2px);
+  
+  box-shadow:
+  0 10px 22px rgba(34,197,94,0.55);
+  
+  }
+
+  .health-score-title{
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:0.3px;
+    color:#f1f5f9;
+    }
