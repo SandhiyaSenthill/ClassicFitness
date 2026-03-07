@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Exercise Hub — 1300+ Exercises | Classic Fitness Gym | Arakkonam</title>
+  <meta name="description" content="Browse 1300+ exercises with real animated demonstrations. Filter by muscle group, equipment, difficulty. Classic Fitness Gym, Arakkonam." />
+  <meta name="keywords" content=" Exercise Huby, gym exercises, workout guide, classic fitness arakkonam, muscle group exercises" />
+  <meta name="author" content="Classic Fitness Gym" />
+  <meta property="og:title" content=" Exercise Hub — Classic Fitness Gym" />
+  <meta property="og:description" content="1300+ exercises with animated demos and step-by-step instructions." />
+  <meta property="og:image" content="assets/img/logo-1.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/exercises.css" />
+</head>
+<body>
+
+  <!-- DIET BAR -->
+  <div class="diet-announce-bar" id="dietAnnounceBar">
+    <div class="diet-bar-inner">
+      <span class="diet-bar-pulse"></span>
+      <span class="diet-bar-text">
+        🥗 <strong>FREE Personalized Diet Plan</strong> — Open to Everyone, Gym Members & Non-Members!
+        <span class="diet-bar-sub">Limited Time Offer</span>
+      </span>
+      <button class="diet-bar-btn" id="dietBarBtn">Grab It Free →</button>
+      <button class="diet-bar-close" id="dietBarClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="top">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">
+        <div class="brand-logo"><img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo"></div>
+        <div class="brand-text">
+          <div class="brand-title">CLASSIC FITNESS</div>
+          <div class="brand-sub">UNISEX [AC] GYM • ARAKKONAM</div>
+        </div>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">Who We are</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-link dropdown-toggle">Facilities <span class="arrow">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="index.html#services">Weight Training</a>
+            <a href="index.html#services">Cardio Zone</a>
+            <a href="index.html#services">Personal Training</a>
+            <a href="index.html#services">Fat Loss Programs</a>
+            <a href="index.html#services">Muscle Gain Programs</a>
+            <a href="index.html#services">Group Training</a>
+            <a href="index.html#services">Aerobics</a>
+            <a href="index.html#services">Body Transformation</a>
+          </div>
+        </div>
+        <a href="index.html#pricing" class="nav-link">Membership</a>
+        <a href="index.html#trainers" class="nav-link">Our instructor</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="index.html#location" class="nav-link">Location</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="bmi.html" class="nav-link nav-link-bmi">⚖️ BMI Check</a>
+        <a href="index.html#diet-plan" class="nav-link nav-link-diet">🥗 Free Diet Plan</a>
+        <a href="calorie.html" class="nav-link nav-link-calorie">🍱 Calorie Calc</a>
+        <a href="exercises.html" class="nav-link nav-link-exercises active-page">💪 Exercises</a>
+        <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
+      </nav>
+      <div class="nav-right">
+        <a href="index.html" class="nav-quick nav-quick-gallery" aria-label="Home">
+          <span class="nav-quick-icon">🏠</span>
+          <span class="nav-quick-text">Home</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="ex-hero">
+    <div class="ex-hero-bg"></div>
+    <div class="container ex-hero-content">
+      <div class="ex-hero-badge">💪 Real Animated Demos · 100% Free</div>
+      <h1>Exercise Hub</h1>
+      <p>Browse 1300+ exercises with animated demonstrations, step-by-step instructions, and muscle targeting. Filter by body part, equipment, or difficulty level.</p>
+      <div class="ex-hero-stats">
+        <div class="ex-hero-stat">
+          <span class="ex-hero-stat-num">1300+</span>
+          <span class="ex-hero-stat-lbl">Exercises</span>
+        </div>
+        <div class="ex-hero-stat-divider"></div>
+        <div class="ex-hero-stat">
+          <span class="ex-hero-stat-num">11</span>
+          <span class="ex-hero-stat-lbl">Body Parts</span>
+        </div>
+        <div class="ex-hero-stat-divider"></div>
+        <div class="ex-hero-stat">
+          <span class="ex-hero-stat-num">3</span>
+          <span class="ex-hero-stat-lbl">Difficulty Levels</span>
+        </div>
+        <div class="ex-hero-stat-divider"></div>
+        <div class="ex-hero-stat">
+          <span class="ex-hero-stat-num">Free</span>
+          <span class="ex-hero-stat-lbl">Always</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN LIBRARY -->
+  <section class="ex-section" id="exercise-library">
+    <div class="ex-app-wrap">
+
+      <!-- STICKY FILTER BAR -->
+      <div class="ex-filterbar" id="exFilterbar">
+        <div class="ex-filterbar-inner">
+          <div class="ex-search-wrap">
+            <span class="ex-search-icon">🔍</span>
+            <input type="text" id="exSearch" class="ex-search-input"
+              placeholder="Search exercise, muscle, equipment..." autocomplete="off" />
+            <button class="ex-search-clear" id="exSearchClear" style="display:none">✕</button>
+          </div>
+          <div class="ex-filter-row">
+            <span class="ex-count-badge" id="exCount">Loading…</span>
+            <div class="ex-filter-group">
+              <select class="ex-select" id="diffFilter">
+                <option value="">All Levels</option>
+                <option value="beginner">🟢 Beginner</option>
+                <option value="intermediate">🟡 Intermediate</option>
+                <option value="advanced">🔴 Advanced</option>
+              </select>
+              <select class="ex-select" id="equipFilter">
+                <option value="">All Equipment</option>
+                <option value="body weight">Body Weight</option>
+                <option value="barbell">Barbell</option>
+                <option value="dumbbell">Dumbbell</option>
+                <option value="cable">Cable</option>
+                <option value="kettlebell">Kettlebell</option>
+                <option value="leverage machine">Machine</option>
+                <option value="resistance band">Resistance Band</option>
+                <option value="ez barbell">EZ Bar</option>
+                <option value="medicine ball">Medicine Ball</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BODY PART TABS -->
+      <div class="ex-tabs-wrap">
+        <div class="ex-tabs" id="exTabs">
+          <button class="ex-tab active" data-part="all">🏋️ All</button>
+          <button class="ex-tab" data-part="chest">💪 Chest</button>
+          <button class="ex-tab" data-part="back">🔙 Back</button>
+          <button class="ex-tab" data-part="shoulders">🙆 Shoulders</button>
+          <button class="ex-tab" data-part="upper arms">💪 Arms</button>
+          <button class="ex-tab" data-part="lower arms">🤜 Forearms</button>
+          <button class="ex-tab" data-part="upper legs">🦵 Legs</button>
+          <button class="ex-tab" data-part="lower legs">🦶 Calves</button>
+          <button class="ex-tab" data-part="waist">🎯 Core</button>
+          <button class="ex-tab" data-part="cardio">❤️ Cardio</button>
+          <button class="ex-tab" data-part="neck">🧠 Neck</button>
+        </div>
+      </div>
+
+      <!-- EXERCISE GRID -->
+      <div class="ex-grid-wrap">
+        <div class="ex-grid" id="exGrid"></div>
+        <div class="ex-loading" id="exLoading">
+          <div class="ex-spinner"></div>
+          <p>Loading exercises…</p>
+        </div>
+        <div class="ex-empty" id="exEmpty" style="display:none">
+          <div class="ex-empty-icon">🔍</div>
+          <h3>No exercises found</h3>
+          <p>Try a different search or filter</p>
+          <button class="ex-clear-btn" id="exClearAll">Clear All Filters</button>
+        </div>
+        <div class="ex-loadmore-wrap" id="exLoadMoreWrap" style="display:none">
+          <button class="ex-loadmore-btn" id="exLoadMore">Load More Exercises</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="ex-modal-overlay" id="exModalOverlay" aria-hidden="true">
+    <div class="ex-modal-card" id="exModalCard" role="dialog" aria-modal="true">
+      <button class="ex-modal-close" id="exModalClose" aria-label="Close">✕</button>
+      <div class="ex-modal-body" id="exModalBody"></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="ex-cta-section">
+    <div class="container">
+      <div class="ex-cta-card">
+        <div class="ex-cta-left">
+          <h2>Ready to Start Training?</h2>
+          <p>Join Classic Fitness and get expert guidance from our certified trainers — personalised for your goals.</p>
+        </div>
+        <div class="ex-cta-right">
+          <a href="index.html#diet-plan" class="btn btn-primary">🥗 Get Free Diet Plan</a>
+          <a href="calorie.html" class="btn btn-outline" style="color:#0d41de;border-color:rgba(255,255,255,.3)">🍱 Calorie Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-brand">
+            <div class="footer-logo"><img src="assets/img/logo-1.jpeg" alt="Classic Fitness Logo"></div>
+            <div>
+              <div class="footer-title">CLASSIC FITNESS</div>
+              <div class="footer-sub">Unisex [AC] Gym • Arakkonam</div>
+            </div>
+          </div>
+          <p class="footer-desc">Transform your body and mind at Arakkonam's premier fitness destination. Professional training, modern equipment, and a supportive community.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#services">Facilities</a></li>
+            <li><a href="index.html#pricing">Membership</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="bmi.html">BMI Calculator</a></li>
+            <li><a href="calorie.html">Calorie Calculator</a></li>
+            <li><a href="exercises.html">Exercise Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#services">Weight Training</a></li>
+            <li><a href="index.html#services">Cardio</a></li>
+            <li><a href="index.html#services">Personal Training</a></li>
+            <li><a href="index.html#services">Fat Loss</a></li>
+            <li><a href="index.html#services">Muscle Gain</a></li>
+            <li><a href="index.html#services">Group Training</a></li>
+            <li><a href="index.html#services">Aerobics</a></li>
+            <li><a href="index.html#services">Body Transformation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact">
+            <li>📍 Griblispet, Arakkonam - 631002</li>
+            <li>📞 <a href="tel:8668007901">8668007901</a></li>
+            <li>📞 <a href="tel:9789444997">9789444997</a></li>
+            <li>🕒 Mon–Sat: 5AM–11PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Classic Fitness Gym. All Rights Reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATS -->
+  <div class="float-actions">
+    <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">💬</a>
+    <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">📞</a>
+    <button class="float-btn float-top" id="backToTop" aria-label="Back to top">↑</button>
+  </div>
+  <div class="toast" id="toastMessage">
+    <div class="toast-icon">✅</div>
+    <div class="toast-text" id="toastText">Done!</div>
+  </div>
+
+  <!-- JOIN MODAL -->
+  <div class="join-modal" id="joinModal">
+    <div class="join-modal-overlay" id="joinModalOverlay"></div>
+    <div class="join-modal-content">
+      <button class="join-modal-close" id="joinModalClose">&times;</button>
+      <h2>Join Classic Fitness</h2>
+      <p class="join-modal-sub">Fill the details below and we will contact you shortly.</p>
+      <form id="joinForm" class="join-form">
+        <div class="form-group"><label>Full Name *</label><input type="text" id="joinName" required></div>
+        <div class="form-group"><label>Mobile Number *</label><input type="tel" id="joinMobile" required></div>
+        <div class="form-group">
+          <label>Fitness Goal *</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="joinGoalSelect">
+              <div class="custom-select-trigger">Select Goal <span class="custom-arrow">▾</span></div>
+              <div class="custom-options">
+                <div class="custom-option" data-value="">Select Goal</div>
+                <div class="custom-option" data-value="Weight Loss">Weight Loss</div>
+                <div class="custom-option" data-value="Muscle Gain">Muscle Gain</div>
+                <div class="custom-option" data-value="General Fitness">General Fitness</div>
+                <div class="custom-option" data-value="Body Transformation">Body Transformation</div>
+              </div>
+            </div>
+            <input type="hidden" id="joinGoal" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="joinTimeSelect">
+              <div class="custom-select-trigger">Morning <span class="custom-arrow">▾</span></div>
+              <div class="custom-options">
+                <div class="custom-option" data-value="Morning">Morning</div>
+                <div class="custom-option" data-value="Evening">Evening</div>
+                <div class="custom-option" data-value="Flexible">Flexible</div>
+              </div>
+            </div>
+            <input type="hidden" id="joinTime" value="Morning">
+          </div>
+        </div>
+        <div class="form-group"><label>Message (Optional)</label><textarea id="joinMessage" rows="3"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-full">Submit & Contact on WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/exercises.js"></script>
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('show');
+        const spans = navToggle.querySelectorAll('span');
+        if (navLinks.classList.contains('show')) {
+          spans[0].style.transform = 'rotate(45deg) translateY(7px)';
+          spans[1].style.opacity   = '0';
+          spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
+        } else {
+          spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        }
+      });
+      document.addEventListener('click', function(e) {
+        if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+          navToggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

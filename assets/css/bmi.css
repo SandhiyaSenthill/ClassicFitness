@@ -2068,9 +2068,25 @@ border-radius: 0 10px 10px 0 !important;
 }
 
 @media(max-width:700px){
-  .expert-overview-grid{ grid-template-columns:1fr; }
+  .expert-overview-grid{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+  .expert-overview-grid::-webkit-scrollbar{
+    display: none;
+  }
+  .expert-overview-grid .expert-overview-card{
+    min-width: 220px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
 }
-
 /* Base card */
 .expert-overview-card{
   border-radius:16px;
@@ -2471,3 +2487,367 @@ border-radius: 0 10px 10px 0 !important;
     letter-spacing:0.3px;
     color:#f1f5f9;
     }
+/* ==========================================
+   NEW FEATURES — SOCIAL PROOF BANNER
+   ========================================== */
+.bmi-trust-banner {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 14px 0;
+}
+.bmi-trust-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bmi-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+}
+.bmi-trust-item strong { color: #0f172a; }
+.bmi-trust-icon { font-size: 16px; }
+.bmi-trust-divider {
+  width: 1px;
+  height: 20px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .bmi-trust-inner { gap: 6px; }
+  .bmi-trust-divider { display: none; }
+  .bmi-trust-item { font-size: 12px; }
+}
+
+/* ==========================================
+   NEW FEATURES — SHARE ROW
+   ========================================== */
+.bmi-share-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.bmi-share-btn {
+  flex: 1;
+  padding: 12px 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.bmi-share-ig {
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+  color: #6366f1;
+  border: 1.5px solid rgba(99,102,241,0.3);
+}
+.bmi-share-ig:hover {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.bmi-share-wa {
+  background: linear-gradient(135deg, rgba(37,211,102,0.12), rgba(18,140,71,0.12));
+  color: #16a34a;
+  border: 1.5px solid rgba(34,197,94,0.3);
+}
+.bmi-share-wa:hover {
+  background: linear-gradient(135deg, #25d366, #128c47);
+  color: #fff;
+  transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+  .bmi-share-row { flex-direction: column; }
+}
+
+/* ==========================================
+   NEW FEATURES — STICKY BOOK CONSULTATION CTA
+   ========================================== */
+.bmi-sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 8000;
+  background: linear-gradient(135deg, #0f172a, #1e3a5f);
+  border-top: 2px solid rgba(59,130,246,0.4);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.3);
+  animation: slideUpIn 0.4s ease;
+}
+@keyframes slideUpIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.bmi-sticky-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: 820px;
+}
+.bmi-sticky-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bmi-sticky-cta-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+}
+.bmi-sticky-cta-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+}
+.bmi-sticky-cta-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 10px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.4);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.bmi-sticky-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(34,197,94,0.5);
+  color: #fff;
+}
+@media (max-width: 480px) {
+  .bmi-sticky-cta-title { font-size: 13px; }
+  .bmi-sticky-cta-sub   { display: none; }
+  .bmi-sticky-cta-btn   { font-size: 13px; padding: 10px 16px; }
+}
+
+/* ==========================================
+   MOBILE RESULT CARD — FULL FIX
+   ========================================== */
+
+   @media (max-width: 600px) {
+
+    /* Fix 1: Result card padding so nothing bleeds to edges */
+    .bmi-result-card {
+      padding: 18px 14px !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+    }
+  
+    /* Fix 2: Health Score card — stop score being cut off */
+    .bmi-healthbar {
+      padding: 10px 12px !important;
+      box-sizing: border-box !important;
+    }
+    .bmi-healthbar > div {
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+    }
+    #healthScorePill {
+      font-size: 13px !important;
+      padding: 4px 8px !important;
+      white-space: nowrap !important;
+    }
+    #healthScoreLabel {
+      font-size: 13px !important;
+      white-space: nowrap !important;
+    }
+    .health-score-title {
+      font-size: 13px !important;
+    }
+  
+    /* Fix 3: Cal boxes — force 2 equal columns, no overflow */
+    .bmi-cal-row {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .bmi-cal-box {
+      min-width: 0 !important;
+      padding: 12px 8px !important;
+      box-sizing: border-box !important;
+    }
+    .bmi-cal-num {
+      font-size: 22px !important;
+    }
+    .bmi-cal-label {
+      font-size: 10px !important;
+      letter-spacing: 0.3px !important;
+    }
+    .bmi-cal-unit {
+      font-size: 11px !important;
+    }
+  
+    /* Fix 4: Goal message text overflow */
+    .bmi-goal-msg {
+      font-size: 13px !important;
+      line-height: 1.6 !important;
+      word-break: break-word !important;
+      overflow-wrap: break-word !important;
+      padding: 12px 12px !important;
+    }
+  
+    /* Fix 5: Score row — circle + info side by side properly */
+    .bmi-score-row {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+      flex-wrap: nowrap !important;
+    }
+    .bmi-circle {
+      flex-shrink: 0 !important;
+      width: 100px !important;
+      height: 100px !important;
+    }
+    .bmi-circle-svg {
+      width: 100px !important;
+      height: 100px !important;
+    }
+    .bmi-score-info {
+      flex: 1 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+  
+    /* Fix 6: BMI scale numbers don't overflow */
+    .bmi-scale-nums {
+      font-size: 11px !important;
+      padding: 0 !important;
+    }
+    .bmi-scale-segment {
+      font-size: 10px !important;
+      letter-spacing: 0 !important;
+    }
+  
+    /* Fix 7: Share row stacks cleanly */
+    .bmi-share-row {
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+    .bmi-share-btn {
+      font-size: 13px !important;
+      padding: 11px 10px !important;
+    }
+  
+    /* Fix 8: CTA box text wraps properly */
+    .bmi-cta-text {
+      font-size: 13px !important;
+      line-height: 1.55 !important;
+      word-break: break-word !important;
+    }
+    .bmi-cta-btn {
+      font-size: 13px !important;
+      padding: 13px 14px !important;
+    }
+  
+    /* Fix 9: Expert panel fits width */
+    .expert-panel {
+      border-radius: 14px !important;
+      overflow: hidden !important;
+    }
+    .expert-wa-btn {
+      width: calc(100% - 28px) !important;
+      margin: 0 14px 16px !important;
+      font-size: 13px !important;
+    }
+    .expert-tabs {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    .expert-tab {
+      font-size: 11px !important;
+      padding: 8px 10px !important;
+      white-space: nowrap !important;
+    }
+  }
+  
+  /* Extra small phones */
+  @media (max-width: 380px) {
+    .bmi-result-card {
+      padding: 14px 10px !important;
+    }
+    .bmi-cal-row {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 6px !important;
+    }
+    .bmi-cal-num {
+      font-size: 19px !important;
+    }
+    .bmi-cal-label {
+      font-size: 9px !important;
+    }
+    .bmi-circle {
+      width: 86px !important;
+      height: 86px !important;
+    }
+    .bmi-circle-svg {
+      width: 86px !important;
+      height: 86px !important;
+    }
+    .bmi-circle-num {
+      font-size: 20px !important;
+    }
+  }
+  /* ===== STRETCH SECTIONS ===== */
+.workout-stretch-section {
+  margin: 10px 16px;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.warmup-section {
+  background: rgba(249,115,22,0.08);
+  border: 1px solid rgba(249,115,22,0.2);
+}
+.cooldown-section {
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+}
+.rest-stretch-section {
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+}
+.workout-stretch-header {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.workout-stretch-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.workout-stretch-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.workout-stretch-row:last-child { border-bottom: none; }
+.workout-stretch-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+.workout-stretch-info { display: flex; flex-direction: column; gap: 2px; }
+.workout-stretch-name { font-size: 13px; font-weight: 700; color: #fff; }
+.workout-stretch-meta { font-size: 11px; color: rgba(255,255,255,0.45); }

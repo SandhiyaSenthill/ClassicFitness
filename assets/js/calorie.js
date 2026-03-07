@@ -241,6 +241,7 @@
     bindCalorieGoal();
     updateCalorieGoalBar();
     initTabs();
+    bindCombos();
   }
 
   // ==========================================
@@ -663,32 +664,54 @@ input.addEventListener('input', () => {
 }
 
 function updateCalorieGoalBar() {
-const goalInput = document.getElementById('calorieGoalInput');
-const bar       = document.getElementById('calorieProgressBar');
-const text      = document.getElementById('calorieGoalText');
+  const goalInput = document.getElementById('calorieGoalInput');
+  const text      = document.getElementById('calorieGoalText');
+  if (!goalInput) return;
 
-if (!goalInput || !bar || !text) return;
+  const goal = parseFloat(goalInput.value) || 2000;
 
-const goal = parseFloat(goalInput.value) || 2000;
+  const totalCalories = [
+    ...state.log.breakfast,
+    ...state.log.lunch,
+    ...state.log.dinner,
+    ...state.log.snacks
+  ].reduce((sum, item) => sum + (item.cal || 0), 0);
 
-const totalCalories = [
-  ...state.log.breakfast,
-  ...state.log.lunch,
-  ...state.log.dinner,
-  ...state.log.snacks
-].reduce((sum, item) => sum + (item.cal || 0), 0);
+  const percent    = Math.min((totalCalories / goal) * 100, 100);
+  const remaining  = Math.max(0, goal - Math.round(totalCalories));
+  const isOver     = totalCalories > goal;
 
-const percent = Math.min((totalCalories / goal) * 100, 100);
+  // ── Update ring ──
+  const ring = document.getElementById('calorieRingProgress');
+  if (ring) {
+    const circumference = 314;
+    const offset = circumference - (percent / 100 * circumference);
+    ring.style.strokeDashoffset = offset;
+    ring.style.stroke = isOver ? '#ef4444' : percent > 75 ? '#f59e0b' : '#22c55e';
+  }
+  const ringNum = document.getElementById('calorieRingNum');
+  if (ringNum) ringNum.textContent = Math.round(totalCalories);
 
-bar.style.width = percent + '%';
+  const ringRemain = document.getElementById('calorieRingRemain');
+  if (ringRemain) {
+    ringRemain.textContent = isOver
+      ? `${Math.round(totalCalories - goal)} over`
+      : `${remaining} left`;
+    ringRemain.style.color = isOver ? '#ef4444' : '#22c55e';
+  }
 
-text.innerHTML = `${Math.round(totalCalories)} / ${goal} kcal`;
+  // ── Legacy progress bar (kept for backward compat but hidden) ──
+  const bar = document.getElementById('calorieProgressBar');
+  if (bar) {
+    bar.style.width = percent + '%';
+    bar.style.background = isOver ? '#E53935' : 'linear-gradient(90deg,#4CAF50,#8BC34A)';
+  }
 
-if (percent > 100) {
-  bar.style.background = '#E53935';
-} else {
-  bar.style.background = 'linear-gradient(90deg,#4CAF50,#8BC34A)';
-}
+  if (text) {
+    text.innerHTML = isOver
+      ? `⚠️ You're <strong>${Math.round(totalCalories - goal)} kcal</strong> over your goal today`
+      : `${Math.round(totalCalories)} / ${goal} kcal — ${remaining} kcal remaining`;
+  }
 }
 
   // ==========================================
@@ -1661,6 +1684,102 @@ macroChart = new Chart(ctx, {
     var fname = 'ClassicFitness_CalorieLog_' + new Date().toISOString().slice(0, 10) + '.pdf';
     doc.save(fname);
     showToast('PDF downloaded!');
+  }
+
+  // ==========================================
+  //  TAMIL MEAL COMBOS — QUICK ADD
+  // ==========================================
+  const COMBO_FOODS = {
+    breakfast1: [
+      { id: 1,  name: 'Idli',              category: 'breakfast', unit: '1 piece (40g)',    cal: 39,  protein: 1.7, carbs: 8.0,  fat: 0.2, fiber: 0.4, sugar: 0.1, satFat: 0.05, polyFat: 0.05, monoFat: 0.05, transFat: 0, cholesterol: 0 },
+      { id: 1,  name: 'Idli',              category: 'breakfast', unit: '1 piece (40g)',    cal: 39,  protein: 1.7, carbs: 8.0,  fat: 0.2, fiber: 0.4, sugar: 0.1, satFat: 0.05, polyFat: 0.05, monoFat: 0.05, transFat: 0, cholesterol: 0 },
+      { id: 901, name: 'Sambar (small)',   category: 'breakfast', unit: '1 cup (150ml)',    cal: 68,  protein: 3.5, carbs: 11.0, fat: 1.5, fiber: 2.5, sugar: 2.0, satFat: 0.3,  polyFat: 0.5,  monoFat: 0.5,  transFat: 0, cholesterol: 0 },
+      { id: 902, name: 'Coconut Chutney', category: 'breakfast', unit: '2 tbsp (40g)',     cal: 75,  protein: 0.8, carbs: 3.5,  fat: 6.5, fiber: 1.5, sugar: 1.0, satFat: 5.5,  polyFat: 0.2,  monoFat: 0.3,  transFat: 0, cholesterol: 0 }
+    ],
+    breakfast2: [
+      { id: 3,  name: 'Dosa (Masala)',     category: 'breakfast', unit: '1 medium (130g)', cal: 210, protein: 5.5, carbs: 36.0, fat: 5.5, fiber: 1.5, sugar: 0.8, satFat: 1.0,  polyFat: 1.2,  monoFat: 2.5,  transFat: 0, cholesterol: 0 },
+      { id: 901, name: 'Sambar (small)',   category: 'breakfast', unit: '1 cup (150ml)',    cal: 68,  protein: 3.5, carbs: 11.0, fat: 1.5, fiber: 2.5, sugar: 2.0, satFat: 0.3,  polyFat: 0.5,  monoFat: 0.5,  transFat: 0, cholesterol: 0 },
+      { id: 902, name: 'Coconut Chutney', category: 'breakfast', unit: '2 tbsp (40g)',     cal: 75,  protein: 0.8, carbs: 3.5,  fat: 6.5, fiber: 1.5, sugar: 1.0, satFat: 5.5,  polyFat: 0.2,  monoFat: 0.3,  transFat: 0, cholesterol: 0 }
+    ],
+    lunch1: [
+      { id: 20, name: 'Steamed Rice (White)', category: 'rice',  unit: '1 cup cooked (180g)', cal: 240, protein: 4.4, carbs: 52.0, fat: 0.5, fiber: 0.6, sugar: 0.1, satFat: 0.1, polyFat: 0.1, monoFat: 0.1, transFat: 0, cholesterol: 0 },
+      { id: 903, name: 'Dal (Toor)',          category: 'dal',   unit: '1 cup (200ml)',       cal: 140, protein: 8.0, carbs: 22.0, fat: 2.5, fiber: 4.0, sugar: 1.5, satFat: 0.5, polyFat: 0.8, monoFat: 1.0, transFat: 0, cholesterol: 0 },
+      { id: 904, name: 'Mixed Veg Curry',     category: 'dal',   unit: '1 cup (150g)',        cal: 110, protein: 3.0, carbs: 14.0, fat: 4.5, fiber: 3.0, sugar: 3.0, satFat: 0.8, polyFat: 1.2, monoFat: 2.0, transFat: 0, cholesterol: 0 },
+      { id: 24, name: 'Curd Rice',            category: 'rice',  unit: '1 cup (200g)',        cal: 200, protein: 6.0, carbs: 34.0, fat: 5.0, fiber: 0.5, sugar: 4.0, satFat: 3.0, polyFat: 0.3, monoFat: 1.2, transFat: 0, cholesterol: 15 }
+    ],
+    lunch2: [
+      { id: 22, name: 'Biryani (Chicken)',    category: 'rice',  unit: '1 plate (350g)',      cal: 490, protein: 28.0, carbs: 56.0, fat: 16.0, fiber: 2.0, sugar: 2.5, satFat: 4.5, polyFat: 3.5, monoFat: 6.0, transFat: 0, cholesterol: 75 },
+      { id: 905, name: 'Onion Raita',         category: 'dairy', unit: '1 cup (150g)',        cal: 75,  protein: 3.5, carbs: 8.0,  fat: 3.0, fiber: 0.5, sugar: 5.0, satFat: 1.8, polyFat: 0.2, monoFat: 0.8, transFat: 0, cholesterol: 10 },
+      { id: 906, name: 'Salad (Garden)',      category: 'breakfast', unit: '1 bowl (100g)',   cal: 35,  protein: 1.5, carbs: 6.0,  fat: 0.5, fiber: 2.0, sugar: 3.0, satFat: 0.1, polyFat: 0.1, monoFat: 0.2, transFat: 0, cholesterol: 0  }
+    ],
+    dinner1: [
+      { id: 40, name: 'Roti / Chapati',       category: 'roti',  unit: '1 piece (35g)',       cal: 80,  protein: 3.0, carbs: 15.0, fat: 1.0, fiber: 2.2, sugar: 0.2, satFat: 0.2, polyFat: 0.3, monoFat: 0.3, transFat: 0, cholesterol: 0 },
+      { id: 40, name: 'Roti / Chapati',       category: 'roti',  unit: '1 piece (35g)',       cal: 80,  protein: 3.0, carbs: 15.0, fat: 1.0, fiber: 2.2, sugar: 0.2, satFat: 0.2, polyFat: 0.3, monoFat: 0.3, transFat: 0, cholesterol: 0 },
+      { id: 903, name: 'Dal (Toor)',          category: 'dal',   unit: '1 cup (200ml)',       cal: 140, protein: 8.0, carbs: 22.0, fat: 2.5, fiber: 4.0, sugar: 1.5, satFat: 0.5, polyFat: 0.8, monoFat: 1.0, transFat: 0, cholesterol: 0 },
+      { id: 905, name: 'Onion Raita',         category: 'dairy', unit: '1 cup (150g)',        cal: 75,  protein: 3.5, carbs: 8.0,  fat: 3.0, fiber: 0.5, sugar: 5.0, satFat: 1.8, polyFat: 0.2, monoFat: 0.8, transFat: 0, cholesterol: 10 }
+    ],
+    snack1: [
+      { id: 159, name: 'Boiled Egg',          category: 'egg',   unit: '1 large (50g)',       cal: 77,  protein: 6.3, carbs: 0.6,  fat: 5.3, fiber: 0.0, sugar: 0.6, satFat: 1.6, polyFat: 0.7, monoFat: 2.0, transFat: 0, cholesterol: 186 },
+      { id: 159, name: 'Boiled Egg',          category: 'egg',   unit: '1 large (50g)',       cal: 77,  protein: 6.3, carbs: 0.6,  fat: 5.3, fiber: 0.0, sugar: 0.6, satFat: 1.6, polyFat: 0.7, monoFat: 2.0, transFat: 0, cholesterol: 186 },
+      { id: 159, name: 'Boiled Egg',          category: 'egg',   unit: '1 large (50g)',       cal: 77,  protein: 6.3, carbs: 0.6,  fat: 5.3, fiber: 0.0, sugar: 0.6, satFat: 1.6, polyFat: 0.7, monoFat: 2.0, transFat: 0, cholesterol: 186 },
+      { id: 202, name: 'Banana',              category: 'fruits', unit: '1 medium (120g)',    cal: 105, protein: 1.3, carbs: 27.0, fat: 0.4, fiber: 3.1, sugar: 14.4, satFat: 0.1, polyFat: 0.1, monoFat: 0.1, transFat: 0, cholesterol: 0 }
+    ]
+  };
+
+  const COMBO_MEAL_MAP = {
+    breakfast1: 'breakfast', breakfast2: 'breakfast',
+    lunch1: 'lunch', lunch2: 'lunch',
+    dinner1: 'dinner', snack1: 'snacks'
+  };
+
+  function bindCombos() {
+    const grid = document.getElementById('calCombosGrid');
+    if (!grid) return;
+    grid.querySelectorAll('.cal-combo-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key   = btn.getAttribute('data-combo');
+        const foods = COMBO_FOODS[key];
+        const meal  = COMBO_MEAL_MAP[key] || 'lunch';
+        if (!foods) return;
+
+        foods.forEach(food => {
+          const entry = {
+            id:          Date.now() + Math.random(),
+            foodId:      food.id,
+            name:        food.name,
+            unit:        food.unit,
+            qty:         1,
+            cal:         round1(food.cal),
+            protein:     round1(food.protein),
+            carbs:       round1(food.carbs),
+            fat:         round1(food.fat),
+            fiber:       round1(food.fiber || 0),
+            sugar:       round1(food.sugar || 0),
+            satFat:      round1(food.satFat || 0),
+            polyFat:     round1(food.polyFat || 0),
+            monoFat:     round1(food.monoFat || 0),
+            transFat:    round1(food.transFat || 0),
+            cholesterol: round1(food.cholesterol || 0),
+            source:      'Combo'
+          };
+          state.log[meal].push(entry);
+        });
+
+        saveToStorage();
+        renderAll();
+
+        // Expand the meal section
+        const sec = document.getElementById('meal' + meal.charAt(0).toUpperCase() + meal.slice(1));
+        if (sec) sec.classList.remove('collapsed');
+
+        const totalCal = foods.reduce((s, f) => s + f.cal, 0);
+        showToast(`✅ Combo added to ${meal}! (~${Math.round(totalCal)} kcal)`);
+
+        // Visual feedback on button
+        btn.classList.add('cal-combo-added');
+        setTimeout(() => btn.classList.remove('cal-combo-added'), 1500);
+      });
+    });
   }
 
   // ==========================================

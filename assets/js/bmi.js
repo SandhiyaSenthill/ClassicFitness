@@ -768,6 +768,35 @@ Please contact me regarding joining Classic Fitness Gym!`
       resultCard.classList.add('visible');
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
+      // ---- Show share row & sticky CTA ----
+      const shareRow = document.getElementById('bmiShareRow');
+      if (shareRow) shareRow.style.display = 'flex';
+      const stickyCta = document.getElementById('bmiStickyCta');
+      if (stickyCta) stickyCta.style.display = 'flex';
+
+      // ---- Quick WhatsApp share button ----
+      const shareWaQuick = document.getElementById('bmiShareWaQuick');
+      if (shareWaQuick) {
+        shareWaQuick.onclick = () => {
+          const txt = encodeURIComponent(
+            `⚖️ My BMI Result — Classic Fitness Gym\n\n👤 ${bmiName || 'Member'}\n📊 BMI: ${bmiRounded} (${category})\n🎯 Goal Calories: ${goalCal} kcal/day\n💪 Protein: ${protein}g/day\n\nChecked at classicfitness.org/bmi`
+          );
+          window.open(`https://wa.me/?text=${txt}`, '_blank');
+        };
+      }
+
+      // ---- Screenshot share button ----
+      const shareImgBtn = document.getElementById('bmiShareImgBtn');
+      if (shareImgBtn) {
+        shareImgBtn.onclick = () => {
+          // Scroll result card into view and prompt user
+          resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => {
+            showToast('📸 Take a screenshot now to share your results on WhatsApp or Instagram!');
+          }, 400);
+        };
+      }
+
       // ---- Activity label ----
       // FIX 6: Range-based activity label — immune to float precision issues
       let activityLabel = 'Moderate';
@@ -935,6 +964,11 @@ Please contact me regarding joining Classic Fitness Gym!`
 
       const ep = document.getElementById('expertPanel');
       if (ep) ep.style.display = 'none';
+
+      const shareRow = document.getElementById('bmiShareRow');
+      if (shareRow) shareRow.style.display = 'none';
+      const stickyCta = document.getElementById('bmiStickyCta');
+      if (stickyCta) stickyCta.style.display = 'none';
 
       updateCalcBtnState();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1105,6 +1139,21 @@ ${risks}
             </div>
           </div>`;
 
+          if (!isRest && d.warmup && d.warmup.length > 0) {
+            html += `<div class="workout-stretch-section warmup-section">
+              <div class="workout-stretch-header">🔥 Warm-Up <span class="workout-stretch-sub">Dynamic Stretches · 5 min</span></div>`;
+            d.warmup.forEach(s => {
+              html += `<div class="workout-stretch-row">
+                <span class="workout-stretch-icon">🌀</span>
+                <div class="workout-stretch-info">
+                  <span class="workout-stretch-name">${s.name}</span>
+                  <span class="workout-stretch-meta">⏱ ${s.duration} · ${s.note}</span>
+                </div>
+              </div>`;
+            });
+            html += `</div>`;
+          }
+
       if (!isRest && d.cardio) {
         html += `
           <div class="workout-cardio-row">
@@ -1139,6 +1188,34 @@ ${risks}
                 <div class="workout-ex-show-tip" data-role="show-tip">💡 Show tip</div>
               </div>
             </div>`;
+        });
+        html += `</div>`;
+      } if (!isRest && d.cooldown && d.cooldown.length > 0) {
+        html += `<div class="workout-stretch-section cooldown-section">
+          <div class="workout-stretch-header">🧊 Cool-Down <span class="workout-stretch-sub">Static Stretches · 5 min</span></div>`;
+        d.cooldown.forEach(s => {
+          html += `<div class="workout-stretch-row">
+            <span class="workout-stretch-icon">🤸</span>
+            <div class="workout-stretch-info">
+              <span class="workout-stretch-name">${s.name}</span>
+              <span class="workout-stretch-meta">⏱ ${s.duration} · ${s.note}</span>
+            </div>
+          </div>`;
+        });
+        html += `</div>`;
+      }
+
+      if (isRest && d.restStretches && d.restStretches.length > 0) {
+        html += `<div class="workout-stretch-section rest-stretch-section">
+          <div class="workout-stretch-header">🧘 Full-Body Recovery Stretches <span class="workout-stretch-sub">Hold each · 45 sec</span></div>`;
+        d.restStretches.forEach(s => {
+          html += `<div class="workout-stretch-row">
+            <span class="workout-stretch-icon">🌿</span>
+            <div class="workout-stretch-info">
+              <span class="workout-stretch-name">${s.name}</span>
+              <span class="workout-stretch-meta">⏱ ${s.duration} · ${s.note}</span>
+            </div>
+          </div>`;
         });
         html += `</div>`;
       } else if (isRest) {
@@ -1344,6 +1421,11 @@ Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks.
       "day": "MON",
       "type": "Workout type e.g. Chest & Triceps",
       "focus": "💪",
+      "warmup": [
+        { "name": "Dynamic stretch name e.g. Arm Circles", "duration": "30 sec", "note": "Short tip" },
+        { "name": "Dynamic stretch name e.g. Hip Rotations", "duration": "30 sec", "note": "Short tip" },
+        { "name": "Dynamic stretch name e.g. Leg Swings", "duration": "30 sec", "note": "Short tip" }
+      ],
       "cardio": { "name": "Cardio exercise e.g. Treadmill", "duration": "20 min", "intensity": "Moderate" },
       "exercises": [
         { "name": "Exercise name", "sets": 4, "reps": "10–12", "rest": "60 sec", "tip": "Short form tip" },
@@ -1352,6 +1434,11 @@ Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks.
         { "name": "Exercise name", "sets": 3, "reps": "12–15", "rest": "60 sec", "tip": "Short form tip" },
         { "name": "Exercise name", "sets": 3, "reps": "10–12", "rest": "60 sec", "tip": "Short form tip" },
         { "name": "Exercise name", "sets": 3, "reps": "10–12", "rest": "60 sec", "tip": "Short form tip" }
+      ],
+      "cooldown": [
+        { "name": "Static stretch name e.g. Chest Doorway Stretch", "duration": "30 sec", "note": "Short tip" },
+        { "name": "Static stretch name e.g. Triceps Overhead Stretch", "duration": "30 sec", "note": "Short tip" },
+        { "name": "Static stretch name e.g. Shoulder Cross-Body Stretch", "duration": "30 sec", "note": "Short tip" }
       ]
     },
     {
@@ -1426,10 +1513,17 @@ Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks.
     },
     {
       "day": "SUN",
-      "type": "Rest Day",
-      "focus": "😴",
+      "type": "Rest & Recovery",
+      "focus": "🧘",
       "cardio": null,
-      "exercises": []
+      "exercises": [],
+      "restStretches": [
+        { "name": "Full body stretch name e.g. Child's Pose", "duration": "45 sec", "note": "Breathe deeply" },
+        { "name": "Full body stretch name e.g. Seated Forward Fold", "duration": "45 sec", "note": "Short tip" },
+        { "name": "Full body stretch name e.g. Pigeon Pose", "duration": "45 sec", "note": "Short tip" },
+        { "name": "Full body stretch name e.g. Lying Spinal Twist", "duration": "45 sec", "note": "Short tip" },
+        { "name": "Full body stretch name e.g. Hip Flexor Stretch", "duration": "45 sec", "note": "Short tip" }
+      ]
     }
   ],
   "tip": "One specific training tip based on their BMI, body type, experience level and goal"
@@ -1471,14 +1565,39 @@ Respond ONLY with a valid JSON object, no extra text, no markdown, no backticks.
       const text = raw.choices[0].message.content.trim();
       if (!text) throw new Error('API_EMPTY');
 
-      // Strip accidental backticks
-      const clean = text.replace(/```json|```/g, '').trim();
+      // Strip backticks and extract JSON object robustly
+      let clean = text.replace(/```json|```/g, '').trim();
+
+      // Extract the first {...} JSON block in case API adds extra text
+      const jsonMatch = clean.match(/\{[\s\S]*\}/);
+      if (jsonMatch) clean = jsonMatch[0];
 
       let data;
       try {
         data = JSON.parse(clean);
       } catch (parseErr) {
-        throw new Error('API_PARSE');
+        try {
+          // Fix 1: trailing commas
+          let fixed = clean.replace(/,\s*([}\]])/g, '$1');
+          // Fix 2: truncated JSON — close any open arrays/objects
+          const openBraces   = (fixed.match(/\{/g) || []).length;
+          const closeBraces  = (fixed.match(/\}/g) || []).length;
+          const openBrackets = (fixed.match(/\[/g) || []).length;
+          const closeBrackets= (fixed.match(/\]/g) || []).length;
+          // Remove trailing incomplete line
+          fixed = fixed.replace(/,?\s*"[^"]*"\s*:\s*"[^"]*$/, '');
+          fixed = fixed.replace(/,?\s*"[^"]*"\s*:\s*$/, '');
+          fixed = fixed.replace(/,\s*$/, '');
+          // Close missing brackets/braces
+          for (let i = 0; i < openBrackets - closeBrackets; i++) fixed += ']';
+          for (let i = 0; i < openBraces   - closeBraces;   i++) fixed += '}';
+          data = JSON.parse(fixed);
+        } catch(e) {
+          console.error('PARSE FAILED. Raw text length:', text.length);
+          console.error('First 800:', text.substring(0, 800));
+          console.error('Last 800:',  text.substring(text.length - 800));
+          throw new Error('API_PARSE');
+        }
       }
 
       // ---- Populate all tabs ----

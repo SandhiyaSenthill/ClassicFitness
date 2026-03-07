@@ -107,6 +107,26 @@
     </div>
   </section>
 
+  <!-- ===== SOCIAL PROOF TRUST BANNER ===== -->
+  <div class="bmi-trust-banner">
+    <div class="container bmi-trust-inner">
+      <div class="bmi-trust-item">
+        <span class="bmi-trust-icon">👥</span>
+        <span class="bmi-trust-text">Used by <strong>500+ Classic Fitness members</strong></span>
+      </div>
+      <div class="bmi-trust-divider"></div>
+      <div class="bmi-trust-item">
+        <span class="bmi-trust-icon">🍱</span>
+        <span class="bmi-trust-text"><strong>15,000+ Indian foods</strong> — including Tamil dishes</span>
+      </div>
+      <div class="bmi-trust-divider"></div>
+      <div class="bmi-trust-item">
+        <span class="bmi-trust-icon">🔒</span>
+        <span class="bmi-trust-text"><strong>Free forever</strong> — No login needed</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== MAIN APP SECTION ===== -->
   <section class="cal-section" id="calorie-calculator">
     <div class="cal-app-wrap">
@@ -196,6 +216,49 @@
             <div id="popularSection" class="cal-popular-section">
               <h4 class="cal-section-title">Popular Indian Foods</h4>
               <div id="popularChips" class="cal-popular-chips"></div>
+            </div>
+
+            <!-- Tamil Meal Combos Quick-Add -->
+            <div class="cal-combos-section">
+              <h4 class="cal-section-title">⚡ Quick Tamil Meal Combos <span class="cal-combos-badge">1 Tap Add</span></h4>
+              <div class="cal-combos-grid" id="calCombosGrid">
+                <button class="cal-combo-btn" data-combo="breakfast1">
+                  <span class="cal-combo-icon">🌅</span>
+                  <span class="cal-combo-name">Idli + Sambar</span>
+                  <span class="cal-combo-cal">~260 kcal</span>
+                  <span class="cal-combo-items">2 Idli · Sambar · Chutney</span>
+                </button>
+                <button class="cal-combo-btn" data-combo="breakfast2">
+                  <span class="cal-combo-icon">🌅</span>
+                  <span class="cal-combo-name">Dosa Breakfast</span>
+                  <span class="cal-combo-cal">~350 kcal</span>
+                  <span class="cal-combo-items">Masala Dosa · Sambar · Chutney</span>
+                </button>
+                <button class="cal-combo-btn" data-combo="lunch1">
+                  <span class="cal-combo-icon">☀️</span>
+                  <span class="cal-combo-name">South Indian Lunch</span>
+                  <span class="cal-combo-cal">~650 kcal</span>
+                  <span class="cal-combo-items">Rice · Dal · Veg Curry · Curd</span>
+                </button>
+                <button class="cal-combo-btn" data-combo="lunch2">
+                  <span class="cal-combo-icon">☀️</span>
+                  <span class="cal-combo-name">Chicken Rice Plate</span>
+                  <span class="cal-combo-cal">~720 kcal</span>
+                  <span class="cal-combo-items">Chicken Curry · Rice · Salad</span>
+                </button>
+                <button class="cal-combo-btn" data-combo="dinner1">
+                  <span class="cal-combo-icon">🌙</span>
+                  <span class="cal-combo-name">Light Dinner</span>
+                  <span class="cal-combo-cal">~380 kcal</span>
+                  <span class="cal-combo-items">2 Roti · Dal · Curd</span>
+                </button>
+                <button class="cal-combo-btn" data-combo="snack1">
+                  <span class="cal-combo-icon">🥪</span>
+                  <span class="cal-combo-name">Gym Snack</span>
+                  <span class="cal-combo-cal">~280 kcal</span>
+                  <span class="cal-combo-items">Boiled Eggs × 3 · Banana</span>
+                </button>
+              </div>
             </div>
 
             <!-- Search Results -->
@@ -319,11 +382,25 @@
             <!-- Calorie Goal Card -->
             <div class="cal-goal-card">
               <div class="cal-goal-header">
-                <span class="cal-goal-label">Daily Goal</span>
+                <span class="cal-goal-label">Daily Calorie Goal</span>
                 <input type="number" id="calorieGoalInput" value="2000" min="500" max="6000" class="cal-goal-input" />
               </div>
-              <div class="cal-goal-bar">
-                <div id="calorieProgressBar" class="cal-goal-progress"></div>
+              <!-- Calorie Ring -->
+              <div class="cal-ring-wrap">
+                <svg class="cal-ring-svg" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="#f1f5f9" stroke-width="12"/>
+                  <circle cx="60" cy="60" r="50" fill="none" stroke-width="12"
+                    stroke-linecap="round"
+                    stroke-dasharray="314"
+                    stroke-dashoffset="314"
+                    class="cal-ring-progress" id="calorieRingProgress"
+                    transform="rotate(-90 60 60)"/>
+                </svg>
+                <div class="cal-ring-inner">
+                  <div class="cal-ring-consumed" id="calorieRingNum">0</div>
+                  <div class="cal-ring-lbl">consumed</div>
+                  <div class="cal-ring-remain" id="calorieRingRemain">2000 left</div>
+                </div>
               </div>
               <div id="calorieGoalText" class="cal-goal-text"></div>
             </div>
