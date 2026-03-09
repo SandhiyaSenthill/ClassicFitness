@@ -2810,8 +2810,8 @@ border-radius: 0 10px 10px 0 !important;
   padding: 12px 14px;
 }
 .warmup-section {
-  background: rgba(249,115,22,0.08);
-  border: 1px solid rgba(249,115,22,0.2);
+  background: rgba(249,115,22,0.22);
+  border: 1px solid rgba(249,115,22,0.42);
 }
 .cooldown-section {
   background: rgba(59,130,246,0.08);
@@ -2851,3 +2851,160 @@ border-radius: 0 10px 10px 0 !important;
 .workout-stretch-info { display: flex; flex-direction: column; gap: 2px; }
 .workout-stretch-name { font-size: 13px; font-weight: 700; color: #fff; }
 .workout-stretch-meta { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+/* Fix text color for Warmup & Cooldown */
+
+.warmup-section .workout-stretch-name,
+.cooldown-section .workout-stretch-name,
+.rest-stretch-section .workout-stretch-name {
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.warmup-section .workout-stretch-meta,
+.cooldown-section .workout-stretch-meta {
+  color: #000 !important;
+  opacity: 0.75;
+}
+
+.warmup-section .workout-stretch-header,
+.cooldown-section .workout-stretch-header {
+  color: #000 !important;
+}
+
+/* warm up and cool down */
+
+/* -------------------------------- */
+/*  PREMIUM WORKOUT CARD DESIGN     */
+/* -------------------------------- */
+
+/* Shared Card Style */
+.workout-stretch-section,
+.workout-cardio-row {
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 12px;
+  transition: all 0.2s ease;
+}
+
+/* ---------------------------- */
+/* WARMUP CARD                  */
+/* ---------------------------- */
+
+.warmup-section {
+  background: linear-gradient(180deg,#fff7ed,#ffe7cc);
+  border: 1px solid #f5c79b;
+}
+
+.warmup-section .workout-stretch-header {
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.warmup-section .workout-stretch-name {
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.warmup-section .workout-stretch-meta {
+  color: #6b7280;
+}
+
+
+/* ---------------------------- */
+/* CARDIO CARD                  */
+/* ---------------------------- */
+
+.workout-cardio-row {
+  background: linear-gradient(180deg,#fef9c3,#fde68a);
+  border: 1px solid #facc15;
+}
+
+.workout-cardio-row .workout-cardio-name {
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.workout-cardio-row .workout-cardio-meta {
+  color: #6b7280;
+}
+
+
+/* ---------------------------- */
+/* COOLDOWN CARD                */
+/* ---------------------------- */
+
+.cooldown-section {
+  background: linear-gradient(180deg,#eef2ff,#dbeafe);
+  border: 1px solid #bfdbfe;
+}
+
+.cooldown-section .workout-stretch-header {
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.cooldown-section .workout-stretch-name {
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.cooldown-section .workout-stretch-meta {
+  color: #6b7280;
+}
+
+
+/* ---------------------------- */
+/* EXERCISE ROW STYLE           */
+/* ---------------------------- */
+
+.workout-stretch-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: flex-start;
+}
+
+/* icon */
+.workout-stretch-icon {
+  font-size: 18px;
+}
+
+/* text block */
+.workout-stretch-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* name */
+.workout-stretch-name {
+  font-size: 14px;
+}
+
+/* meta */
+.workout-stretch-meta {
+  font-size: 12px;
+}
+
+/* ---------------------------- */
+/* REST / RECOVERY CARD        */
+/* ---------------------------- */
+
+.rest-stretch-section{
+  background: linear-gradient(180deg,#ecfdf5,#d1fae5);
+  border: 1px solid #86efac;
+}
+
+.rest-stretch-section .workout-stretch-header{
+  color:#2c2c2c;
+  font-weight:700;
+}
+
+.rest-stretch-section .workout-stretch-name{
+  color:#2c2c2c;
+  font-weight:600;
+}
+
+.rest-stretch-section .workout-stretch-meta{
+  color:#6b7280;
+}
