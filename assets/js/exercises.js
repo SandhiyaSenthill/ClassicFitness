@@ -10,7 +10,10 @@ const PAGE_SIZE = 24;
 const WORKER_URL = 'https://classicfitness-api.sandhiyasenthill3.workers.dev';
 
 let ALL = [], filtered = [], page = 0;
-let currentPart = 'all', currentDiff = '', currentEquip = '', currentSearch = '';
+
+let savedPlan = JSON.parse(sessionStorage.getItem('cf_day_plan') || '[]');
+
+let currentPart = 'all', currentDiff = '', currentEquip = '', currentSearch = '', currentStretch = '';
 
 // ── HELPERS ──────────────────────────────────────────────────
 function safeSlug(s) {
@@ -238,7 +241,7 @@ async function handleGateSubmit() {
 
   // Submit
   btn.disabled = true;
-  btn.textContent = 'Saving…';
+  btn.textContent = 'Processing...';
 
   try {
     await fetch(`${WORKER_URL}/save-exercise-lead`, {
@@ -275,7 +278,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!hasEntryPass()) {
     showEntryGate();
   }
-
+  initDayPlan();
   await loadExercises();
   initFilters();
   initModal();
@@ -320,6 +323,9 @@ function initFilters() {
   diffEl.addEventListener('change',  () => { currentDiff  = diffEl.value;  resetAndFilter(); });
   equipEl.addEventListener('change', () => { currentEquip = equipEl.value; resetAndFilter(); });
 
+  const stretchEl = document.getElementById('stretchFilter');
+  if (stretchEl) stretchEl.addEventListener('change', () => { currentStretch = stretchEl.value; resetAndFilter(); });
+
   document.querySelectorAll('.ex-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.ex-tab').forEach(b => b.classList.remove('active'));
@@ -340,11 +346,13 @@ function initFilters() {
 function resetAndFilter() { page = 0; applyFilters(); }
 
 function clearAllFilters() {
-  currentPart = 'all'; currentDiff = ''; currentEquip = ''; currentSearch = '';
+  currentPart = 'all'; currentDiff = ''; currentEquip = ''; currentSearch = ''; currentStretch = '';
   document.getElementById('exSearch').value = '';
   document.getElementById('exSearchClear').style.display = 'none';
   document.getElementById('diffFilter').value = '';
   document.getElementById('equipFilter').value = '';
+  const stretchEl = document.getElementById('stretchFilter');
+  if (stretchEl) stretchEl.value = '';
   document.querySelectorAll('.ex-tab').forEach(b => b.classList.remove('active'));
   document.querySelector('.ex-tab[data-part="all"]').classList.add('active');
   resetAndFilter();
@@ -362,6 +370,18 @@ function applyFilters() {
     if (currentPart !== 'all' && part !== currentPart) return false;
     if (currentDiff  && diff  !== currentDiff)  return false;
     if (currentEquip && equip !== currentEquip) return false;
+
+    if (currentStretch) {
+      const stretchName = (ex.name || '').toLowerCase();
+      const stretchTarget = (ex.target || '').toLowerCase();
+      const warmupKeywords = ['warm', 'dynamic', 'swing', 'rotation', 'circle', 'march', 'skip', 'jog', 'jump', 'lunge walk', 'hip circle', 'arm circle', 'leg swing', 'butt kick', 'high knee', 'inchworm', 'world greatest'];
+      const cooldownKeywords = ['stretch', 'hold', 'static', 'pigeon', 'cobra', 'child', 'seated', 'lying', 'supine', 'reclined', 'figure', 'cross body', 'doorway', 'wall stretch', 'hamstring stretch', 'quad stretch', 'calf stretch', 'hip flexor', 'butterfly', 'cat cow', 'thread the needle', 'chest opener', 'neck stretch', 'shoulder stretch', 'spinal twist', 'forward fold'];
+      const isWarmup   = warmupKeywords.some(k => stretchName.includes(k) || stretchTarget.includes(k));
+      const isCooldown = cooldownKeywords.some(k => stretchName.includes(k) || stretchTarget.includes(k));
+      if (currentStretch === 'warmup'   && !isWarmup)   return false;
+      if (currentStretch === 'cooldown' && !isCooldown) return false;
+    }
+
     if (currentSearch) {
       const q = currentSearch;
       if (!name.includes(q) && !target.includes(q) && !equip.includes(q) && !part.includes(q) && !sec.includes(q)) return false;
@@ -435,8 +455,18 @@ function buildCard(ex, idx) {
       </div>
     </div>`;
 
-  card.addEventListener('click', () => openModal(ex));
-  return card;
+    // Save button on card
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'ex-card-save-btn' + (savedPlan.some(s => s.id === (ex.id || ex.exerciseId)) ? ' saved' : '');
+    saveBtn.textContent = savedPlan.some(s => s.id === (ex.id || ex.exerciseId)) ? '✅ Saved' : '+ Add';
+    saveBtn.addEventListener('click', e => {
+      e.stopPropagation(); // don't open modal
+      toggleSavePlan(ex, saveBtn, true);
+    });
+    card.querySelector('.ex-card-meta').appendChild(saveBtn);
+
+    card.addEventListener('click', () => openModal(ex));
+    return card;
 }
 
 // ── MODAL ─────────────────────────────────────────────────────
@@ -501,6 +531,13 @@ function openModal(ex) {
         </div>
       </div>
     </div>`;
+  // Save to plan button
+  const isSaved = savedPlan.some(s => s.id === (ex.id || ex.exerciseId));
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'ex-modal-save-btn' + (isSaved ? ' saved' : '');
+  saveBtn.textContent = isSaved ? '✅ Saved to Day Plan' : '+ Add to Today\'s Plan';
+  saveBtn.addEventListener('click', () => toggleSavePlan(ex, saveBtn));
+  document.getElementById('exModalBody').appendChild(saveBtn);
 
   const overlay = document.getElementById('exModalOverlay');
   overlay.setAttribute('aria-hidden', 'false');
@@ -511,6 +548,178 @@ function openModal(ex) {
 function closeModal() {
   document.getElementById('exModalOverlay').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+
+}
+
+function toggleSavePlan(ex, btn) {
+  const id = ex.id || ex.exerciseId || ex.name;
+  const idx = savedPlan.findIndex(s => s.id === id);
+  if (idx === -1) {
+    savedPlan.push({ id, name: capFirst(ex.name), target: capFirst(ex.target || ''), equipment: capFirst(ex.equipment || ''), gif: gifPath(ex), done: false });
+    btn.textContent = '✅ Saved to Day Plan';
+    btn.classList.add('saved');
+  } else {
+    savedPlan.splice(idx, 1);
+    btn.textContent = '+ Add to Today\'s Plan';
+    btn.classList.remove('saved');
+  }
+  sessionStorage.setItem('cf_day_plan', JSON.stringify(savedPlan));
+  updateDayPlanBadge();
+  renderDayPlan();
+  refreshCardSaveButtons();
+}
+
+function updateDayPlanBadge() {
+  const badge = document.getElementById('dayPlanBadge');
+  if (!badge) return;
+  if (savedPlan.length > 0) {
+    badge.textContent = savedPlan.length;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function renderDayPlan() {
+  const list  = document.getElementById('dayPlanList');
+  const empty = document.getElementById('dayPlanEmpty');
+  if (!list) return;
+  list.innerHTML = '';
+  if (!savedPlan.length) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  savedPlan.forEach((ex, index) => {
+    const gif = ex.gif || null;
+    const item = document.createElement('div');
+    item.className = 'day-plan-item' + (ex.done ? ' done' : '');
+    item.innerHTML = `
+      <div class="day-plan-item-num">${index + 1}</div>
+      ${gif ? `<img class="day-plan-item-gif" src="${gif}" alt="${ex.name}" onerror="this.style.display='none'">` : `<div class="day-plan-item-gif-placeholder">💪</div>`}
+      <div class="day-plan-item-info">
+        <div class="day-plan-item-name">${ex.name}</div>
+        <div class="day-plan-item-meta">${ex.target} · ${ex.equipment}</div>
+        <button class="day-plan-item-done-btn${ex.done ? ' is-done' : ''}" data-id="${ex.id}">
+          ${ex.done ? '✅ Done!' : 'Mark Done'}
+        </button>
+      </div>
+      <button class="day-plan-item-remove" data-id="${ex.id}">✕</button>`;
+
+
+      // Click GIF or name to open focus view
+      const clickable = item.querySelector('.day-plan-item-gif') || item.querySelector('.day-plan-item-gif-placeholder');
+      if (clickable) clickable.addEventListener('click', () => openFocusView(index));
+      const nameEl2 = item.querySelector('.day-plan-item-name');
+      if (nameEl2) nameEl2.addEventListener('click', () => openFocusView(index));
+      nameEl2 && (nameEl2.style.cursor = 'pointer');
+
+
+    item.querySelector('.day-plan-item-done-btn').addEventListener('click', () => {
+      const found = savedPlan.find(s => s.id === ex.id);
+      if (found) found.done = !found.done;
+      sessionStorage.setItem('cf_day_plan', JSON.stringify(savedPlan));
+      renderDayPlan();
+    });
+    item.querySelector('.day-plan-item-remove').addEventListener('click', () => {
+      savedPlan = savedPlan.filter(s => s.id !== ex.id);
+      sessionStorage.setItem('cf_day_plan', JSON.stringify(savedPlan));
+      updateDayPlanBadge();
+      renderDayPlan();
+      refreshCardSaveButtons();
+    });
+    list.appendChild(item);
+  });
+}
+
+function refreshCardSaveButtons() {
+  document.querySelectorAll('.ex-card').forEach(card => {
+    const btn = card.querySelector('.ex-card-save-btn');
+    if (!btn) return;
+    const nameEl = card.querySelector('.ex-card-name');
+    if (!nameEl) return;
+    const cardName = nameEl.textContent.trim().toLowerCase();
+    const isSaved = savedPlan.some(s => s.name.toLowerCase() === cardName);
+    btn.textContent = isSaved ? '✅ Saved' : '+ Add';
+    btn.className = 'ex-card-save-btn' + (isSaved ? ' saved' : '');
+    btn.disabled = isSaved;
+  });
+}
+function openFocusView(index) {
+  const existing = document.getElementById('exFocusOverlay');
+  if (existing) existing.remove();
+
+  function render(i) {
+    const ex = savedPlan[i];
+    if (!ex) return;
+    const overlay = document.getElementById('exFocusOverlay');
+    overlay.innerHTML = `
+      <div class="ex-focus-topbar">
+        <span class="ex-focus-counter">Exercise ${i + 1} of ${savedPlan.length}</span>
+        <button class="ex-focus-close" id="exFocusClose">✕</button>
+      </div>
+      <div class="ex-focus-gif-wrap">
+        ${ex.gif
+          ? `<img src="${ex.gif}" alt="${ex.name}" onerror="this.parentElement.innerHTML='<div class=ex-focus-gif-placeholder>💪</div>'">`
+          : `<div class="ex-focus-gif-placeholder">💪</div>`}
+      </div>
+      <div class="ex-focus-info">
+        <div class="ex-focus-name">${ex.name}</div>
+        <div class="ex-focus-meta">${ex.target} · ${ex.equipment}</div>
+      </div>
+      <button class="ex-focus-done-btn ${ex.done ? 'is-done' : ''}" id="exFocusDoneBtn">
+        ${ex.done ? '✅ Done! Tap to undo' : '✅ Mark as Done'}
+      </button>
+      <div class="ex-focus-nav">
+        <button class="ex-focus-nav-btn" id="exFocusPrev" ${i === 0 ? 'disabled' : ''}>← Previous</button>
+        <button class="ex-focus-nav-btn" id="exFocusNext" ${i === savedPlan.length - 1 ? 'disabled' : ''}>Next →</button>
+      </div>`;
+
+    document.getElementById('exFocusClose').addEventListener('click', () => {
+      overlay.remove();
+      document.body.style.overflow = '';
+      renderDayPlan();
+    });
+    document.getElementById('exFocusDoneBtn').addEventListener('click', () => {
+      savedPlan[i].done = !savedPlan[i].done;
+      sessionStorage.setItem('cf_day_plan', JSON.stringify(savedPlan));
+      render(i);
+    });
+    document.getElementById('exFocusPrev').addEventListener('click', () => render(i - 1));
+    document.getElementById('exFocusNext').addEventListener('click', () => render(i + 1));
+  }
+
+  const overlay = document.createElement('div');
+  overlay.id = 'exFocusOverlay';
+  overlay.className = 'ex-focus-overlay';
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+  render(index);
+}
+
+function initDayPlan() {
+  const toggle   = document.getElementById('dayPlanToggle');
+  const panel    = document.getElementById('dayPlanPanel');
+  const backdrop = document.getElementById('dayPlanBackdrop');
+  const closeBtn = document.getElementById('dayPlanClose');
+  const resetBtn = document.getElementById('dayPlanReset');
+
+  function openPanel()  { panel.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closePanel() { panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+
+  toggle.addEventListener('click', () => panel.classList.contains('open') ? closePanel() : openPanel());
+  closeBtn.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+  resetBtn.addEventListener('click', () => {
+    savedPlan = [];
+    sessionStorage.removeItem('cf_day_plan');
+    updateDayPlanBadge();
+    renderDayPlan();
+    refreshCardSaveButtons();
+  });
+
+  updateDayPlanBadge();
+  renderDayPlan();
 }
 
 // ── NAVBAR / FOOTER / FLOATS ──────────────────────────────────

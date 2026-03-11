@@ -18,6 +18,23 @@
 </head>
 <body>
 
+  <div class="datetime-bar">
+    <div class="datetime-bar-inner">
+      <div class="datetime-left">
+        <span class="datetime-icon">📍</span>
+        <span>No 19/10, Pillayar Kovil Street, Griblispet, Arakkonam - 631002</span>
+      </div>
+      <div class="datetime-right">
+        <span class="datetime-icon">📅</span>
+        <span id="liveDate">—</span>
+        <span class="datetime-sep">|</span>
+        <span class="datetime-icon">🕐</span>
+        <span id="liveTime">—</span>
+        <span class="datetime-sep">|</span>
+        <a href="tel:8668007901" class="datetime-phone">📞 8668007901</a>
+      </div>
+    </div>
+  </div>
   <!-- DIET BAR -->
   <div class="diet-announce-bar" id="dietAnnounceBar">
     <div class="diet-bar-inner">
@@ -145,6 +162,11 @@
                 <option value="ez barbell">EZ Bar</option>
                 <option value="medicine ball">Medicine Ball</option>
               </select>
+              <!-- <select class="ex-select" id="stretchFilter">
+                <option value="">All Stretches</option>
+                <option value="warmup">🔥 Warm-Up Stretches</option>
+                <option value="cooldown">❄️ Cool-Down Stretches</option>
+              </select> -->
             </div>
           </div>
         </div>
@@ -165,6 +187,18 @@
           <button class="ex-tab" data-part="cardio">❤️ Cardio</button>
           <button class="ex-tab" data-part="neck">🧠 Neck</button>
         </div>
+      </div>
+
+      <!-- WALLET TIP BANNER -->
+      <div class="wallet-tip-banner" id="walletTipBanner">
+        <div class="wallet-tip-left">
+          <span class="wallet-tip-pulse"></span>
+          <span class="wallet-tip-text">
+            💡 <strong>Tip:</strong> Click <span class="wallet-tip-add">+ Add</span> on any exercise to save it →
+            then tap <span class="wallet-tip-btn">📋</span> button at bottom-right to view your Workout Wallet!
+          </span>
+        </div>
+        <button class="wallet-tip-close" id="walletTipClose" aria-label="Close">✕</button>
       </div>
 
       <!-- EXERCISE GRID -->
@@ -273,11 +307,30 @@
     </div>
   </footer>
 
+
+  <!-- MY DAY PLAN PANEL -->
+<div class="day-plan-panel" id="dayPlanPanel">
+  <div class="day-plan-header">
+    <span>📋 My Workout Wallet</span>
+    <button class="day-plan-close" id="dayPlanClose">✕</button>
+  </div>
+  <div class="day-plan-list" id="dayPlanList"></div>
+  <div class="day-plan-empty" id="dayPlanEmpty">No exercises saved yet.<br>Click "+ Add" on any exercise!</div>
+  <button class="day-plan-reset" id="dayPlanReset">🗑️ Reset All</button>
+</div>
+<div class="day-plan-backdrop" id="dayPlanBackdrop"></div>
+
+
+
   <!-- FLOATS -->
   <div class="float-actions">
     <a class="float-btn float-whatsapp" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">💬</a>
     <a class="float-btn float-call" href="tel:8668007901" aria-label="Call">📞</a>
     <button class="float-btn float-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <button class="float-btn float-plan" id="dayPlanToggle" aria-label="My Day Plan">📋<span class="day-plan-badge" id="dayPlanBadge" style="display:none">0</span></button>
+
+
   </div>
   <div class="toast" id="toastMessage">
     <div class="toast-icon">✅</div>
@@ -330,7 +383,358 @@
     </div>
   </div>
 
+  <!-- ===== ONBOARDING GUIDE ===== -->
+  <div class="ob-overlay" id="obOverlay"></div>
+  <div class="ob-box" id="obBox">
+
+    <!-- Step 1 -->
+    <div class="ob-step" id="obStep1">
+      <div class="ob-emoji">💪</div>
+      <div class="ob-step-tag">Step 1 of 3</div>
+      <h3>Welcome to Exercise Hub!</h3>
+      <p>Browse <strong>1300+ exercises</strong> with animated demos. Filter by muscle group, difficulty, or equipment to find exactly what you need.</p>
+      <div class="ob-arrow-hint">
+        <div class="ob-arrow-bounce">👇</div>
+        <span>Exercises are displayed below</span>
+      </div>
+      <div class="ob-btns">
+        <button class="ob-skip" id="obSkip">Skip Tour</button>
+        <button class="ob-next" id="obNext1">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="ob-step" id="obStep2" style="display:none">
+      <div class="ob-emoji">➕</div>
+      <div class="ob-step-tag">Step 2 of 3</div>
+      <h3>Add to Your Workout Wallet</h3>
+      <p>See an exercise you like? Click the <strong style="color:#f97316">+ Add</strong> button on any exercise card to save it to your personal workout list!</p>
+      <div class="ob-demo-card">
+        <div class="ob-demo-name">e.g. Bench Press</div>
+        <div class="ob-demo-muscle">Chest</div>
+        <div class="ob-demo-add">+ Add</div>
+        <div class="ob-demo-arrow">← Click this!</div>
+      </div>
+      <div class="ob-btns">
+        <button class="ob-back" id="obBack2">← Back</button>
+        <button class="ob-next" id="obNext2">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="ob-step" id="obStep3" style="display:none">
+      <div class="ob-emoji">📋</div>
+      <div class="ob-step-tag">Step 3 of 3</div>
+      <h3>View Your Workout Wallet</h3>
+      <p>All your saved exercises appear in the <strong>Workout Wallet</strong>. Tap the <strong style="color:#f97316">📋 button</strong> at the bottom-right corner anytime to open it!</p>
+      <div class="ob-wallet-hint">
+        <div class="ob-wallet-mock">📋
+          <span class="ob-wallet-badge">3</span>
+        </div>
+        <div class="ob-wallet-arrow">← This button!</div>
+      </div>
+      <p class="ob-wallet-sub">The number shows how many exercises you've saved.</p>
+      <div class="ob-btns">
+        <button class="ob-back" id="obBack3">← Back</button>
+        <button class="ob-done" id="obDone">Got it! Start Exploring 🚀</button>
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+    /* ── Onboarding Overlay ─────────────────────────────────── */
+    .ob-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(4px);
+      z-index: 999990;
+      pointer-events: none;
+    }
+    .ob-box {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999999;
+      background: #1a1a2e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 36px 32px 28px;
+      width: 90%; max-width: 420px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      pointer-events: auto;
+    }
+    @keyframes obFadeIn  { from { opacity:0 } to { opacity:1 } }
+    @keyframes obSlideUp { from { opacity:0; transform:translate(-50%,-44%) } to { opacity:1; transform:translate(-50%,-50%) } }
+
+    .ob-step { text-align: center; }
+    .ob-emoji { font-size: 48px; margin-bottom: 8px; }
+    .ob-step-tag {
+      display: inline-block;
+      background: rgba(249,115,22,0.15);
+      color: #f97316;
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .ob-box h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .ob-box p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* Arrow hint step 1 */
+    .ob-arrow-hint {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+    .ob-arrow-bounce {
+      font-size: 22px;
+      animation: bounce 1s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0) }
+      50% { transform: translateY(6px) }
+    }
+
+    /* Demo card step 2 */
+    .ob-demo-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .ob-demo-name  { font-weight: 700; color: #fff; font-size: 14px; flex:1 }
+    .ob-demo-muscle { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .ob-demo-add {
+      background: #f97316;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 20px;
+      padding: 6px 14px;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.6) }
+      50% { box-shadow: 0 0 0 8px rgba(249,115,22,0) }
+    }
+    .ob-demo-arrow {
+      font-size: 12px; color: #f97316; font-weight: 700;
+      animation: arrowPulse 1s ease-in-out infinite;
+      width: 100%; text-align: right;
+    }
+    @keyframes arrowPulse {
+      0%,100% { transform: translateX(0) }
+      50% { transform: translateX(-4px) }
+    }
+
+    /* Wallet hint step 3 */
+    .ob-wallet-hint {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 10px;
+    }
+    .ob-wallet-mock {
+      position: relative;
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #f97316, #ef4444);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 0 0 0 rgba(249,115,22,0.5);
+      animation: walletPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes walletPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.5) }
+      50% { box-shadow: 0 0 0 12px rgba(249,115,22,0) }
+    }
+    .ob-wallet-badge {
+      position: absolute; top: -2px; right: -2px;
+      background: #22c55e; color: #fff;
+      font-size: 11px; font-weight: 800;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ob-wallet-arrow { font-size: 14px; font-weight: 700; color: #f97316; }
+    .ob-wallet-sub { font-size: 12px !important; color: rgba(255,255,255,0.35) !important; margin-bottom: 20px !important; }
+
+    /* Mobile fix */
+    @media (max-width: 480px) {
+      .ob-box {
+        width: 92%;
+        padding: 28px 20px 22px;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .ob-box h3 { font-size: 18px; }
+      .ob-box p  { font-size: 13px; }
+      .ob-emoji  { font-size: 36px; }
+      .ob-btns   { flex-direction: row; gap: 8px; }
+      .ob-next, .ob-done { padding: 10px 18px; font-size: 13px; }
+      .ob-back, .ob-skip { padding: 10px 14px; font-size: 12px; }
+      .ob-demo-card { flex-wrap: wrap; gap: 6px; }
+    }
+
+    /* ── Wallet Tip Banner ─────────────────────────────────── */
+    .wallet-tip-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(239,68,68,0.08));
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+    .wallet-tip-left { display:flex; align-items:center; gap:10px; flex:1; }
+    .wallet-tip-pulse {
+      width:8px; height:8px; border-radius:50%; background:#f97316; flex-shrink:0;
+      animation: tipPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes tipPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.6); }
+      50%      { box-shadow: 0 0 0 6px rgba(249,115,22,0); }
+    }
+    .wallet-tip-text { font-size:13px; color:rgba(255,255,255,0.75); line-height:1.6; }
+    .wallet-tip-add {
+      display:inline-block; background:#f97316; color:#fff;
+      font-weight:700; font-size:11px; padding:2px 9px; border-radius:20px;
+    }
+    .wallet-tip-btn {
+      display:inline-block; background:linear-gradient(135deg,#f97316,#ef4444);
+      border-radius:50%; width:22px; height:22px; text-align:center;
+      line-height:22px; font-size:12px; vertical-align:middle;
+    }
+    .wallet-tip-close {
+      background:transparent; border:none; color:rgba(255,255,255,0.3);
+      cursor:pointer; font-size:15px; padding:4px; flex-shrink:0; transition:color 0.2s;
+    }
+    .wallet-tip-close:hover { color:rgba(255,255,255,0.7); }
+    @media (max-width:480px) {
+      .wallet-tip-text { font-size:11px; }
+      .wallet-tip-banner { padding:10px 12px; }
+    }
+
+    /* ── Ob Buttons ─────────────────────────────────────────── */
+    .ob-btns { display: flex; gap: 10px; justify-content: center; margin-top: 4px; }
+    .ob-next, .ob-done {
+      padding: 11px 24px;
+      background: linear-gradient(135deg, #f97316, #ef4444);
+      color: #fff; border: none; border-radius: 100px;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .ob-next:hover, .ob-done:hover { transform: translateY(-1px); opacity: 0.9; }
+    .ob-back {
+      padding: 11px 20px;
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .ob-skip {
+      padding: 11px 20px;
+      background: transparent;
+      color: rgba(255,255,255,0.35);
+      border: none; font-size: 13px;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      text-decoration: underline;
+    }
+  </style>
+
   <script src="assets/js/exercises.js"></script>
+
+  <!-- ===== ONBOARDING TOUR ===== -->
+  <script>
+    // Runs immediately — no DOMContentLoaded needed, script is at bottom of body
+    (function() {
+      // To test again, uncomment: localStorage.removeItem('ex_tour_done');
+      if (localStorage.getItem('ex_tour_done')) return;
+
+      var overlay = document.getElementById('obOverlay');
+      var box     = document.getElementById('obBox');
+      var step1   = document.getElementById('obStep1');
+      var step2   = document.getElementById('obStep2');
+      var step3   = document.getElementById('obStep3');
+
+      if (!overlay || !box || !step1) return;
+
+      function showStep(n) {
+        step1.style.display = (n === 0) ? 'block' : 'none';
+        step2.style.display = (n === 1) ? 'block' : 'none';
+        step3.style.display = (n === 2) ? 'block' : 'none';
+      }
+
+      function closeTour() {
+        overlay.style.transition = 'opacity 0.3s ease';
+        box.style.transition     = 'opacity 0.3s ease';
+        overlay.style.opacity    = '0';
+        box.style.opacity        = '0';
+        setTimeout(function() {
+          overlay.style.display = 'none';
+          box.style.display     = 'none';
+        }, 300);
+        localStorage.setItem('ex_tour_done', '1');
+      }
+
+      document.getElementById('obNext1').onclick = function() { showStep(1); };
+      document.getElementById('obNext2').onclick = function() { showStep(2); };
+      document.getElementById('obBack2').onclick = function() { showStep(0); };
+      document.getElementById('obBack3').onclick = function() { showStep(1); };
+      document.getElementById('obDone').onclick  = closeTour;
+      document.getElementById('obSkip').onclick  = closeTour;
+
+      overlay.style.display    = 'block';
+      overlay.style.opacity    = '1';
+      box.style.display        = 'block';
+      box.style.opacity        = '1';
+      showStep(0);
+    })();
+
+    // Wallet tip close button
+    (function() {
+      var tipClose  = document.getElementById('walletTipClose');
+      var tipBanner = document.getElementById('walletTipBanner');
+      if (tipClose && tipBanner) {
+        tipClose.onclick = function() {
+          tipBanner.style.transition = 'opacity 0.3s';
+          tipBanner.style.opacity    = '0';
+          setTimeout(function() { tipBanner.style.display = 'none'; }, 300);
+        };
+      }
+    })();
+  </script>
   <script>
     // Mobile nav toggle
     const navToggle = document.getElementById('navToggle');
@@ -355,6 +759,17 @@
         }
       });
     }
+  </script>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('liveDate').textContent =
+        now.toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+      document.getElementById('liveTime').textContent =
+        now.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true });
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
   </script>
 </body>
 </html>

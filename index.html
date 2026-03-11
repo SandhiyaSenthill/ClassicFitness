@@ -23,9 +23,92 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Live Date & Time Bar ─────────────────────────────────── */
+    .datetime-bar {
+      background: #12122a;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 7px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      position: relative;
+      z-index: 1001;
+    }
+    .datetime-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .datetime-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.5);
+    }
+    .datetime-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .datetime-icon { font-size: 13px; }
+    .datetime-sep {
+      color: rgba(255,255,255,0.2);
+      font-size: 11px;
+    }
+    #liveDate {
+      color: rgba(255,255,255,0.8);
+      font-weight: 600;
+    }
+    #liveTime {
+      color: #f0c040;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+      min-width: 92px;
+      display: inline-block;
+    }
+    .datetime-phone {
+      color: #6bdfb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .datetime-phone:hover { color: #fff; }
+    @media (max-width: 640px) {
+      .datetime-left { display: none; }
+      .datetime-bar-inner { justify-content: center; }
+    }
+  </style>
 </head>
 
 <body>
+
+  <!-- ===== Live Date & Time Bar ===== -->
+  <div class="datetime-bar" id="datetimeBar">
+    <div class="datetime-bar-inner">
+      <div class="datetime-left">
+        <span class="datetime-icon">📍</span>
+        <span>No 19/10, Pillayar Kovil Street, Griblispet, Arakkonam - 631002</span>
+      </div>
+      <div class="datetime-right">
+        <span class="datetime-icon">📅</span>
+        <span id="liveDate">—</span>
+        <span class="datetime-sep">|</span>
+        <span class="datetime-icon">🕐</span>
+        <span id="liveTime">—</span>
+        <span class="datetime-sep">|</span>
+        <a href="tel:8668007901" class="datetime-phone">📞 8668007901</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== STICKY DIET PLAN ANNOUNCEMENT BAR (Option 3) ===== -->
   <div class="diet-announce-bar" id="dietAnnounceBar">
@@ -104,6 +187,7 @@
         <a href="calorie.html" class="nav-link nav-link-calorie">🍱 Calorie Calc</a>
 
         <a href="exercises.html" class="nav-link nav-link-exercises">💪Exercise Hub</a>
+        <a href="stress.html" class="nav-link nav-link-stress">🧘 Stress Analysis</a>
 
         <button class="btn btn-primary" id="joinNowBtn">Join Now</button>
 
@@ -178,6 +262,10 @@
           <a href="exercises.html" class="btn btn-outline btn-bmi-hero" style="background:linear-gradient(135deg,#e65c00,#f9a826);color:#fff;border-color:transparent;">
             💪 Exercise Hub
           </a>
+
+          <a href="stress.html" class="nav-link nav-link-stress" style="background:linear-gradient(135deg,#f33bd7,#e9c892);color:#0e0e0e;border-color:transparent;">🧘 Stress Analysis</a>
+
+
           <button class="btn-join-mobile" onclick="document.getElementById('joinModal').classList.add('active'); document.body.style.overflow='hidden';">
             <i class="fas fa-user-plus"></i> Join Now
         </button>
@@ -1249,5 +1337,24 @@
 
 
   <script src="assets/js/main.js"></script>
+
+  <!-- Live Date & Time Clock -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      // Date: Wednesday, 11 June 2025
+      const dateOpts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+      document.getElementById('liveDate').textContent =
+        now.toLocaleDateString('en-IN', dateOpts);
+
+      // Time: 10:45:32 AM
+      const timeOpts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      document.getElementById('liveTime').textContent =
+        now.toLocaleTimeString('en-IN', timeOpts);
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 </html>

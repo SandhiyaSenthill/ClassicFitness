@@ -15,6 +15,26 @@
 </head>
 
 <body>
+
+
+  <div class="datetime-bar">
+    <div class="datetime-bar-inner">
+      <div class="datetime-left">
+        <span class="datetime-icon">📍</span>
+        <span>No 19/10, Pillayar Kovil Street, Griblispet, Arakkonam - 631002</span>
+      </div>
+      <div class="datetime-right">
+        <span class="datetime-icon">📅</span>
+        <span id="liveDate">—</span>
+        <span class="datetime-sep">|</span>
+        <span class="datetime-icon">🕐</span>
+        <span id="liveTime">—</span>
+        <span class="datetime-sep">|</span>
+        <a href="tel:8668007901" class="datetime-phone">📞 8668007901</a>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== Top Bar ===== -->
   <div class="topbar">
     <div class="container topbar-row">
@@ -485,5 +505,17 @@
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/gallery.js"></script>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('liveDate').textContent =
+        now.toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+      document.getElementById('liveTime').textContent =
+        now.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true });
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 </html>
