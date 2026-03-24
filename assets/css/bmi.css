@@ -367,7 +367,7 @@ margin: 0;
 
 /* Tab panels */
 .expert-content {
-padding: 20px 22px;
+padding: 16px 14px;
 }
 
 .expert-tab-panel {
@@ -663,7 +663,7 @@ box-shadow: 0 8px 24px rgba(22,163,74,0.4);
 }
 
 .expert-content {
-  padding: 16px;
+  padding: 12px 10px;
 }
 }
 
@@ -2067,26 +2067,7 @@ border-radius: 0 10px 10px 0 !important;
   margin-top:14px;
 }
 
-@media(max-width:700px){
-  .expert-overview-grid{
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding-bottom: 8px;
-    scrollbar-width: none;
-  }
-  .expert-overview-grid::-webkit-scrollbar{
-    display: none;
-  }
-  .expert-overview-grid .expert-overview-card{
-    min-width: 220px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-}
+
 /* Base card */
 .expert-overview-card{
   border-radius:16px;
@@ -3060,3 +3041,194 @@ border-radius: 0 10px 10px 0 !important;
     .datetime-left { display: none; }
     .datetime-bar-inner { justify-content: center; }
   }
+/* ===== OVERVIEW GRID — NARROW PHONE FIX ===== */
+@media (max-width: 480px) {
+  .expert-overview-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .expert-overview-grid .expert-overview-card {
+    padding: 10px 8px !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  .expert-overview-title {
+    font-size: 12px !important;
+    gap: 4px !important;
+  }
+  .expert-overview-value {
+    font-size: 26px !important;
+  }
+  .expert-overview-desc {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+  .expert-content {
+    padding: 10px 8px !important;
+  }
+}
+
+/* ===== OVERVIEW 4-CARD GRID ===== */
+/* .overview-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ov-card {
+  box-sizing: border-box;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.ov-card-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.ov-card-value {
+  font-size: 24px;
+  font-weight: 950;
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+
+.ov-card-desc {
+  font-size: 12px;
+  color: #1e293b;
+  line-height: 1.65;
+}
+
+@media (max-width: 480px) {
+  .overview-cards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .ov-card {
+    padding: 10px 10px !important;
+  }
+  .ov-card-title {
+    font-size: 11px !important;
+  }
+  .ov-card-value {
+    font-size: 20px !important;
+  }
+  .ov-card-desc {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+} */
+
+/* ================================================
+   OVERVIEW 4 CARDS — FINAL WORKING VERSION
+   ================================================ */
+
+.ov-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ov-card {
+  border-radius: 12px;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1.5px solid transparent;
+  overflow: hidden;
+}
+
+.ov-health { background: linear-gradient(145deg,#ecfdf5,#d1fae5); border-color: #6ee7b7; }
+.ov-body   { background: linear-gradient(145deg,#eff6ff,#dbeafe); border-color: #93c5fd; }
+.ov-target { background: linear-gradient(145deg,#fff7ed,#fed7aa); border-color: #fdba74; }
+.ov-plan   { background: linear-gradient(145deg,#faf5ff,#e9d5ff); border-color: #c4b5fd; }
+
+/* Card header — icon + title */
+.ov-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.ov-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Health score card */
+.ov-big {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.ov-big-sub {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.5;
+}
+.ov-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+}
+.ov-small {
+  font-size: 10px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* Data rows for other 3 cards */
+.ov-item {
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.ov-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.ov-k {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 1px;
+}
+.ov-v {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  word-break: break-word;
+}
+.ov-unit {
+  font-size: 10px;
+  font-weight: 500;
+  color: #64748b;
+}

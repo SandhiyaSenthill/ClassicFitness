@@ -304,40 +304,65 @@ Please contact me regarding joining Classic Fitness Gym!`
     const hs = computeHealthScore(userData);
 
     // Top summary cards
-    summary.innerHTML = `
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-      <div class="expert-card expert-card-health">
-          <div style="font-weight:900;">🏅 Health Score</div>
-          <div style="margin-top:6px; font-size:22px; font-weight:950; color:${hs.color};">${hs.score}/100</div>
-          <div style="margin-top:4px; color:#0f172a; font-size:12.5px;">${hs.label} • ${hs.summary}</div>
-        </div>
-        <div class="expert-card expert-card-body">
-          <div style="font-weight:900;">📊 Body Composition</div>
-          <div style="margin-top:6px; color:#0f172a; line-height:1.6;">
-            <div><strong>BMI:</strong> ${userData.bmi} (${userData.category})</div>
-            <div><strong>Body Fat:</strong> ${userData.bodyFat}% ${userData.bodyFatLabel ? `(${userData.bodyFatLabel})` : ''}</div>
-            <div><strong>Waist:</strong> ${userData.waist ? `${userData.waist} cm` : 'Not provided'} ${userData.whr ? `(WHR ${userData.whr} • ${userData.whrLabel})` : ''}</div>
-          </div>
-        </div>
-      </div>
+    // Top summary cards
+   summary.innerHTML = `
+      <div class="ov-grid">
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-      <div class="expert-card expert-card-health">
-          <div style="font-weight:900;">🔥 Daily Targets</div>
-          <div style="margin-top:6px; color:#0f172a; line-height:1.6;">
-            <div><strong>Calories:</strong> ${userData.goalCal} kcal/day</div>
-            <div><strong>Protein:</strong> ${userData.protein} g/day</div>
-            <div><strong>Water:</strong> ${userData.waterLitres} L/day</div>
+        <div class="ov-card ov-health">
+          <div class="ov-icon-row">🏅 <span class="ov-label">Health Score</span></div>
+          <div class="ov-big" style="color:${hs.color};">${hs.score}<span class="ov-big-sub">/100</span></div>
+          <div class="ov-tag" style="background:${hs.color}22;color:${hs.color};">${hs.label}</div>
+          <div class="ov-small">${hs.summary}</div>
+        </div>
+
+        <div class="ov-card ov-body">
+          <div class="ov-icon-row">📊 <span class="ov-label">Body Composition</span></div>
+          <div class="ov-item">
+            <span class="ov-k">BMI</span>
+            <span class="ov-v">${userData.bmi} <span class="ov-unit">${userData.category}</span></span>
+          </div>
+          <div class="ov-item">
+            <span class="ov-k">Body Fat</span>
+            <span class="ov-v">${userData.bodyFat}% <span class="ov-unit">${userData.bodyFatLabel || ''}</span></span>
+          </div>
+          <div class="ov-item">
+            <span class="ov-k">Waist</span>
+            <span class="ov-v">${userData.waist ? `${userData.waist}cm` : 'N/A'} <span class="ov-unit">${userData.whr ? `WHR ${userData.whr}` : ''}</span></span>
           </div>
         </div>
-        <div class="expert-card expert-card-body">
-          <div style="font-weight:900;">🧠 Plan Summary</div>
-          <div style="margin-top:6px; color:#0f172a; line-height:1.6;">
-            <div><strong>Goal:</strong> ${userData.goal}</div>
-            <div><strong>Activity:</strong> ${userData.activityLabel}</div>
-            <div><strong>Experience:</strong> ${userData.experience}</div>
+
+        <div class="ov-card ov-target">
+          <div class="ov-icon-row">🔥 <span class="ov-label">Daily Targets</span></div>
+          <div class="ov-item">
+            <span class="ov-k">Calories</span>
+            <span class="ov-v">${userData.goalCal} <span class="ov-unit">kcal</span></span>
+          </div>
+          <div class="ov-item">
+            <span class="ov-k">Protein</span>
+            <span class="ov-v">${userData.protein}g <span class="ov-unit">/day</span></span>
+          </div>
+          <div class="ov-item">
+            <span class="ov-k">Water</span>
+            <span class="ov-v">${userData.waterLitres}L <span class="ov-unit">/day</span></span>
           </div>
         </div>
+
+        <div class="ov-card ov-plan">
+          <div class="ov-icon-row">🧠 <span class="ov-label">Plan Summary</span></div>
+          <div class="ov-item">
+            <span class="ov-k">Goal</span>
+            <span class="ov-v">${userData.goal}</span>
+          </div>
+          <div class="ov-item">
+            <span class="ov-k">Activity</span>
+            <span class="ov-v">${userData.activityLabel}</span>
+          </div>
+          <div class="ov-item">
+            <span class="ov-k">Level</span>
+            <span class="ov-v">${userData.experience}</span>
+          </div>
+        </div>
+
       </div>
     `;
 
