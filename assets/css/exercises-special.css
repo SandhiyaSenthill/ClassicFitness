@@ -1,0 +1,175 @@
+/* ============================================================
+   CLASSIC FITNESS — exercises-special.css
+   Special Categories: Mobility, Stretching, Pre/Post-Pregnancy,
+   Breathing
+   
+   Add to exercises.html <head> AFTER exercises.css:
+   <link rel="stylesheet" href="assets/css/exercises-special.css" />
+   ============================================================ */
+
+/* ── SPECIAL TAB DIVIDER ─────────────────────────────────── */
+.ex-tab-special-divider {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  color: rgba(255,255,255,0.15);
+  font-size: 18px;
+  font-weight: 300;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ── SPECIAL TABS ────────────────────────────────────────── */
+.ex-tab.ex-tab-special {
+  border-color: var(--sborder);
+  color: var(--scolor);
+  background: var(--sbg);
+  position: relative;
+  overflow: hidden;
+}
+
+.ex-tab.ex-tab-special::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--sbg), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.ex-tab.ex-tab-special:hover {
+  border-color: var(--scolor);
+  color: #fff;
+  background: var(--sbg);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--scolor) 30%, transparent);
+}
+
+.ex-tab.ex-tab-special.active {
+  background: var(--scolor);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--scolor) 45%, transparent);
+}
+
+/* Fallback for browsers without color-mix */
+.ex-tab.ex-tab-special[data-special="mobility"].active     { box-shadow: 0 4px 16px rgba(6,182,212,0.45); }
+.ex-tab.ex-tab-special[data-special="stretching"].active   { box-shadow: 0 4px 16px rgba(168,85,247,0.45); }
+.ex-tab.ex-tab-special[data-special="pre_pregnancy"].active  { box-shadow: 0 4px 16px rgba(236,72,153,0.45); }
+.ex-tab.ex-tab-special[data-special="post_pregnancy"].active { box-shadow: 0 4px 16px rgba(244,114,182,0.45); }
+.ex-tab.ex-tab-special[data-special="breathing"].active    { box-shadow: 0 4px 16px rgba(52,211,153,0.45); }
+
+/* ── SPECIAL CARD BADGE (top-left emoji label) ───────────── */
+.special-cat-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+/* ── SPECIAL CARD HOVER COLOR ────────────────────────────── */
+.ex-card.special-card:hover {
+  border-color: var(--special-color, rgba(255,255,255,0.3));
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--special-color, #fff) 15%, transparent);
+}
+
+/* Fallback per category */
+.ex-card.special-card[data-cat="mobility"]:hover      { box-shadow: 0 8px 32px rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.4); }
+.ex-card.special-card[data-cat="stretching"]:hover    { box-shadow: 0 8px 32px rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); }
+.ex-card.special-card[data-cat="pre_pregnancy"]:hover  { box-shadow: 0 8px 32px rgba(236,72,153,0.15); border-color: rgba(236,72,153,0.4); }
+.ex-card.special-card[data-cat="post_pregnancy"]:hover { box-shadow: 0 8px 32px rgba(244,114,182,0.15); border-color: rgba(244,114,182,0.4); }
+.ex-card.special-card[data-cat="breathing"]:hover     { box-shadow: 0 8px 32px rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.4); }
+
+/* ── SPECIAL MODAL CATEGORY TAG ──────────────────────────── */
+.special-modal-cat-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* ── CATEGORY BANNER (top of grid) ───────────────────────── */
+.special-cat-banner {
+  animation: cardIn 0.35s ease both;
+}
+
+/* ── BREATHING — Animated Indicator Cards ────────────────── */
+.breathing-timer-card {
+  background: rgba(52,211,153,0.08);
+  border: 1px solid rgba(52,211,153,0.25);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 16px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.breathing-timer-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.breathing-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(52,211,153,0.15);
+  border: 2px solid rgba(52,211,153,0.4);
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  animation: breathePulse 4s ease-in-out infinite;
+}
+
+@keyframes breathePulse {
+  0%, 100% { transform: scale(1);    opacity: 0.7; }
+  50%       { transform: scale(1.25); opacity: 1;   }
+}
+
+/* ── MOBILE ADJUSTMENTS ──────────────────────────────────── */
+@media (max-width: 640px) {
+  .ex-tab.ex-tab-special {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .ex-tab-special-divider {
+    padding: 0 3px;
+    font-size: 14px;
+  }
+
+  .special-cat-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .special-cat-banner > div:last-child {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}
+
+/* ── COUNT BADGE TRANSITION ──────────────────────────────── */
+.ex-count-badge {
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}

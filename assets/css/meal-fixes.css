@@ -1,0 +1,286 @@
+/* ============================================================
+   MEAL PLANNER — VISIBILITY FIXES
+   Classic Fitness Gym | classicfitness.org
+   
+   HOW TO USE: Add this line to meal.html <head> AFTER meal.css:
+   <link rel="stylesheet" href="assets/css/meal-fixes.css" />
+   ============================================================ */
+
+
+/* ============================================================
+   FIX 1 — TIMELINE CARD: Subtitle (Low-GI, high-fibre...)
+   Was: #94a3b8 (too light/grey)
+   Now: visible teal-blue with slight color
+   ============================================================ */
+.meal-tl-meal-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  color: #0d9488;           /* teal — matches the green brand */
+  margin-top: 4px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   FIX 2 — CALORIE PILL (380 kcal badge)
+   Was: rgba(0,0,0,0.2) bg — nearly invisible on white card
+   Now: bold fiery orange — matches calorie context visually
+   ============================================================ */
+.meal-tl-cal-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #f97316, #ea580c);  /* orange */
+  padding: 4px 11px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(249,115,22,0.35);
+  letter-spacing: 0.2px;
+}
+
+/* ============================================================
+   FIX 3 — PREP TIME BADGE (⏱ 20 min)
+   Was: #94a3b8 — barely visible
+   Now: slate with clock icon color pop
+   ============================================================ */
+.meal-tl-prep-badge {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;           /* clear dark slate */
+  white-space: nowrap;
+  background: #f1f5f9;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+}
+
+/* ============================================================
+   FIX 4 — SECTION LABELS inside expanded card
+   (INGREDIENTS / MACROS / PREPARATION STEPS)
+   Was: #94a3b8 — dull grey
+   Now: colored with pill background
+   ============================================================ */
+.meal-section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  color: #059669;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 18px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meal-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, #d1fae5, transparent);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   FIX 5 — MACRO CHIPS (inside expanded card)
+   Was: boring grey background, low contrast
+   Now: each macro has its own accent color
+   ============================================================ */
+
+/* Calorie chip — orange */
+.meal-macro-chip:first-child {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+.meal-macro-chip:first-child span { color: #ea580c; }
+
+/* Protein chip — blue */
+.meal-macro-chip:nth-child(2) {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+.meal-macro-chip:nth-child(2) span { color: #3b82f6; }
+
+/* Carbs chip — amber */
+.meal-macro-chip:nth-child(3) {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border-color: #fde68a;
+  color: #b45309;
+}
+.meal-macro-chip:nth-child(3) span { color: #f59e0b; }
+
+/* Fat chip — purple */
+.meal-macro-chip:nth-child(4) {
+  background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+  border-color: #e9d5ff;
+  color: #7c3aed;
+}
+.meal-macro-chip:nth-child(4) span { color: #a855f7; }
+
+/* Base chip style — bold text */
+.meal-macro-chip {
+  border-radius: 10px;
+  padding: 7px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  border: 1.5px solid;
+}
+
+.meal-macro-chip span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   FIX 6 — TIME BADGE (7:00 AM)
+   Make it pop with a colored background matching meal type
+   ============================================================ */
+.meal-tl-time-badge {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, #1e293b, #334155);
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Meal-specific time badge colors */
+.meal-breakfast .meal-tl-time-badge { background: linear-gradient(135deg, #b45309, #f59e0b); }
+.meal-snack1   .meal-tl-time-badge { background: linear-gradient(135deg, #c2410c, #f97316); }
+.meal-lunch    .meal-tl-time-badge { background: linear-gradient(135deg, #065f46, #10b981); }
+.meal-snack2   .meal-tl-time-badge { background: linear-gradient(135deg, #5b21b6, #8b5cf6); }
+.meal-dinner   .meal-tl-time-badge { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+
+/* ============================================================
+   FIX 7 — LIBRARY FILTER LABELS (MEAL TIME / FOOD TYPE / CUISINE / GOAL)
+   Was: #94a3b8 — barely visible grey
+   Now: stronger dark text with colored accent
+   ============================================================ */
+.lib-filter-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #1e293b;           /* strong dark — fully readable */
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lib-filter-label::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, #d1fae5, transparent);
+  max-width: 60px;
+  border-radius: 2px;
+}
+
+/* The emoji icon in filter label */
+.lib-filter-label > span:first-child {
+  font-size: 14px;
+}
+
+/* ============================================================
+   FIX 8 — MEAL NAME in timeline header
+   Make it slightly larger and more prominent
+   ============================================================ */
+.meal-tl-meal-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+/* ============================================================
+   FIX 9 — INGREDIENT TAGS
+   Was: flat grey — blend into background
+   Now: slight warmth and better contrast
+   ============================================================ */
+.meal-ingredient-tag {
+  font-family: 'DM Sans', sans-serif;
+  background: #f0fdf4;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #065f46;
+}
+
+/* ============================================================
+   FIX 10 — LIBRARY MEAL CARD: prep time
+   Was: #94a3b8 — invisible on card
+   ============================================================ */
+.lib-meal-prep {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #475569;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============================================================
+   MOBILE — keep all fixes working on small screens
+   ============================================================ */
+@media (max-width: 640px) {
+  .meal-tl-meal-sub  { font-size: 12px; }
+  .meal-tl-cal-pill  { font-size: 11px; padding: 3px 9px; }
+  .meal-tl-prep-badge { font-size: 11px; padding: 3px 8px; }
+  .meal-tl-time-badge { font-size: 11px; padding: 4px 10px; }
+  .meal-macro-chip   { font-size: 12px; padding: 6px 10px; }
+  .lib-filter-label  { font-size: 10px; letter-spacing: 1px; }
+  .meal-section-label { font-size: 10px; margin: 14px 0 8px; }
+  .meal-ingredient-tag { font-size: 11px; padding: 4px 9px; }
+}
+
+/* ============================================================
+   FIX — Women's Health heading alignment in Library filter
+   Desktop: left-aligned label with line only on the right
+   Mobile: stays as-is (already looks good)
+   
+   Add to meal.html <head> after meal.css and meal-fixes.css:
+   <link rel="stylesheet" href="assets/css/meal-fixes.css" />
+   (Already included in meal-fixes.css below — just paste 
+    this block at the bottom of meal-fixes.css if needed)
+   ============================================================ */
+
+/* Override the centered divider — left-align on desktop */
+.lib-womens-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  justify-content: flex-start;   /* ← key fix: left-align */
+}
+
+/* Remove the left pseudo-line so it feels like the other filter labels */
+.lib-womens-divider::before {
+  display: none;                 /* ← remove left line */
+}
+
+/* Keep a short right line for elegance */
+.lib-womens-divider::after {
+  content: '';
+  width: 60px;                   /* fixed short line, not flex:1 */
+  flex: unset;
+  height: 1.5px;
+  background: linear-gradient(90deg, #fbcfe8, transparent);
+  border-radius: 2px;
+}

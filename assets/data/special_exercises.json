@@ -1,0 +1,1614 @@
+[
+  {
+    "id": "sp_mob_001",
+    "category": "mobility",
+    "name": "Hip Circle",
+    "bodyPart": "mobility",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A dynamic circular movement that lubricates the hip joint, improves range of motion and reduces stiffness.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "lower back",
+      "hip abductors"
+    ],
+    "instructions": [
+      "Stand with feet shoulder-width apart, hands on hips.",
+      "Slowly rotate your hips in a large clockwise circle.",
+      "Complete 10 circles clockwise, then 10 counter-clockwise.",
+      "Keep your upper body still \u2014 only your hips should move.",
+      "Gradually increase the size of each circle as you warm up."
+    ]
+  },
+  {
+    "id": "sp_mob_002",
+    "category": "mobility",
+    "name": "World's Greatest Stretch",
+    "bodyPart": "mobility",
+    "target": "Full Body",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A compound mobility drill targeting hips, thoracic spine, and hamstrings \u2014 one of the best pre-workout movements.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hamstrings",
+      "thoracic spine",
+      "groin",
+      "ankles"
+    ],
+    "instructions": [
+      "Start in a high plank position.",
+      "Step your right foot forward outside your right hand.",
+      "Drop your left knee to the floor.",
+      "Rotate your right arm up toward the ceiling, following with your eyes.",
+      "Hold 2 seconds, return to plank, repeat on left side.",
+      "Perform 5 reps per side."
+    ]
+  },
+  {
+    "id": "sp_mob_003",
+    "category": "mobility",
+    "name": "Ankle Circles",
+    "bodyPart": "mobility",
+    "target": "Ankles",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Improves ankle mobility and flexibility, reducing risk of ankle sprains and improving balance.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "calves",
+      "achilles tendon"
+    ],
+    "instructions": [
+      "Sit or stand on one leg, lifting the other foot off the ground.",
+      "Slowly rotate the raised foot clockwise 10 times.",
+      "Then rotate counter-clockwise 10 times.",
+      "Try to make the circles as large as possible.",
+      "Switch legs and repeat."
+    ]
+  },
+  {
+    "id": "sp_mob_004",
+    "category": "mobility",
+    "name": "Thoracic Rotation",
+    "bodyPart": "mobility",
+    "target": "Thoracic Spine",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Opens up the mid-back and improves rotational mobility \u2014 essential for athletes and desk workers alike.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "lats",
+      "obliques",
+      "shoulders"
+    ],
+    "instructions": [
+      "Kneel on all fours, spine neutral.",
+      "Place one hand behind your head, elbow pointing out.",
+      "Slowly rotate that elbow toward the opposite arm on the floor.",
+      "Then open it up toward the ceiling as far as comfortable.",
+      "Perform 10 reps on each side, moving slowly and with control."
+    ]
+  },
+  {
+    "id": "sp_mob_005",
+    "category": "mobility",
+    "name": "Cat-Cow Stretch",
+    "bodyPart": "mobility",
+    "target": "Spine",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A flowing spinal movement that improves flexibility, relieves tension and coordinates breath with movement.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "core",
+      "neck",
+      "hip flexors"
+    ],
+    "instructions": [
+      "Start on hands and knees, wrists under shoulders, knees under hips.",
+      "Inhale: drop your belly toward the floor, lift your head and tailbone (Cow).",
+      "Exhale: round your spine toward the ceiling, tuck chin and tailbone (Cat).",
+      "Move slowly and breathe deeply with each transition.",
+      "Perform 10\u201315 cycles."
+    ]
+  },
+  {
+    "id": "sp_mob_006",
+    "category": "mobility",
+    "name": "Shoulder CARs",
+    "bodyPart": "mobility",
+    "target": "Shoulders",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "description": "Controlled Articular Rotations (CARs) for the shoulder \u2014 maintains full joint health and range of motion.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "rotator cuff",
+      "upper back",
+      "chest"
+    ],
+    "instructions": [
+      "Stand tall, feet shoulder-width apart.",
+      "Slowly raise one arm forward, up overhead, then behind you in a big circle.",
+      "Move as slowly as possible \u2014 the slower the better.",
+      "Keep the rest of your body completely still.",
+      "Perform 3\u20135 circles each direction, each arm."
+    ]
+  },
+  {
+    "id": "sp_mob_007",
+    "category": "mobility",
+    "name": "90/90 Hip Stretch",
+    "bodyPart": "mobility",
+    "target": "Hip Rotators",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "The 90/90 position works both internal and external hip rotation simultaneously \u2014 excellent for tight hips.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "piriformis",
+      "groin"
+    ],
+    "instructions": [
+      "Sit on the floor with both legs bent at 90 degrees \u2014 one in front, one to the side.",
+      "Keep your back tall and sit upright.",
+      "Lean forward over your front shin gently.",
+      "Hold 30\u201360 seconds, then switch sides.",
+      "Perform 2\u20133 sets per side."
+    ]
+  },
+  {
+    "id": "sp_mob_008",
+    "category": "mobility",
+    "name": "Wrist Circles",
+    "bodyPart": "mobility",
+    "target": "Wrists",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Improves wrist mobility and prevents injury \u2014 essential before any pushing or pressing exercise.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "forearms",
+      "fingers"
+    ],
+    "instructions": [
+      "Extend both arms in front of you, hands open.",
+      "Make fists and rotate your wrists clockwise 10 times.",
+      "Then counter-clockwise 10 times.",
+      "Open and close your hands 10 times to finish.",
+      "Perform daily before training or computer work."
+    ]
+  },
+  {
+    "id": "sp_mob_009",
+    "category": "mobility",
+    "name": "Inchworm Walk",
+    "bodyPart": "mobility",
+    "target": "Hamstrings",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A dynamic stretch that simultaneously opens hamstrings, calves, shoulders and warms up the whole body.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "calves",
+      "shoulders",
+      "core",
+      "lower back"
+    ],
+    "instructions": [
+      "Stand tall, feet hip-width apart.",
+      "Bend forward and place hands on the floor in front of your feet.",
+      "Walk hands forward until you are in a plank position.",
+      "Hold 1 second, then walk feet toward hands.",
+      "Stand up and repeat for 5\u20138 reps, travelling forward."
+    ]
+  },
+  {
+    "id": "sp_mob_010",
+    "category": "mobility",
+    "name": "Deep Squat Hold",
+    "bodyPart": "mobility",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Improves hip, ankle and thoracic mobility simultaneously. A fundamental human movement pattern.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "ankles",
+      "lower back",
+      "adductors",
+      "glutes"
+    ],
+    "instructions": [
+      "Stand with feet shoulder-width apart, toes slightly turned out.",
+      "Slowly lower into a deep squat, keeping heels on the floor.",
+      "Bring your elbows inside your knees and press them out gently.",
+      "Hold for 30\u201360 seconds, breathing deeply.",
+      "Use a door frame or TRX for support if needed."
+    ]
+  },
+  {
+    "id": "sp_str_001",
+    "category": "stretching",
+    "name": "Standing Hamstring Stretch",
+    "bodyPart": "stretching",
+    "target": "Hamstrings",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "The most fundamental stretch for the posterior chain \u2014 relieves lower back tension and improves flexibility.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "lower back",
+      "calves",
+      "glutes"
+    ],
+    "instructions": [
+      "Stand tall with feet together.",
+      "Slowly bend forward from the hips, not the waist.",
+      "Let your hands reach toward the floor \u2014 don't bounce.",
+      "Hold the end position for 30\u201345 seconds.",
+      "Slowly roll back up. Perform 3 times."
+    ]
+  },
+  {
+    "id": "sp_str_002",
+    "category": "stretching",
+    "name": "Standing Quad Stretch",
+    "bodyPart": "stretching",
+    "target": "Quadriceps",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Essential after any leg workout \u2014 reduces DOMS and improves knee health.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hip flexors",
+      "knees"
+    ],
+    "instructions": [
+      "Stand on one leg, use a wall for balance if needed.",
+      "Bend the opposite knee and grab your ankle behind you.",
+      "Gently pull your heel toward your glutes.",
+      "Keep your knees together and stand tall.",
+      "Hold 30\u201345 seconds each leg."
+    ]
+  },
+  {
+    "id": "sp_str_003",
+    "category": "stretching",
+    "name": "Hip Flexor Lunge Stretch",
+    "bodyPart": "stretching",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Counteracts hours of sitting \u2014 opens the hip flexors and reduces lower back pain.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "quadriceps",
+      "psoas",
+      "lower back"
+    ],
+    "instructions": [
+      "Kneel on your right knee, left foot forward at 90 degrees.",
+      "Shift your hips forward gently until you feel a stretch in the right hip.",
+      "Keep your back straight and core engaged.",
+      "Raise your right arm overhead to deepen the stretch.",
+      "Hold 30\u201345 seconds, switch sides. Perform 2\u20133 sets."
+    ]
+  },
+  {
+    "id": "sp_str_004",
+    "category": "stretching",
+    "name": "Cobra Stretch",
+    "bodyPart": "stretching",
+    "target": "Abdominals",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Opens the chest and abdomen, decompresses the lower spine. A yoga classic for all fitness levels.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "lower back",
+      "chest",
+      "shoulders"
+    ],
+    "instructions": [
+      "Lie face down, palms flat on the floor near your shoulders.",
+      "Press through your hands to lift your chest off the floor.",
+      "Keep elbows slightly bent and shoulders away from ears.",
+      "Look slightly upward \u2014 don't crank your neck.",
+      "Hold 20\u201330 seconds. Repeat 3 times."
+    ]
+  },
+  {
+    "id": "sp_str_005",
+    "category": "stretching",
+    "name": "Child's Pose",
+    "bodyPart": "stretching",
+    "target": "Lower Back",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A restorative yoga pose that releases the lower back, hips and shoulders \u2014 perfect post-workout cool down.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hips",
+      "thoracic spine",
+      "shoulders"
+    ],
+    "instructions": [
+      "Kneel on the floor, big toes touching, knees wide apart.",
+      "Sit back on your heels and fold forward, arms extended on the floor.",
+      "Rest your forehead on the mat.",
+      "Breathe deeply and let gravity deepen the stretch.",
+      "Hold 60\u201390 seconds. Perfect as a recovery pose."
+    ]
+  },
+  {
+    "id": "sp_str_006",
+    "category": "stretching",
+    "name": "Pigeon Pose",
+    "bodyPart": "stretching",
+    "target": "Glutes",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "description": "The ultimate hip opener \u2014 deeply stretches the piriformis and glutes, relieving sciatic pain.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hip rotators",
+      "psoas",
+      "IT band"
+    ],
+    "instructions": [
+      "From downward dog, bring your right knee forward behind your right wrist.",
+      "Extend your left leg back on the floor.",
+      "Square your hips toward the floor.",
+      "Fold forward over your front shin for a deeper stretch.",
+      "Hold 60\u201390 seconds each side."
+    ]
+  },
+  {
+    "id": "sp_str_007",
+    "category": "stretching",
+    "name": "Doorway Chest Stretch",
+    "bodyPart": "stretching",
+    "target": "Chest",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Opens the chest and anterior shoulder \u2014 essential for anyone who sits at a desk or trains chest frequently.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "shoulders",
+      "biceps",
+      "pectorals"
+    ],
+    "instructions": [
+      "Stand in a doorway, arms at 90 degrees like goalposts.",
+      "Place forearms on the door frame.",
+      "Step one foot forward and lean gently through the doorway.",
+      "Feel the stretch across your chest and front shoulders.",
+      "Hold 30\u201345 seconds. Perform 3 times."
+    ]
+  },
+  {
+    "id": "sp_str_008",
+    "category": "stretching",
+    "name": "Seated Spinal Twist",
+    "bodyPart": "stretching",
+    "target": "Spine",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Improves spinal rotation and releases tension in the mid-back \u2014 great after long periods of sitting.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "obliques",
+      "lower back",
+      "hips"
+    ],
+    "instructions": [
+      "Sit tall on the floor, legs extended.",
+      "Bend your right knee and cross it over your left leg.",
+      "Place your right hand on the floor behind you.",
+      "Wrap your left arm around your right knee and twist right.",
+      "Hold 30 seconds, switch sides. Breathe deeply throughout."
+    ]
+  },
+  {
+    "id": "sp_str_009",
+    "category": "stretching",
+    "name": "Calf Stretch on Wall",
+    "bodyPart": "stretching",
+    "target": "Calves",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Prevents Achilles injuries and relieves calf tightness \u2014 vital for runners and leg day recovery.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "achilles tendon",
+      "soleus",
+      "ankles"
+    ],
+    "instructions": [
+      "Stand facing a wall, hands on the wall at shoulder height.",
+      "Step one foot back, heel flat on the floor.",
+      "Lean forward to feel the stretch in the back calf.",
+      "Keep the back knee straight for gastrocnemius, or slightly bent for soleus.",
+      "Hold 30\u201345 seconds each leg."
+    ]
+  },
+  {
+    "id": "sp_str_010",
+    "category": "stretching",
+    "name": "Butterfly Stretch",
+    "bodyPart": "stretching",
+    "target": "Groin",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Opens the inner thighs and groin \u2014 reduces stiffness from running, cycling or sitting.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hip adductors",
+      "lower back",
+      "hips"
+    ],
+    "instructions": [
+      "Sit on the floor, bring the soles of your feet together in front of you.",
+      "Hold your feet with both hands.",
+      "Gently press your knees toward the floor using your elbows.",
+      "Keep your back straight \u2014 don't hunch.",
+      "Hold 45\u201360 seconds. Perform 2\u20133 times."
+    ]
+  },
+  {
+    "id": "sp_pre_001",
+    "category": "pre_pregnancy",
+    "name": "Pelvic Tilt",
+    "bodyPart": "pre_pregnancy",
+    "target": "Pelvic Floor",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Strengthens the deep core and pelvic floor \u2014 essential preparation for pregnancy and childbirth.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "lower back",
+      "abdominals",
+      "glutes"
+    ],
+    "instructions": [
+      "Lie on your back with knees bent, feet flat on the floor.",
+      "Take a deep breath in.",
+      "As you exhale, gently flatten your lower back against the floor by tightening your abs.",
+      "Hold for 5 seconds, then release.",
+      "Perform 10\u201315 reps, 2\u20133 sets daily."
+    ]
+  },
+  {
+    "id": "sp_pre_002",
+    "category": "pre_pregnancy",
+    "name": "Bird-Dog",
+    "bodyPart": "pre_pregnancy",
+    "target": "Core Stability",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Builds spinal stability and core strength without compression \u2014 safe and effective pre-pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "lower back",
+      "shoulders"
+    ],
+    "instructions": [
+      "Start on all fours, wrists under shoulders, knees under hips.",
+      "Extend your right arm forward and left leg back simultaneously.",
+      "Keep your hips level and spine neutral \u2014 don't rotate.",
+      "Hold 3 seconds, then slowly return.",
+      "Alternate sides for 10 reps each. Perform 3 sets."
+    ]
+  },
+  {
+    "id": "sp_pre_003",
+    "category": "pre_pregnancy",
+    "name": "Glute Bridge",
+    "bodyPart": "pre_pregnancy",
+    "target": "Glutes",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Strengthens glutes and pelvic floor \u2014 helps prepare the body for the demands of pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hamstrings",
+      "pelvic floor",
+      "lower back"
+    ],
+    "instructions": [
+      "Lie on your back, knees bent, feet flat, hip-width apart.",
+      "Press through your heels and lift your hips toward the ceiling.",
+      "Squeeze your glutes at the top \u2014 hold 2 seconds.",
+      "Slowly lower back down.",
+      "Perform 15 reps, 3 sets. Add a resistance band for progression."
+    ]
+  },
+  {
+    "id": "sp_pre_004",
+    "category": "pre_pregnancy",
+    "name": "Clamshell Exercise",
+    "bodyPart": "pre_pregnancy",
+    "target": "Hip Abductors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Targets the glute medius \u2014 essential for pelvic stability and reducing hip pain during pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "outer thighs",
+      "pelvic stabilizers"
+    ],
+    "instructions": [
+      "Lie on your side with hips stacked, knees bent at 45 degrees.",
+      "Keep your feet together.",
+      "Slowly raise your top knee as high as possible without rotating your hips.",
+      "Hold 1\u20132 seconds at the top, then slowly lower.",
+      "Perform 15 reps each side, 3 sets."
+    ]
+  },
+  {
+    "id": "sp_pre_005",
+    "category": "pre_pregnancy",
+    "name": "Wall Squat",
+    "bodyPart": "pre_pregnancy",
+    "target": "Quadriceps",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Safe squat variation that builds leg strength while supporting the lower back \u2014 perfect pre-pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "pelvic floor"
+    ],
+    "instructions": [
+      "Stand with your back flat against a wall.",
+      "Walk your feet out about 2 feet from the wall.",
+      "Slide down the wall until your knees are at 90 degrees.",
+      "Hold for 20\u201330 seconds, breathing steadily.",
+      "Perform 3\u20135 holds. Increase time as you get stronger."
+    ]
+  },
+  {
+    "id": "sp_pre_006",
+    "category": "pre_pregnancy",
+    "name": "Standing Cat-Cow",
+    "bodyPart": "pre_pregnancy",
+    "target": "Spine",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A standing version of cat-cow that reduces back pain and improves spinal mobility safely.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "core",
+      "lower back",
+      "hips"
+    ],
+    "instructions": [
+      "Stand with feet hip-width apart, hands on thighs.",
+      "Slightly bend your knees.",
+      "Inhale: arch your lower back, lift your chest (cow position).",
+      "Exhale: round your back, tuck your chin and pelvis (cat position).",
+      "Perform 10\u201315 slow cycles, coordinating with breath."
+    ]
+  },
+  {
+    "id": "sp_pre_007",
+    "category": "pre_pregnancy",
+    "name": "Kegel Exercise",
+    "bodyPart": "pre_pregnancy",
+    "target": "Pelvic Floor",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "The most important exercise for pregnancy preparation \u2014 strengthens the pelvic floor muscles for labour and recovery.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "bladder control muscles",
+      "perineum"
+    ],
+    "instructions": [
+      "Sit, stand, or lie down comfortably.",
+      "Identify the pelvic floor muscles \u2014 imagine you're stopping the flow of urine.",
+      "Contract those muscles for 5 seconds.",
+      "Relax completely for 5 seconds.",
+      "Perform 10\u201315 reps, 3 times a day. Gradually increase hold time to 10 seconds."
+    ]
+  },
+  {
+    "id": "sp_pre_008",
+    "category": "pre_pregnancy",
+    "name": "Side-Lying Hip Abduction",
+    "bodyPart": "pre_pregnancy",
+    "target": "Hip Abductors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Strengthens outer hips and glutes \u2014 reduces hip pain and prepares the pelvis for pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glute medius",
+      "tensor fascia latae",
+      "outer thighs"
+    ],
+    "instructions": [
+      "Lie on your side, legs straight, body in a straight line.",
+      "Keep your top foot flexed.",
+      "Slowly raise your top leg to about 45 degrees.",
+      "Hold 1 second at the top, then slowly lower.",
+      "Perform 15 reps each side, 3 sets."
+    ]
+  },
+  {
+    "id": "sp_pre_009",
+    "category": "pre_pregnancy",
+    "name": "Seated Hip Circles",
+    "bodyPart": "pre_pregnancy",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Gently mobilizes the hip joint and relieves pelvic tension \u2014 safe for all stages of pre-pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "hip rotators",
+      "pelvic floor",
+      "lower back"
+    ],
+    "instructions": [
+      "Sit on a stability ball or chair.",
+      "Slowly rotate your hips in a large clockwise circle.",
+      "Keep your upper body upright.",
+      "Perform 10 circles clockwise, then 10 counter-clockwise.",
+      "Breathe deeply throughout."
+    ]
+  },
+  {
+    "id": "sp_pre_010",
+    "category": "pre_pregnancy",
+    "name": "Resistance Band Row",
+    "bodyPart": "pre_pregnancy",
+    "target": "Upper Back",
+    "equipment": "resistance band",
+    "difficulty": "beginner",
+    "description": "Strengthens the upper back and posture muscles \u2014 counteracts the forward pull of pregnancy.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "rhomboids",
+      "rear deltoids",
+      "biceps"
+    ],
+    "instructions": [
+      "Sit tall in a chair or on the floor, band looped around your feet.",
+      "Hold one end in each hand, arms extended.",
+      "Pull the band toward your belly button, elbows going back.",
+      "Squeeze your shoulder blades together at the end.",
+      "Slowly release. Perform 15 reps, 3 sets."
+    ]
+  },
+  {
+    "id": "sp_post_001",
+    "category": "post_pregnancy",
+    "name": "Diaphragmatic Breathing",
+    "bodyPart": "post_pregnancy",
+    "target": "Core",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "The very first exercise after delivery \u2014 reconnects the deep core and pelvic floor through breath.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "pelvic floor",
+      "transverse abdominis",
+      "diaphragm"
+    ],
+    "instructions": [
+      "Lie on your back with knees bent.",
+      "Place one hand on your chest, one on your belly.",
+      "Breathe in slowly through your nose \u2014 let your belly rise, not your chest.",
+      "As you exhale, gently draw your belly button toward your spine.",
+      "Perform 10 deep breaths, 3 times daily from day 1 postpartum."
+    ]
+  },
+  {
+    "id": "sp_post_002",
+    "category": "post_pregnancy",
+    "name": "Heel Slides",
+    "bodyPart": "post_pregnancy",
+    "target": "Core",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Gently reactivates the deep core without strain \u2014 safe to begin within days of delivery.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "transverse abdominis",
+      "hip flexors",
+      "pelvic floor"
+    ],
+    "instructions": [
+      "Lie on your back, knees bent.",
+      "Take a breath in, then exhale and gently activate your deep core.",
+      "Slowly slide one heel along the floor, extending the leg.",
+      "Return to start without losing your core connection.",
+      "Alternate legs for 10 reps each, 2 sets."
+    ]
+  },
+  {
+    "id": "sp_post_003",
+    "category": "post_pregnancy",
+    "name": "Postpartum Glute Bridge",
+    "bodyPart": "post_pregnancy",
+    "target": "Glutes",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Safely rebuilds glute and pelvic floor strength post-delivery \u2014 a foundational recovery exercise.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "pelvic floor",
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "Lie on your back, knees bent, feet flat, hip-width apart.",
+      "Inhale to prepare.",
+      "Exhale, engage your pelvic floor and lift your hips slowly.",
+      "Hold at the top for 3 seconds, squeezing glutes gently.",
+      "Lower slowly. Perform 10 reps, 2\u20133 sets."
+    ]
+  },
+  {
+    "id": "sp_post_004",
+    "category": "post_pregnancy",
+    "name": "Dead Bug",
+    "bodyPart": "post_pregnancy",
+    "target": "Core Stability",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Rebuilds deep core coordination safely \u2014 one of the best postpartum exercises for abdominal recovery.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "transverse abdominis",
+      "hip flexors",
+      "lower back"
+    ],
+    "instructions": [
+      "Lie on your back, arms pointing toward ceiling, knees at 90 degrees.",
+      "Flatten your lower back against the floor.",
+      "Slowly lower your right arm and left leg toward the floor simultaneously.",
+      "Return to start without arching your back.",
+      "Alternate sides for 8 reps each, 2 sets."
+    ]
+  },
+  {
+    "id": "sp_post_005",
+    "category": "post_pregnancy",
+    "name": "Modified Wall Push-Up",
+    "bodyPart": "post_pregnancy",
+    "target": "Chest",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Rebuilds upper body strength safely after delivery \u2014 avoids abdominal pressure of floor push-ups.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "triceps",
+      "core",
+      "shoulders"
+    ],
+    "instructions": [
+      "Stand an arm's length from a wall, hands on wall at shoulder height.",
+      "Inhale as you slowly lower your chest toward the wall.",
+      "Exhale and engage core as you push back to start.",
+      "Keep your body in a straight line \u2014 no sagging hips.",
+      "Perform 10\u201315 reps, 2\u20133 sets."
+    ]
+  },
+  {
+    "id": "sp_post_006",
+    "category": "post_pregnancy",
+    "name": "Postpartum Clamshell",
+    "bodyPart": "post_pregnancy",
+    "target": "Hip Abductors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Rebuilds hip stability and glute medius strength lost during pregnancy \u2014 reduces pelvic pain.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "pelvic stabilizers",
+      "outer thighs"
+    ],
+    "instructions": [
+      "Lie on your side, hips stacked, knees bent at 45 degrees.",
+      "Keep feet together and hips still.",
+      "Raise your top knee as high as possible without rotating.",
+      "Lower slowly with control.",
+      "Perform 15 reps each side, 3 sets."
+    ]
+  },
+  {
+    "id": "sp_post_007",
+    "category": "post_pregnancy",
+    "name": "Seated Posture Row",
+    "bodyPart": "post_pregnancy",
+    "target": "Upper Back",
+    "equipment": "resistance band",
+    "difficulty": "beginner",
+    "description": "Counteracts the hunching from breastfeeding \u2014 rebuilds upper back strength and posture.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "rhomboids",
+      "rear deltoids",
+      "biceps"
+    ],
+    "instructions": [
+      "Sit tall, band looped around a stable anchor or your feet.",
+      "Hold the band with arms extended.",
+      "Pull toward your belly, squeezing shoulder blades together.",
+      "Hold 2 seconds, release slowly.",
+      "Perform 15 reps, 3 sets."
+    ]
+  },
+  {
+    "id": "sp_post_008",
+    "category": "post_pregnancy",
+    "name": "Postpartum Bird-Dog",
+    "bodyPart": "post_pregnancy",
+    "target": "Core Stability",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Restores spinal stability and coordination after pregnancy \u2014 safe from 6 weeks postpartum.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glutes",
+      "lower back",
+      "transverse abdominis"
+    ],
+    "instructions": [
+      "On all fours, spine neutral.",
+      "Slowly extend right arm and left leg simultaneously.",
+      "Hold 3 seconds without rotating your hips or spine.",
+      "Return with control, then switch sides.",
+      "Perform 8 reps per side, 2 sets."
+    ]
+  },
+  {
+    "id": "sp_post_009",
+    "category": "post_pregnancy",
+    "name": "Seated Pelvic Floor Lift",
+    "bodyPart": "post_pregnancy",
+    "target": "Pelvic Floor",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Rebuilds pelvic floor strength post-delivery \u2014 essential for bladder control and core recovery.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "deep core",
+      "perineum"
+    ],
+    "instructions": [
+      "Sit comfortably on a chair, feet flat on floor.",
+      "Breathe in deeply.",
+      "As you exhale, lift and squeeze your pelvic floor muscles.",
+      "Hold the lift for 5\u201310 seconds while continuing to breathe.",
+      "Release completely. Perform 10 reps, 3 times daily."
+    ]
+  },
+  {
+    "id": "sp_post_010",
+    "category": "post_pregnancy",
+    "name": "Supported Side-Lying Leg Lift",
+    "bodyPart": "post_pregnancy",
+    "target": "Outer Thighs",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Gently rebuilds hip strength and stability while protecting the healing core and pelvic floor.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "glute medius",
+      "tensor fascia latae"
+    ],
+    "instructions": [
+      "Lie on your side, head resting on your lower arm.",
+      "Keep your body in a straight line.",
+      "Slowly raise your top leg to about 30\u201340 degrees.",
+      "Hold 2 seconds, lower with control.",
+      "Perform 12 reps each side, 2 sets."
+    ]
+  },
+  {
+    "id": "sp_bth_001",
+    "category": "breathing",
+    "name": "Box Breathing",
+    "bodyPart": "breathing",
+    "target": "Nervous System",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Used by Navy SEALs and elite athletes \u2014 resets the nervous system, reduces stress and improves focus.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "lungs",
+      "core"
+    ],
+    "instructions": [
+      "Sit upright, close your eyes.",
+      "Exhale all air from your lungs.",
+      "Inhale through your nose for 4 counts.",
+      "Hold your breath for 4 counts.",
+      "Exhale slowly through your mouth for 4 counts.",
+      "Hold empty for 4 counts. This is 1 cycle. Perform 4\u20136 cycles."
+    ]
+  },
+  {
+    "id": "sp_bth_002",
+    "category": "breathing",
+    "name": "4-7-8 Breathing",
+    "bodyPart": "breathing",
+    "target": "Relaxation",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Dr. Andrew Weil's technique \u2014 activates the parasympathetic nervous system, reduces anxiety and aids sleep.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "lungs"
+    ],
+    "instructions": [
+      "Sit comfortably or lie down.",
+      "Exhale completely through your mouth.",
+      "Inhale through your nose for 4 counts.",
+      "Hold your breath for 7 counts.",
+      "Exhale completely through your mouth for 8 counts.",
+      "Repeat 3\u20134 times. Perform before bed or when stressed."
+    ]
+  },
+  {
+    "id": "sp_bth_003",
+    "category": "breathing",
+    "name": "Diaphragmatic Belly Breathing",
+    "bodyPart": "breathing",
+    "target": "Core",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Teaches correct breathing mechanics \u2014 most people breathe shallowly from the chest. This fixes it.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "core",
+      "pelvic floor"
+    ],
+    "instructions": [
+      "Lie on your back, one hand on chest, one on belly.",
+      "Breathe in slowly through your nose for 4 counts.",
+      "Your belly should rise \u2014 your chest should barely move.",
+      "Exhale slowly for 6 counts \u2014 belly falls.",
+      "Perform 10 breaths. Practice daily for 5 minutes."
+    ]
+  },
+  {
+    "id": "sp_bth_004",
+    "category": "breathing",
+    "name": "Alternate Nostril Breathing",
+    "bodyPart": "breathing",
+    "target": "Mental Focus",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "An ancient yogic breathing technique that balances the two hemispheres of the brain and calms the mind.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "lungs"
+    ],
+    "instructions": [
+      "Sit comfortably, spine tall.",
+      "Close your right nostril with your right thumb.",
+      "Inhale through the left nostril for 4 counts.",
+      "Close both nostrils, hold for 4 counts.",
+      "Open the right nostril, exhale for 4 counts.",
+      "Inhale through right, switch sides. Perform 5\u201310 cycles."
+    ]
+  },
+  {
+    "id": "sp_bth_005",
+    "category": "breathing",
+    "name": "Pursed Lip Breathing",
+    "bodyPart": "breathing",
+    "target": "Lung Capacity",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Slows breathing rate, improves oxygen exchange and relieves shortness of breath \u2014 great post-cardio.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "respiratory muscles"
+    ],
+    "instructions": [
+      "Relax your neck and shoulders.",
+      "Inhale slowly through your nose for 2 counts.",
+      "Pucker your lips as if you are about to whistle.",
+      "Exhale slowly through pursed lips for 4 counts.",
+      "Practice for 5\u201310 minutes. Use anytime you feel breathless."
+    ]
+  },
+  {
+    "id": "sp_bth_006",
+    "category": "breathing",
+    "name": "Lion's Breath",
+    "bodyPart": "breathing",
+    "target": "Stress Release",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "A powerful yoga breathing technique that releases tension in the face, jaw and chest immediately.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "facial muscles",
+      "throat",
+      "diaphragm"
+    ],
+    "instructions": [
+      "Sit in a comfortable position, hands on knees.",
+      "Inhale deeply through your nose.",
+      "Open your mouth wide, extend your tongue fully downward.",
+      "Exhale forcefully making a 'haaa' sound.",
+      "Eyes wide open, gaze upward. Repeat 3\u20135 times."
+    ]
+  },
+  {
+    "id": "sp_bth_007",
+    "category": "breathing",
+    "name": "Ocean Breath (Ujjayi)",
+    "bodyPart": "breathing",
+    "target": "Focus & Calm",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Creates a soothing ocean-like sound that anchors attention \u2014 widely used in yoga and meditation.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "glottis",
+      "throat"
+    ],
+    "instructions": [
+      "Breathe in through your nose normally.",
+      "As you exhale, slightly constrict the back of your throat \u2014 like fogging up a mirror.",
+      "This creates a soft 'hhhhh' sound.",
+      "Inhale with the same slight constriction.",
+      "Continue for 5\u201310 minutes during yoga or meditation."
+    ]
+  },
+  {
+    "id": "sp_bth_008",
+    "category": "breathing",
+    "name": "Kapalabhati Breath",
+    "bodyPart": "breathing",
+    "target": "Energy & Core",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "description": "A vigorous breathing technique that energizes the body, clears the lungs and strengthens the core.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "core",
+      "diaphragm",
+      "abdominals"
+    ],
+    "instructions": [
+      "Sit tall with spine erect.",
+      "Inhale deeply through your nose.",
+      "Perform short, sharp, forceful exhales through your nose.",
+      "Each exhale is driven by a quick contraction of the belly.",
+      "Start with 20 pumps, rest, then repeat 3 rounds."
+    ]
+  },
+  {
+    "id": "sp_bth_009",
+    "category": "breathing",
+    "name": "Extended Exhale Breathing",
+    "bodyPart": "breathing",
+    "target": "Relaxation",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "Doubles the exhale length to activate the parasympathetic system \u2014 the fastest way to calm down.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "lungs"
+    ],
+    "instructions": [
+      "Sit or lie comfortably.",
+      "Inhale through your nose for 4 counts.",
+      "Exhale through your mouth for 8 counts \u2014 twice as long.",
+      "The slow exhale activates the calming part of your nervous system.",
+      "Perform 10 cycles. Use before sleep or after intense training."
+    ]
+  },
+  {
+    "id": "sp_bth_010",
+    "category": "breathing",
+    "name": "Coherent Breathing",
+    "bodyPart": "breathing",
+    "target": "Heart Rate Variability",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "description": "5 breaths per minute breathing that maximises heart rate variability \u2014 the gold standard for recovery.",
+    "gifUrl": "",
+    "secondaryMuscles": [
+      "diaphragm",
+      "cardiovascular system"
+    ],
+    "instructions": [
+      "Sit tall, eyes closed.",
+      "Inhale slowly through your nose for 6 counts.",
+      "Exhale slowly through your nose for 6 counts.",
+      "This gives exactly 5 breaths per minute.",
+      "Continue for 10\u201320 minutes for maximum recovery benefit."
+    ]
+  },
+  {
+    "id": "sp_bth_011",
+    "category": "breathing",
+    "name": "Sitali Cooling Breath",
+    "bodyPart": "breathing",
+    "target": "Body Temperature",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "An ancient yoga cooling breath that lowers body temperature, reduces anger and calms the mind \u2014 perfect after hot workouts.",
+    "secondaryMuscles": [
+      "tongue",
+      "throat",
+      "diaphragm"
+    ],
+    "instructions": [
+      "Sit comfortably with spine tall and eyes closed.",
+      "Roll your tongue into a tube shape (or purse lips if unable).",
+      "Inhale slowly through the rolled tongue \u2014 feel the cool air.",
+      "Close your mouth and exhale slowly through your nose.",
+      "Repeat 8\u201310 times. Use after exercise or when feeling overheated."
+    ]
+  },
+  {
+    "id": "sp_bth_012",
+    "category": "breathing",
+    "name": "Humming Bee Breath (Bhramari)",
+    "bodyPart": "breathing",
+    "target": "Stress & Anxiety",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "The vibration from humming activates the vagus nerve instantly \u2014 one of the fastest ways to calm anxiety.",
+    "secondaryMuscles": [
+      "throat",
+      "facial muscles",
+      "diaphragm"
+    ],
+    "instructions": [
+      "Sit comfortably, close your eyes.",
+      "Place your index fingers gently over your ear cartilage.",
+      "Inhale deeply through your nose.",
+      "As you exhale, make a steady humming sound like a bee.",
+      "Feel the vibration in your head and face.",
+      "Repeat 6\u20138 times. Excellent before sleep or meditation."
+    ]
+  },
+  {
+    "id": "sp_bth_013",
+    "category": "breathing",
+    "name": "Nadi Shodhana (Channel Cleansing)",
+    "bodyPart": "breathing",
+    "target": "Mental Clarity",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "gifUrl": "",
+    "description": "Advanced alternate nostril breathing that purifies energy channels and balances left-right brain hemispheres.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "sinuses",
+      "lungs"
+    ],
+    "instructions": [
+      "Sit tall, right hand in Vishnu mudra (fold index and middle fingers).",
+      "Close right nostril with thumb, inhale left for 4 counts.",
+      "Close both nostrils, hold for 16 counts.",
+      "Open right nostril only, exhale for 8 counts.",
+      "Inhale right for 4, hold both for 16, exhale left for 8.",
+      "This is one round. Perform 3\u20135 rounds daily."
+    ]
+  },
+  {
+    "id": "sp_bth_014",
+    "category": "breathing",
+    "name": "Three-Part Yogic Breath",
+    "bodyPart": "breathing",
+    "target": "Lung Capacity",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Fills all three chambers of the lungs \u2014 belly, ribcage, chest \u2014 maximising oxygen intake with every breath.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "intercostals",
+      "chest"
+    ],
+    "instructions": [
+      "Lie down or sit comfortably.",
+      "First, breathe into your belly \u2014 feel it expand.",
+      "Continue inhaling into your ribcage \u2014 feel it widen sideways.",
+      "Finally fill your upper chest \u2014 feel your collarbones rise.",
+      "Exhale in reverse: chest, ribs, belly deflate.",
+      "Perform 5\u20138 complete breaths slowly."
+    ]
+  },
+  {
+    "id": "sp_bth_015",
+    "category": "breathing",
+    "name": "Wim Hof Power Breathing",
+    "bodyPart": "breathing",
+    "target": "Energy & Focus",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "gifUrl": "",
+    "description": "The famous Wim Hof method \u2014 30 deep power breaths followed by a breath hold that boosts energy and immune function.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "lungs",
+      "core"
+    ],
+    "instructions": [
+      "Lie down comfortably. Take 30 deep, full inhales and relaxed exhales.",
+      "Each inhale fully fills your lungs \u2014 exhale is passive, not forced.",
+      "After 30 breaths, exhale fully and hold \u2014 no air in lungs.",
+      "Hold as long as comfortable (typically 1\u20133 minutes).",
+      "Take one deep recovery breath, hold for 15 seconds.",
+      "Repeat 3 rounds. Never do near water or while driving."
+    ]
+  },
+  {
+    "id": "sp_bth_016",
+    "category": "breathing",
+    "name": "5-5-5 Triangle Breathing",
+    "bodyPart": "breathing",
+    "target": "Anxiety Relief",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Equal inhale, hold and exhale creates perfect balance \u2014 simpler than box breathing, equally effective for anxiety.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "nervous system"
+    ],
+    "instructions": [
+      "Sit or lie comfortably, close your eyes.",
+      "Inhale slowly through your nose for 5 counts.",
+      "Hold your breath gently for 5 counts.",
+      "Exhale slowly through your mouth for 5 counts.",
+      "This is one triangle. Perform 5\u201310 cycles.",
+      "Use before exams, presentations, or stressful situations."
+    ]
+  },
+  {
+    "id": "sp_bth_017",
+    "category": "breathing",
+    "name": "Breath of Fire",
+    "bodyPart": "breathing",
+    "target": "Core & Energy",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "gifUrl": "",
+    "description": "A rapid rhythmic breath from Kundalini yoga that strengthens the core, builds heat and boosts metabolism.",
+    "secondaryMuscles": [
+      "abdominals",
+      "diaphragm",
+      "core"
+    ],
+    "instructions": [
+      "Sit tall in cross-legged position.",
+      "Begin rapid, equal inhales and exhales through the nose.",
+      "Each breath is driven by the navel \u2014 pump it in and out.",
+      "Start slow (1 breath/second), build to 2\u20133 per second.",
+      "Continue for 1\u20133 minutes.",
+      "Stop if dizzy \u2014 rest and breathe normally."
+    ]
+  },
+  {
+    "id": "sp_bth_018",
+    "category": "breathing",
+    "name": "Morning Energising Breath",
+    "bodyPart": "breathing",
+    "target": "Morning Energy",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "A simple 3-step morning breathing sequence that wakes the body, clears the mind and sets a positive tone for the day.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "chest",
+      "shoulders"
+    ],
+    "instructions": [
+      "Stand tall or sit upright immediately after waking.",
+      "Take 5 slow, deep belly breaths \u2014 eyes closed.",
+      "Then 10 short sharp inhales through the nose (sniff-sniff pattern).",
+      "Follow with 3 big sighing exhales \u2014 'haaaa' through the mouth.",
+      "Raise your arms overhead as you inhale, lower as you exhale.",
+      "Repeat the full sequence 3 times. Energises better than coffee!"
+    ]
+  },
+  {
+    "id": "sp_bth_019",
+    "category": "breathing",
+    "name": "Pre-Workout Power Breath",
+    "bodyPart": "breathing",
+    "target": "Performance",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Activates the nervous system and increases oxygen levels before training \u2014 used by elite athletes for performance.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "core",
+      "lungs"
+    ],
+    "instructions": [
+      "Stand with feet shoulder-width apart.",
+      "Take 3 deep belly breaths to centre yourself.",
+      "Then 10 forceful exhales \u2014 push air out hard through pursed lips.",
+      "Take one massive inhale, hold for 5 seconds, then release.",
+      "Repeat 2\u20133 times.",
+      "Start your workout within 60 seconds for maximum benefit."
+    ]
+  },
+  {
+    "id": "sp_bth_020",
+    "category": "breathing",
+    "name": "Post-Workout Recovery Breath",
+    "bodyPart": "breathing",
+    "target": "Recovery",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Lowers heart rate, reduces cortisol and accelerates recovery \u2014 the most important 5 minutes after any workout.",
+    "secondaryMuscles": [
+      "diaphragm",
+      "parasympathetic nervous system"
+    ],
+    "instructions": [
+      "Lie on your back immediately after training.",
+      "Place one hand on chest, one on belly.",
+      "Breathe in through nose for 4 counts \u2014 belly rises.",
+      "Hold 2 counts.",
+      "Exhale through mouth for 6 counts \u2014 belly falls.",
+      "Perform 15\u201320 cycles. Heart rate should drop noticeably."
+    ]
+  },
+  {
+    "id": "sp_mob_011",
+    "category": "mobility",
+    "name": "Lizard Pose",
+    "bodyPart": "mobility",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "intermediate",
+    "gifUrl": "",
+    "description": "A deep hip opener that targets the hip flexors, groin and inner thighs \u2014 excellent for desk workers and runners.",
+    "secondaryMuscles": [
+      "groin",
+      "hamstrings",
+      "hip rotators"
+    ],
+    "instructions": [
+      "From a high plank, step your right foot outside your right hand.",
+      "Lower your left knee to the floor.",
+      "Walk your right foot slightly to the right for more space.",
+      "Lower your forearms to the floor if possible.",
+      "Hold 30\u201360 seconds each side. Breathe deeply."
+    ]
+  },
+  {
+    "id": "sp_mob_012",
+    "category": "mobility",
+    "name": "Thread the Needle",
+    "bodyPart": "mobility",
+    "target": "Thoracic Spine",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Releases upper back and shoulder tension \u2014 excellent for desk workers and overhead athletes.",
+    "secondaryMuscles": [
+      "shoulders",
+      "upper back",
+      "neck"
+    ],
+    "instructions": [
+      "Start on all fours, spine neutral.",
+      "Slide your right arm under your left arm along the floor.",
+      "Rest your right shoulder and cheek on the floor.",
+      "Hold 20\u201330 seconds, feeling the stretch in upper back.",
+      "Return and repeat other side. Perform 3 times each."
+    ]
+  },
+  {
+    "id": "sp_mob_013",
+    "category": "mobility",
+    "name": "Standing Figure-4 Stretch",
+    "bodyPart": "mobility",
+    "target": "Glutes",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Standing piriformis stretch that improves hip mobility and relieves sciatic tension \u2014 can be done anywhere.",
+    "secondaryMuscles": [
+      "piriformis",
+      "hip rotators",
+      "lower back"
+    ],
+    "instructions": [
+      "Stand near a wall for balance.",
+      "Cross your right ankle over your left knee in a figure-4.",
+      "Slowly bend your standing knee, lowering into a squat.",
+      "Feel the deep stretch in your right glute.",
+      "Hold 30 seconds, switch sides."
+    ]
+  },
+  {
+    "id": "sp_mob_014",
+    "category": "mobility",
+    "name": "Seated Neck Circles",
+    "bodyPart": "mobility",
+    "target": "Neck",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Releases neck tension and improves cervical mobility \u2014 essential after screen time or heavy upper body training.",
+    "secondaryMuscles": [
+      "cervical spine",
+      "trapezius",
+      "SCM"
+    ],
+    "instructions": [
+      "Sit tall, shoulders relaxed and away from ears.",
+      "Slowly drop your right ear toward your right shoulder.",
+      "Roll your chin down toward your chest.",
+      "Continue to the left shoulder, then look up gently.",
+      "Perform 5 slow circles each direction. Never force the movement."
+    ]
+  },
+  {
+    "id": "sp_mob_015",
+    "category": "mobility",
+    "name": "Half-Kneeling Hip Flexor Stretch",
+    "bodyPart": "mobility",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "The gold standard hip flexor stretch \u2014 directly targets the psoas and iliacus shortened by sitting.",
+    "secondaryMuscles": [
+      "quadriceps",
+      "lower back",
+      "core"
+    ],
+    "instructions": [
+      "Kneel on your right knee, left foot forward.",
+      "Tuck your pelvis under \u2014 squeeze right glute.",
+      "Shift hips forward until you feel stretch in right hip front.",
+      "Raise right arm overhead for a deeper stretch.",
+      "Hold 45\u201360 seconds each side. Perform daily."
+    ]
+  },
+  {
+    "id": "sp_str_011",
+    "category": "stretching",
+    "name": "Doorway Shoulder Stretch",
+    "bodyPart": "stretching",
+    "target": "Shoulders",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Releases tight anterior shoulders from bench pressing, desk work and phone use.",
+    "secondaryMuscles": [
+      "pectorals",
+      "biceps",
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Stand in a doorway, arm at 90 degrees on the frame.",
+      "Step forward until you feel a stretch in chest and shoulder.",
+      "Hold 30 seconds. Move arm higher or lower to target different fibres.",
+      "Perform both sides. Repeat 3 times each."
+    ]
+  },
+  {
+    "id": "sp_str_012",
+    "category": "stretching",
+    "name": "Lying IT Band Stretch",
+    "bodyPart": "stretching",
+    "target": "IT Band",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Releases the iliotibial band \u2014 one of the most commonly tight structures in runners and cyclists.",
+    "secondaryMuscles": [
+      "TFL",
+      "outer thigh",
+      "hip abductors"
+    ],
+    "instructions": [
+      "Lie on your back, arms out to the sides.",
+      "Bring your right knee to your chest.",
+      "Cross it over your body toward the left side.",
+      "Keep both shoulders flat on the floor.",
+      "Hold 45 seconds each side."
+    ]
+  },
+  {
+    "id": "sp_str_013",
+    "category": "stretching",
+    "name": "Standing Side Stretch",
+    "bodyPart": "stretching",
+    "target": "Obliques",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Lengthens the lateral chain \u2014 obliques, lats and intercostals \u2014 reducing side waist tightness.",
+    "secondaryMuscles": [
+      "lats",
+      "intercostals",
+      "quadratus lumborum"
+    ],
+    "instructions": [
+      "Stand tall, feet hip-width apart.",
+      "Raise your right arm overhead.",
+      "Lean slowly to the left, reaching long through your right side.",
+      "Keep both feet planted and hips square.",
+      "Hold 30 seconds each side. Perform 2\u20133 times."
+    ]
+  },
+  {
+    "id": "sp_str_014",
+    "category": "stretching",
+    "name": "Prone Quad Stretch",
+    "bodyPart": "stretching",
+    "target": "Quadriceps",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Deeper quad stretch than standing version \u2014 gravity assists the stretch for maximum release.",
+    "secondaryMuscles": [
+      "hip flexors",
+      "knees",
+      "rectus femoris"
+    ],
+    "instructions": [
+      "Lie face down on the floor.",
+      "Bend your right knee and reach back to hold your ankle.",
+      "Gently pull your heel toward your glute.",
+      "Keep your hips on the floor \u2014 don't let them rise.",
+      "Hold 30\u201345 seconds each leg."
+    ]
+  },
+  {
+    "id": "sp_str_015",
+    "category": "stretching",
+    "name": "Wall Hip Flexor Stretch",
+    "bodyPart": "stretching",
+    "target": "Hip Flexors",
+    "equipment": "body weight",
+    "difficulty": "beginner",
+    "gifUrl": "",
+    "description": "Uses a wall for support to get a deep hip flexor stretch safely \u2014 great for beginners.",
+    "secondaryMuscles": [
+      "psoas",
+      "quadriceps",
+      "lower back"
+    ],
+    "instructions": [
+      "Kneel facing away from a wall.",
+      "Place your right foot up on the wall behind you.",
+      "Step your left foot forward into a lunge.",
+      "Shift hips forward \u2014 feel the deep stretch in right hip.",
+      "Hold 45 seconds each side."
+    ]
+  }
+]
